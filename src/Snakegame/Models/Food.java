@@ -1,4 +1,4 @@
-package Snakegame.Models;
+package snakegame.models;
 
 import java.awt.Point;
 

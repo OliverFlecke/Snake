@@ -1,4 +1,4 @@
-package Snakegame;
+package snakegame;
 
 /**
  *	Enum to know the different directions

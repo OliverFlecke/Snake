@@ -1,9 +1,9 @@
-package Snakegame.Models;
+package snakegame.models;
 
 import java.awt.Point;
 import java.util.*;
 
-import Snakegame.DIRECTION;
+import snakegame.DIRECTION;
 
 /**
  *	Snake class

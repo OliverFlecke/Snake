@@ -1,4 +1,4 @@
-package Snakegame.Controllers;
+package snakegame.controllers;
 
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
