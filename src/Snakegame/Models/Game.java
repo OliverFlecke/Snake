@@ -107,7 +107,23 @@ public class Game {
 
 	public ArrayList<Point> getOccupiedCells() {	
 		ArrayList<Point> occupiedCells = snake.getPosition();
+		for(Food current : this.food){
+			occupiedCells.add(current.getPosition());
+		}
 		return occupiedCells;
 	}
+	public ArrayList<Point> getSnakePosition() {
+		return snake.getPosition();
+	}
+	public ArrayList<Point> getFoodPosition() {
+		
+		ArrayList<Point> foodPosition =  new ArrayList<Point>();
+		for(Food current : this.food){
+			foodPosition.add(current.getPosition());
+		}
+		return foodPosition;
+		
+	}
+	
 	
 }
