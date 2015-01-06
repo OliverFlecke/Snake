@@ -70,7 +70,7 @@ public class Game {
 	private void createFoodInGame(int foodValue) {
 		this.food.add(new Food(foodValue, this.getOccupiedCells()));
 	}
-	
+
 	/**
 	 * Updates the game following a snake movement, checking for collision with food and with the snake itself
 	 */
@@ -92,17 +92,17 @@ public class Game {
 
 	}
 	public void addListener(GameListener toAdd) {
-        listeners.add(toAdd);
-    }
+		listeners.add(toAdd);
+	}
 	private void notifyListener() {
 		for (GameListener gl : listeners)
-            gl.update();
-		
+			gl.update();
+
 	}
 	private void endGame() {
 		for (GameListener gl : listeners)
-            gl.endGame();
-		
+			gl.endGame();
+
 	}
 
 	public ArrayList<Point> getOccupiedCells() {	
@@ -115,15 +115,10 @@ public class Game {
 	public ArrayList<Point> getSnakePosition() {
 		return snake.getPosition();
 	}
-	public ArrayList<Point> getFoodPosition() {
-		
-		ArrayList<Point> foodPosition =  new ArrayList<Point>();
-		for(Food current : this.food){
-			foodPosition.add(current.getPosition());
-		}
-		return foodPosition;
-		
+	public ArrayList<Food> getFood() {
+
+		return this.food;	
 	}
-	
-	
+
+
 }
