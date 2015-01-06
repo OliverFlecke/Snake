@@ -79,7 +79,6 @@ public class Game {
 		if(this.snake.checkCollision()){
 			endGame();
 		}
-		
 		/**
 		 * removes food if in collision with snake head, and generates new food.
 		 * Also notifies viewer of update
@@ -90,8 +89,8 @@ public class Game {
 			}
 		}
 		notifyListener();
+
 	}
-	
 	/**Add listener to list
 	 * 
 	 * @param GameListener
@@ -99,7 +98,6 @@ public class Game {
 	public void addListener(GameListener toAdd) {
 		listeners.add(toAdd);
 	}
-	
 	/** 
 	 * Call update method with listeners 
 	 */
@@ -107,9 +105,8 @@ public class Game {
 		for (GameListener gl : listeners)
 			gl.update();
 	}
-	
 	/**
-	 * Call end game method with listeners
+	 * call endgame method with listeners
 	 */
 	private void endGame() {
 		for (GameListener gl : listeners)
@@ -121,6 +118,7 @@ public class Game {
 	 * getter for all occupied cells
 	 * @return ArrayList<Point>
 	 */
+
 	public ArrayList<Point> getOccupiedCells() {	
 		ArrayList<Point> occupiedCells = snake.getPosition();
 		for(Food current : this.food){
@@ -146,3 +144,4 @@ public class Game {
 		return this.food;	
 	}
 }
+
