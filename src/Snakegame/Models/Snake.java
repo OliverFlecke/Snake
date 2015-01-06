@@ -23,10 +23,40 @@ public class Snake {
 	public Snake() {
 		// Set the starting position at the middle of the screen
 		position.add(new Point(Game.getDimension().width / 2, Game.getDimension().height / 2));
-		// position.add(new Point(Game.getDimension().width / 2 + 1, Game.getDimension().height / 2));
+		position.add(new Point(Game.getDimension().width / 2 + 1, Game.getDimension().height / 2));
 		
 		// Set the starting length of the snake
+		this.length = 2;
+		this.direction = DIRECTION.RIGHT;
+	}
+	
+	/**
+	 * Create a snake with the passed point as a starting point
+	 * @param startPosition for the snake
+	 */
+	public Snake(Point startPosition) {
+		position.add(startPosition);
 		this.length = 1;
+	}
+	
+	/**
+	 * Create a snake with the passed numbers as starting point
+	 * @param x coordinate of the start position
+	 * @param y coordinate of the start position
+	 */
+	public Snake(int x, int y) {
+		this(new Point(x, y));
+	}
+	
+	/**
+	 * Create a snake from a array list
+	 * @param startPosition list of start points
+	 */
+	public Snake(ArrayList<Point> startPosition) {
+		for (Point point : startPosition) {
+			this.position.add(point);
+		}
+		this.length = this.position.size();
 	}
 	
 	/**

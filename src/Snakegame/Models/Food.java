@@ -34,7 +34,23 @@ public class Food {
 	 * @return The position of the food
 	 */
 	public Point getPosition() {
-		return this.position;
+		return new Point(this.position);
+	}
+	
+	/**
+	 * Get the x coordinate of the food object
+	 * @return
+	 */
+	public int getX() {
+		return this.position.x;
+	}
+	
+	/**
+	 * Get the y coordinate of the food object
+	 * @return The y coordinate of the food object 
+	 */
+	public int getY() {
+		return this.position.y;
 	}
 	
 	/**
@@ -42,11 +58,21 @@ public class Food {
 	 *  @return A new random point
 	 */
 	private Point createRandomPosition(ArrayList<Point> occupiedCells) {
-		
+		Point position;
+		// Insures the new food is not in an occupied cell
+		do {
+			position = this.createRandomPoint();
+		} while(occupiedCells.contains(position));	
+		return position;
+	}
+	
+	/**
+	 * Create a random point in the game field
+	 * @return A random point within the game field
+	 */
+	private Point createRandomPoint() {
 		int x = (int) (Math.random() * Game.getDimension().width);
 		int y = (int) (Math.random() * Game.getDimension().height);
-		
-		// TODO add check to see if the food is on top of the snake
 		return new Point(x, y);
 	}
 }
