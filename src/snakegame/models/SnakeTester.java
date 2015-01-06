@@ -11,7 +11,7 @@ public class SnakeTester {
 	private static Snake snake;
 	public static void main(String[] args) {
 		Game game = new Game(10, 10);
-		snake = game.getSnake();
+		//snake = game.getSnake();
 		
 		/*
 		snake.move(DIRECTION.UP);
@@ -25,7 +25,7 @@ public class SnakeTester {
 		*/
 		
 		printSnake();
-		snake.eatFood(new Food(3));
+		//snake.eatFood(new Food(3));
 		snake.move(DIRECTION.UP);
 		snake.move();
 		snake.move();
@@ -42,7 +42,7 @@ public class SnakeTester {
 		
 		printSnake();
 		
-		snake.eatFood(new Food(3));
+		//snake.eatFood(new Food(3));
 		snake.move();
 		snake.move(DIRECTION.DOWN);
 		snake.move();

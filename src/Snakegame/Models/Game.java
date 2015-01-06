@@ -68,7 +68,7 @@ public class Game {
 	 * @param foodValue Value to give the new food object
 	 */
 	private void createFoodInGame(int foodValue) {
-		this.food.add(new Food(foodValue));
+		this.food.add(new Food(foodValue, this.getOccupiedCells()));
 	}
 	
 	/**
@@ -106,7 +106,8 @@ public class Game {
 	}
 
 	public ArrayList<Point> getOccupiedCells() {	
-		Arraylist<Point> occupiedCells = snake.getPosition();
+		ArrayList<Point> occupiedCells = snake.getPosition();
+		return occupiedCells;
 	}
 	
 }
