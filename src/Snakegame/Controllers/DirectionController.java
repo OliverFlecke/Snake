@@ -29,7 +29,6 @@ public class DirectionController implements KeyListener {
 	 * Control the snake based on arrow key inputs
 	 */
 	public void keyPressed(KeyEvent e) {
-		// TODO Auto-generated method stub
 		switch (e.getID()) {
 			case KeyEvent.VK_DOWN:
 				this.player.move(DIRECTION.DOWN);
@@ -54,14 +53,8 @@ public class DirectionController implements KeyListener {
 	}
 
 	@Override
-	public void keyReleased(KeyEvent e) {
-		// TODO Auto-generated method stub
-		
-	}
+	public void keyReleased(KeyEvent e) {}
 
 	@Override
-	public void keyTyped(KeyEvent e) {
-		// TODO Auto-generated method stub
-		
-	}
+	public void keyTyped(KeyEvent e) {}
 }

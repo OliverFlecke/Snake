@@ -1,6 +1,7 @@
 package snakegame.models;
 
 import java.awt.Point;
+import java.util.ArrayList;
 
 /**
  *	Food, which holds an eat value and a position
@@ -15,9 +16,9 @@ public class Food {
 	 * Constructor. Creates a new food object at a random position.
 	 * @param foodValue The value of the new food. 
 	 */
-	public Food(int foodValue) {
+	public Food(int foodValue, ArrayList<Point> occupiedCells) {
 		this.eatValue = foodValue;
-		this.position = this.createRandomPosition();
+		this.position = this.createRandomPosition(occupiedCells);
 	}
 	
 	/**
@@ -40,7 +41,8 @@ public class Food {
 	 *	Creates a new random point in the game, where the food is placed 
 	 *  @return A new random point
 	 */
-	private Point createRandomPosition() {
+	private Point createRandomPosition(ArrayList<Point> occupiedCells) {
+		
 		int x = (int) (Math.random() * Game.getDimension().width);
 		int y = (int) (Math.random() * Game.getDimension().height);
 		
