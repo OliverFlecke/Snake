@@ -11,6 +11,7 @@ import snakegame.controllers.GameListener;
 /**
  *	Game model with all the game rules and logic
  */
+
 public class Game {
 	//List of viewers to notify of updates
 	List<GameListener> listeners = new ArrayList<GameListener>();
@@ -79,18 +80,24 @@ public class Game {
 		if(this.snake.checkCollision()){
 			endGame();
 		}
-		/**
-		 * removes food if in collision with snake head, and generates new food.
-		 * Also notifies viewer of update
-		 */
+		
+		checkForFood();
+		notifyListener();
+	}
+	
+	/**
+	 * removes food if in collision with snake head, and generates new food.
+	 */
+	private void checkForFood() {
 		for(Food current : this.food){
-			if(current.getPosition()==this.snake.getHead()){
+			if(current.getPosition().equals(this.snake.getHead())){
+				this.snake.eatFood(current);
 				removeFood(current);
+				
 			}
 		}
-		notifyListener();
-
 	}
+	
 	/**Add listener to list
 	 * 
 	 * @param GameListener
@@ -98,6 +105,7 @@ public class Game {
 	public void addListener(GameListener toAdd) {
 		listeners.add(toAdd);
 	}
+	
 	/** 
 	 * Call update method with listeners 
 	 */
@@ -105,6 +113,7 @@ public class Game {
 		for (GameListener gl : listeners)
 			gl.update();
 	}
+	
 	/**
 	 * call endgame method with listeners
 	 */
@@ -113,6 +122,7 @@ public class Game {
 			gl.endGame();
 
 	}
+	
 	/** 
 	 * getter for all occupied cells
 	 * @return ArrayList<Point>
@@ -133,6 +143,7 @@ public class Game {
 	public ArrayList<Point> getSnakePosition() {
 		return snake.getPosition();
 	}
+	
 	/** 
 	 * getter for all food objects
 	 * @return ArrayList<Food>
