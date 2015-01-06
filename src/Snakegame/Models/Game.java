@@ -91,19 +91,32 @@ public class Game {
 		notifyListener();
 
 	}
+	/**Add listener to list
+	 * 
+	 * @param GameListener
+	 */
 	public void addListener(GameListener toAdd) {
 		listeners.add(toAdd);
 	}
+	/** 
+	 * Call update method with listeners 
+	 */
 	private void notifyListener() {
 		for (GameListener gl : listeners)
 			gl.update();
-
 	}
+	/**
+	 * call endgame method with listeners
+	 */
 	private void endGame() {
 		for (GameListener gl : listeners)
 			gl.endGame();
 
 	}
+	/** 
+	 * getter for all occupied cells
+	 * @return ArrayList<Point>
+	 */
 
 	public ArrayList<Point> getOccupiedCells() {	
 		ArrayList<Point> occupiedCells = snake.getPosition();
@@ -112,9 +125,18 @@ public class Game {
 		}
 		return occupiedCells;
 	}
+	
+	/** 
+	 * getter for all snake occupied cells
+	 * @return ArrayList<Point>
+	 */
 	public ArrayList<Point> getSnakePosition() {
 		return snake.getPosition();
 	}
+	/** 
+	 * getter for all food objects
+	 * @return ArrayList<Food>
+	 */
 	public ArrayList<Food> getFood() {
 
 		return this.food;	
