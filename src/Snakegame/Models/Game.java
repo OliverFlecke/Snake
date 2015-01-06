@@ -20,13 +20,18 @@ public class Game {
 	 */
 	public Game(Dimension newSize) {
 		size = newSize;
-		
-		// TODO Create the snake, food list, and add at least one food object
-		
 		this.food = new ArrayList<Food>();
+		food.add(new Food(1));
 		this.snake = new Snake();
+		mainGame();
+		new DirectionController(snake,this);
 	}
 	
+	private void mainGame() {
+		
+		
+	}
+
 	/**
 	 * Constructor, which takes two integers, and creates an dimension from those 
 	 * @param width of the game
@@ -41,7 +46,7 @@ public class Game {
 	 * @return The dimensions of the game
 	 */
 	public static Dimension getDimension() {
-		return new Dimension(size.width, size.height);
+		return size;
 	}
 	
 	/**
