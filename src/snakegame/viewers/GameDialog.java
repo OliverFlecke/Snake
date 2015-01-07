@@ -1,14 +1,11 @@
 package snakegame.viewers;
-
-<<<<<<< HEAD
 import java.awt.BorderLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
-=======
+
 import java.awt.Dimension;
 import javax.swing.ImageIcon;
->>>>>>> origin/master
 import javax.swing.JFrame;
 import javax.swing.JButton;
 import javax.swing.JLabel;
@@ -24,6 +21,7 @@ public class GameDialog extends GenericDialog{
 	 * 
 	 */
 	private static final long serialVersionUID = 1124153227936952372L;
+	private View view;
 	
 	//Create the buttons
 	JButton restartBtn = new JButton("Restart");
@@ -34,27 +32,24 @@ public class GameDialog extends GenericDialog{
 	
 	//Make JLabel
 	JLabel scoreText = new JLabel();
-	
-<<<<<<< HEAD
-	public GameDialog(Game game, View view){
-		super();
-		int score = game.getScore();
-		scoreText.setText("Score:" + score);
-=======
+		
 	private Game game;
 	
-	public GameDialog(Game game){
+	public GameDialog(Game game, View view){
 		super();
 		this.game = game;
+		this.view = view;
 		int score = this.game.getScore();
->>>>>>> origin/master
+	
+		
 		this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		
+		scoreText.setText("Score:" + score);
 		btnShelf.add(restartBtn);
 		btnShelf.add(closeBtn);
 		this.getContentPane().add(scoreText, BorderLayout.NORTH);
 		this.getContentPane().add(btnShelf, BorderLayout.SOUTH);
 		add(btnShelf);
-<<<<<<< HEAD
 		
 		
 		closeBtn.addActionListener(new ActionListener() {
@@ -70,23 +65,20 @@ public class GameDialog extends GenericDialog{
 
 			public void actionPerformed(ActionEvent e) {
 				view.dispose();
-				new View(10, 10);
+				new Snake();
 				closeFrame();
 			}
-		});		
-=======
+		});	
+		
 		this.setIconImage(new ImageIcon("icon.png").getImage());
 		this.setPreferredSize(getPreferredSize());
 		this.pack();
 		this.setLocationRelativeTo(null);
 		this.setVisible(true);
->>>>>>> origin/master
+		
 	}
 	
-		
-<<<<<<< HEAD
-}
-=======
+
 	}
-}
->>>>>>> origin/master
+
+
