@@ -1,24 +1,24 @@
-package snakegame.viewers;
 
-import java.awt.*;
-import javax.swing.*;
+import javax.swing.JFrame;
+import javax.swing.ImageIcon;
+import java.awt.BorderLayout;
 
-public class Gui {
 
-	public static void createAndShowGui(){
-		//Create and set up the window.
-		JFrame main = new JFrame("Snake");
-		main.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+public class Gui extends JFrame{
 
-		JLabel emptyLabel = new JLabel("");
-		emptyLabel.setPreferredSize(new Dimension(175, 100));
-		main.getContentPane().add(emptyLabel, BorderLayout.CENTER);
-		
-		main.setIconImage(new ImageIcon("icon.png").getImage());
+	private SnakeGrid snakeGrid;
 
-		//Display the window.
-		main.pack();
-		main.setVisible(true);
+
+public Gui(){
+	super();
+
+	this.snakeGrid = new SnakeGrid(500, 500);
+	this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+	this.setIconImage(new ImageIcon("icon.png").getImage());
+	this.getContentPane().add(snakeGrid, BorderLayout.CENTER);
+	this.setLocationRelativeTo(null);
+	this.pack();
+	this.setVisible(true);
+
 	}
-
 }
