@@ -17,6 +17,7 @@ public class Snake {
 
 	private DIRECTION direction;	// Movement direction
 	private int score = 0;			// Keeps track of the score
+	private Dimension gameDimension;
 	
 	/**
 	 * Constructor to create a snake object with a default start point
@@ -33,6 +34,7 @@ public class Snake {
 	public Snake(Point startPosition, Dimension gameDimension) {
 		position.add(startPosition);
 		this.length = 2;
+		this.gameDimension = gameDimension;
 	}
 	
 	/**
@@ -105,25 +107,25 @@ public class Snake {
 		switch (this.direction) {
 			case UP:
 				newHead = new Point(lastHead.x, lastHead.y + 1);
-				if (newHead.y > Game.getDimension().height) {
+				if (newHead.y > this.gameDimension.height) {
 					newHead.y = 0;
 				}
 				break;
 			case DOWN:
 				newHead = new Point(lastHead.x, lastHead.y - 1);
 				if (newHead.y < 0) {
-					newHead.y = Game.getDimension().height;
+					newHead.y = this.gameDimension.height;
 				}
 				break;
 			case LEFT:
 				newHead = new Point(lastHead.x - 1, lastHead.y);
 				if (newHead.x < 0) {
-					newHead.x = Game.getDimension().width;
+					newHead.x = this.gameDimension.width;
 				}
 				break;
 			case RIGHT:
 				newHead = new Point(lastHead.x + 1, lastHead.y);
-				if (newHead.x > Game.getDimension().width) {
+				if (newHead.x > this.gameDimension.width) {
 					newHead.x = 0;
 				}
 				break;
