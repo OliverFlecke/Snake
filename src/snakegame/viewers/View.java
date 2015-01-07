@@ -32,6 +32,7 @@ public class View extends JFrame implements GameListener {
 		this.pack();
 		this.setLocationRelativeTo(null);
 		this.setVisible(true);
+		this.snakeGrid.updateGrid();
 	}
 
 
