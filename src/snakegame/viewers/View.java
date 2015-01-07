@@ -25,14 +25,11 @@ public class View extends JFrame implements GameListener {
 		this.game = new Game(width, height);
 		this.snakeGrid = new SnakeGrid(game);
 		this.addKeyListener(new DirectionController(game));
-<<<<<<< HEAD
+
 		game.addListener(this);
 		this.score = new ScorePanel(game);
-=======
 		this.addComponentListener(new ViewController());
 		this.game.addListener(this);
-		this.score = new ScorePanel();
->>>>>>> origin/master
 		
 		this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		this.setIconImage(new ImageIcon("icon.png").getImage());
