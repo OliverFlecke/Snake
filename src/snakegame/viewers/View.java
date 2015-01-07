@@ -14,7 +14,11 @@ public class View extends JFrame implements GameListener {
 	/**
 	 * 
 	 */
+<<<<<<< HEAD
 	private static final long serialVersionUID = -4697208908255317826L;
+=======
+	private static final long serialVersionUID = 1L;
+>>>>>>> origin/master
 	private SnakeGrid snakeGrid;
 	private Game game;
 
