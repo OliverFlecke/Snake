@@ -47,11 +47,12 @@ public class Game {
 	}
 
 	/**
-	 * Get the dimension of the game 
+	 * Get the dimension of the game. Creates a new object, so nobody outside this class
+	 * can edit the dimension of the game. 
 	 * @return The dimensions of the game
 	 */
 	public static Dimension getDimension() {
-		return size;
+		return new Dimension(size);
 	}
 
 	/**
