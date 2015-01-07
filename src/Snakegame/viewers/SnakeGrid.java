@@ -3,7 +3,9 @@ package snakegame.viewers;
 import java.awt.Dimension;
 import java.awt.Point;
 
+import javax.swing.BorderFactory;
 import javax.swing.JPanel;
+
 
 
 
@@ -36,9 +38,9 @@ public class SnakeGrid extends JPanel {
 	public SnakeGrid(Game game) {
 		super();
 
-		this.setBackground(Color.PINK);
+		this.setBackground(Color.WHITE);
 		this.setLayout(new GridLayout(getPreferredSize().height, getPreferredSize().width));
-		
+		this.setBorder(BorderFactory.createEmptyBorder(10, 10, 10, 10));
 		this.game = game;
 		updateGrid();
 	}
