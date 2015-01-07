@@ -36,7 +36,7 @@ public class SnakeGrid extends JPanel {
 	public SnakeGrid(Game game) {
 		super();
 
-		this.setBackground(Color.WHITE);
+		this.setBackground(Color.PINK);
 		this.setLayout(new GridLayout(getPreferredSize().height, getPreferredSize().width));
 		
 		this.game = game;
