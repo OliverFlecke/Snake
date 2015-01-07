@@ -38,7 +38,7 @@ public class View extends JFrame implements GameListener {
 
 	@Override
 	public void endGame() {
-		// TODO Auto-generated method stub
+		System.exit(0);
 		
 	}
 
