@@ -38,7 +38,7 @@ public class View extends JFrame implements GameListener {
 
 	@Override
 	public void endGame() {
-		System.exit(0);
+		GameDialog endGameDialog = new GameDialog(game, this);
 		
 	}
 
