@@ -1,5 +1,6 @@
 package snakegame.models;
 
+import java.awt.Dimension;
 import java.awt.Point;
 import java.util.ArrayList;
 import java.util.LinkedList;
@@ -20,16 +21,16 @@ public class Snake {
 	/**
 	 * Constructor to create a snake object with a default start point
 	 */
-	public Snake() {
+	public Snake(Dimension gameDimension) {
 		// Set the starting position at the middle of the screen
-		this(new Point(Game.getDimension().width / 2, Game.getDimension().height / 2));
+		this(new Point(gameDimension.width / 2, gameDimension.height / 2), gameDimension);
 	}
 	
 	/**
 	 * Create a snake with the passed point as a starting point
 	 * @param startPosition for the snake
 	 */
-	public Snake(Point startPosition) {
+	public Snake(Point startPosition, Dimension gameDimension) {
 		position.add(startPosition);
 		this.length = 2;
 	}
@@ -39,8 +40,8 @@ public class Snake {
 	 * @param x coordinate of the start position
 	 * @param y coordinate of the start position
 	 */
-	public Snake(int x, int y) {
-		this(new Point(x, y));
+	public Snake(int x, int y, Dimension gameDimension) {
+		this(new Point(x, y), gameDimension);
 	}
 	
 	/**

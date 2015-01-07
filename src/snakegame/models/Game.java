@@ -21,7 +21,7 @@ public class Game {
 	// int for storing highscore
 	private int score=0;
 
-	private static Dimension size;
+	private Dimension size;
 
 	/**
 	 * Constructor which takes the size of the game and stores it
@@ -29,7 +29,7 @@ public class Game {
 	 */
 	public Game(Dimension newSize) {
 		size = newSize;
-		this.snake = new Snake();
+		this.snake = new Snake(this.getDimension());
 		//creates initial food item and list
 		this.food = new ArrayList<Food>();
 		createFoodInGame(1);
@@ -49,7 +49,7 @@ public class Game {
 	 * can edit the dimension of the game. 
 	 * @return The dimensions of the game
 	 */
-	public static Dimension getDimension() {
+	public Dimension getDimension() {
 		return new Dimension(size);
 	}
 
@@ -69,7 +69,7 @@ public class Game {
 	 * @param foodValue Value to give the new food object
 	 */
 	private void createFoodInGame(int foodValue) {
-		this.food.add(new Food(foodValue, this.getOccupiedCells()));
+		this.food.add(new Food(foodValue, this.getOccupiedCells(), this.getDimension()));
 	}
 
 	/**

@@ -3,19 +3,14 @@ package snakegame.controllers;
 import java.awt.event.ComponentEvent;
 import java.awt.event.ComponentListener;
 
-import snakegame.viewers.View;
-
 public class ViewController implements ComponentListener {
 	
-	private View view;
-	
-	public ViewController(View view) {
-		this.view = view;
-	}
-	
+	/**
+	 * Update the component this controller is linked to
+	 */
 	@Override
 	public void componentResized(ComponentEvent e) {
-		this.view.update();
+		((GameListener) e.getComponent()).update();
 	}
 
 	@Override
