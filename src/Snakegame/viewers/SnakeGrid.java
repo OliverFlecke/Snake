@@ -19,11 +19,14 @@ import java.awt.Graphics2D;
  * 
  */
 public class SnakeGrid extends JPanel /* implements GameListener */ {
+
+	
+	
 	/**
 	 * 
 	 */
-	private static final long serialVersionUID = 1L;
-	
+	private static final long serialVersionUID = -1801348824563036162L;
+
 	private Dimension gridSize;
 	
 	// The game object
