@@ -85,7 +85,7 @@ public class Game {
 		 * Furthermore notifies viewer of update
 		 */
 		for(Food current : this.food){
-			if(current.getPosition()==this.snake.getHead()){
+			if(current.getPosition().equals(this.snake.getHead())){
 				removeFood(current);
 				incrementScore();
 			}
