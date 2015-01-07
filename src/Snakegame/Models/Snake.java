@@ -13,11 +13,12 @@ import snakegame.DIRECTION;
 public class Snake {
 	// Position of the snake 
 	private LinkedList<Point> position = new LinkedList<Point>();
-	private int length;				// Length of the snake
+	private int length;								// Length of the snake
 
-	private DIRECTION direction;	// Movement direction
-	private int score = 0;			// Keeps track of the score
-	private Dimension gameDimension;
+	private DIRECTION direction;					// Movement direction 
+	private DIRECTION lastDirection;				// The last direction to move in	
+	private int score = 0;							// Keeps track of the score
+	private Dimension gameDimension;				// Dimensions of the game
 	
 	/**
 	 * Constructor to create a snake object with a default start point
@@ -58,43 +59,37 @@ public class Snake {
 	}
 	
 	/**
-	 * Move the snake around the game. Makes sure that the move is not opposite the last one
+	 * Set the direction the snakes next move should be.
+	 * Makes sure that the move is not opposite the last one
 	 * @param newDirection The direction to move the snake in
 	 */
-	public void move(DIRECTION newDirection) {
-		if (this.direction != null) // Makes sure the direction of the snake is not null
-			switch (this.direction) {
+	public void setDirection(DIRECTION newDirection) {
+		if (this.lastDirection != null) // Makes sure the direction of the snake is not null
+			switch (this.lastDirection) {
 				case UP:
-					if (newDirection != DIRECTION.DOWN)	{	// Can not go down when last move was up
+					if (newDirection != DIRECTION.DOWN)		// Can not go down when last move was up
 						this.direction = newDirection;
-						this.move();
-					}
 					break;
 				case DOWN:
-					if (newDirection != DIRECTION.UP) {	// Can not go up when last move was down
+					if (newDirection != DIRECTION.UP) 		// Can not go up when last move was down
 						this.direction = newDirection;
-						this.move();
-					}
 					break;
 				case LEFT:
-					if (newDirection != DIRECTION.RIGHT) {	// Can not go right when last move was left
+					if (newDirection != DIRECTION.RIGHT)	// Can not go right when last move was left
 						this.direction = newDirection;
-						this.move();
-					}
 					break;
 				case RIGHT:
-					if (newDirection != DIRECTION.LEFT)	{	// Can not go left when last move was right
+					if (newDirection != DIRECTION.LEFT)		// Can not go left when last move was right
 						this.direction = newDirection;
-						this.move();
-					}
 					break;
 				default:
 					// Invalid move, do nothing
 					break;
 			}
 		else {
+			// The first time
 			this.direction = newDirection;
-			this.move();
+			this.lastDirection = newDirection;
 		}
 	}
 	
@@ -136,6 +131,8 @@ public class Snake {
 		}
 		// Update the position of the snake
 		this.position.addFirst(newHead);
+		// Update the last move direction
+		this.lastDirection = this.direction;
 		
 		// If the length is smaller then the position list, remove the tail
 		if (this.position.size() > this.length) 
