@@ -1,5 +1,6 @@
 package snakegame.models;
 
+import java.awt.Dimension;
 import java.awt.Point;
 import java.util.ArrayList;
 
@@ -16,9 +17,9 @@ public class Food {
 	 * Constructor. Creates a new food object at a random position.
 	 * @param foodValue The value of the new food. 
 	 */
-	public Food(int foodValue, ArrayList<Point> occupiedCells) {
+	public Food(int foodValue, ArrayList<Point> occupiedCells, Dimension gameDimension) {
 		this.eatValue = foodValue;
-		this.position = this.createRandomPosition(occupiedCells);
+		this.position = this.createRandomPosition(occupiedCells, gameDimension);
 	}
 	
 	/**
@@ -57,11 +58,11 @@ public class Food {
 	 *	Creates a new random point in the game, where the food is placed 
 	 *  @return A new random point
 	 */
-	private Point createRandomPosition(ArrayList<Point> occupiedCells) {
+	private Point createRandomPosition(ArrayList<Point> occupiedCells, Dimension gameDimension) {
 		Point position;
 		// Insures the new food is not in an occupied cell
 		do {
-			position = this.createRandomPoint();
+			position = this.createRandomPoint(gameDimension);
 		} while(occupiedCells.contains(position));	
 		return position;
 	}
@@ -70,9 +71,9 @@ public class Food {
 	 * Create a random point in the game field
 	 * @return A random point within the game field
 	 */
-	private Point createRandomPoint() {
-		int x = (int) (Math.random() * Game.getDimension().width);
-		int y = (int) (Math.random() * Game.getDimension().height);
+	private Point createRandomPoint(Dimension gameDimension) {
+		int x = (int) (Math.random() * gameDimension.width);
+		int y = (int) (Math.random() * gameDimension.height);
 		return new Point(x, y);
 	}
 }

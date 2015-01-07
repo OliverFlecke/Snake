@@ -13,6 +13,8 @@ import java.awt.event.KeyListener;
 public class DirectionController implements KeyListener {
 	// Field for the game to control 
 	private Game game;
+	// State to see if the game is started
+	private boolean isStarted = false;
 	
 	/**
 	 * Constructor, which takes the player to control
@@ -34,29 +36,33 @@ public class DirectionController implements KeyListener {
 				//this.player.move(DIRECTION.DOWN);
 				System.out.println("Down key pressed");
 				this.game.moveSnake(DIRECTION.DOWN);
-				this.game.update();
+				this.isStarted = true;
 				break;
 			case KeyEvent.VK_UP:
 				//this.player.move(DIRECTION.UP);
 				System.out.println("Up key pressed");
 				this.game.moveSnake(DIRECTION.UP);
-				this.game.update();
+				this.isStarted = true;
 				break;
 			case KeyEvent.VK_LEFT:
 				//this.player.move(DIRECTION.LEFT);
 				System.out.println("Left key pressed");
 				this.game.moveSnake(DIRECTION.LEFT);
-				this.game.update();
+				this.isStarted = true;
 				break;	
 			case KeyEvent.VK_RIGHT:
 				//this.player.move(DIRECTION.RIGHT);
 				System.out.println("Right key pressed");
 				this.game.moveSnake(DIRECTION.RIGHT);
-				this.game.update();
+				this.isStarted = true;
 				break;		
 			default:
 				break;
 		}
+		
+		// Start the games time, if an direction key is pressed
+		if (this.isStarted) 
+			this.game.startGame();
 	}
 
 	@Override
