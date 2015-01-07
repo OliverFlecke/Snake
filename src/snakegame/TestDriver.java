@@ -1,10 +1,10 @@
 package snakegame;
 
-import snakegame.viewers.Gui;
+import snakegame.viewers.View;
 
 public class TestDriver {
 	public static void main(String[] args) {
-		Gui.createAndShowGui();
+		View.createAndShowGui();
 	}
 
 }

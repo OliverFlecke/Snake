@@ -5,7 +5,7 @@ import java.awt.Point;
 import java.util.List;
 import java.util.ArrayList;
 
-import snakegame.controllers.DirectionController;
+import snakegame.DIRECTION;
 import snakegame.controllers.GameListener;
 
 /**
@@ -33,8 +33,6 @@ public class Game {
 		//creates initial food item and list
 		this.food = new ArrayList<Food>();
 		createFoodInGame(1);
-		//creates listener for snake and game
-		new DirectionController(snake,this);
 	}
 
 	/**
@@ -93,7 +91,13 @@ public class Game {
 			}
 		}
 		notifyListener();
-
+	}
+	
+	/**
+	 * 
+	 */
+	public void moveSnake(DIRECTION moveDirection) {
+		this.snake.move(moveDirection);
 	}
 	
 	/**
