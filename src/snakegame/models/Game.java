@@ -122,6 +122,7 @@ public class Game {
 	public void addListener(GameListener toAdd) {
 		listeners.add(toAdd);
 	}
+	
 	/** 
 	 * Call update method with listeners 
 	 */

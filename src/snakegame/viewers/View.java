@@ -10,6 +10,10 @@ import java.awt.BorderLayout;
 
 public class View extends JFrame{
 
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
 	private SnakeGrid snakeGrid;
 	private Game game;
 
