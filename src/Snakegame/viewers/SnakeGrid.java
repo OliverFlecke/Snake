@@ -1,13 +1,11 @@
 package snakegame.viewers;
 
 import java.awt.Dimension;
-import java.util.ArrayList;
 import java.awt.Point;
 
 import javax.swing.JPanel;
 
-import snakegame.controllers.DirectionController;
-import snakegame.controllers.GameListener;
+
 import snakegame.models.Game;
 
 import java.awt.Color;
@@ -18,7 +16,7 @@ import java.awt.Graphics2D;
 /**
  * 
  */
-public class SnakeGrid extends JPanel /* implements GameListener */ {
+public class SnakeGrid extends JPanel {
 
 	
 	
@@ -26,33 +24,26 @@ public class SnakeGrid extends JPanel /* implements GameListener */ {
 	 * 
 	 */
 	private static final long serialVersionUID = -1801348824563036162L;
-
-	private Dimension gridSize;
+	private int gameWidthScale;
+	private int gameHeightScale;
+	
 	
 	// The game object
 	private Game game;
 
-	public SnakeGrid(Dimension gridSize, Game game) {
+	public SnakeGrid(Game game) {
 		super();
-		this.gridSize = gridSize;
 
 		this.setBackground(Color.WHITE);
-		this.setLayout(new GridLayout(gridSize.height, gridSize.width, 1, 1));
-		this.setPreferredSize(gridSize);
+		this.setLayout(new GridLayout(getPreferredSize().height, getPreferredSize().width));
 		
 		this.game = game;
-
-		/*
-		snakePos = new ArrayList<Point>();
-		snakePos.add(new Point(5,1));
-		snakePos.add(new Point(5,2));
-		snakePos.add(new Point(5,3));
-		snakePos.add(new Point(5,4));
-		*/
+		updateGrid();
 	}
 
-	public SnakeGrid(int n, int m, Game game) {
-		this(new Dimension(n, m), game);
+	@Override
+	public Dimension getPreferredSize(){
+		return new Dimension(500, 500);
 	}
 
     public void paintComponent(Graphics g) {
@@ -68,15 +59,13 @@ public class SnakeGrid extends JPanel /* implements GameListener */ {
      * @param g
      */
 	public void clearCanvas(Graphics g) {
-		g.clearRect(0, 0, gridSize.width, gridSize.height);
+		g.clearRect(0, 0, getPreferredSize().width, getPreferredSize().height);
 	}
-
        	
 	public void drawSnake(Graphics2D g2){
-	    for (Point currentPos : game.getSnakePosition()){
-	    	g2.fillRect(currentPos.x*20, currentPos.y*20, 20,20);
+	    for (Point currentPos : game.getSnakePosition()) {
+	    	g2.fillRect(currentPos.x*gameWidthScale, (Game.getDimension().height - currentPos.y)*gameHeightScale, gameWidthScale, gameHeightScale);
         }
-
 	}
 
 	//@Override
@@ -87,8 +76,8 @@ public class SnakeGrid extends JPanel /* implements GameListener */ {
 
 	//@Override
 	public void updateGrid() {
-		// TODO Auto-generated method stub
-		System.out.println("Update and repaint view");
+		gameWidthScale = this.getSize().width / (Game.getDimension().width + 1);
+		gameHeightScale = this.getSize().height / (Game.getDimension().height + 1);
 		this.repaint();	
 	}
 }

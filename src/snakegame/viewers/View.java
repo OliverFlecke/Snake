@@ -17,11 +17,11 @@ public class View extends JFrame implements GameListener {
 	private Game game;
 
 
-	public View(){
+	public View(int width, int height){
 		super();
-
-		this.game = new Game(10, 10);
-		this.snakeGrid = new SnakeGrid(500, 500, game);
+		
+		this.game = new Game(width, height);
+		this.snakeGrid = new SnakeGrid(game);
 		this.addKeyListener(new DirectionController(game));
 		
 		game.addListener(this);
@@ -29,8 +29,8 @@ public class View extends JFrame implements GameListener {
 		this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		this.setIconImage(new ImageIcon("icon.png").getImage());
 		this.getContentPane().add(snakeGrid, BorderLayout.CENTER);
-		this.setLocationRelativeTo(null);
 		this.pack();
+		this.setLocationRelativeTo(null);
 		this.setVisible(true);
 	}
 
