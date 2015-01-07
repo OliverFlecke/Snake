@@ -28,9 +28,12 @@ public class GameDialog extends JFrame{
 	//Make JLabel
 	JLabel scoreText = new JLabel();
 	
+	private Game game;
+	
 	public GameDialog(Game game){
 		super();
-		int score = game.getScore();
+		this.game = game;
+		int score = this.game.getScore();
 		this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		btnShelf.add(restartBtn);
 		btnShelf.add(closeBtn);
@@ -40,12 +43,7 @@ public class GameDialog extends JFrame{
 		this.pack();
 		this.setLocationRelativeTo(null);
 		this.setVisible(true);
-		
-		
 	}
-		
-		
-
 	
 	@Override
 	public Dimension getPreferredSize(){
