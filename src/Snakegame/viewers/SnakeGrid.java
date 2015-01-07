@@ -18,7 +18,7 @@ import java.awt.Graphics2D;
 /**
  * 
  */
-public class SnakeGrid extends JPanel implements GameListener {
+public class SnakeGrid extends JPanel /* implements GameListener */ {
 	/**
 	 * 
 	 */
@@ -76,14 +76,14 @@ public class SnakeGrid extends JPanel implements GameListener {
 
 	}
 
-	@Override
+	//@Override
 	public void endGame() {
 		// TODO Auto-generated method stub
 		
 	}
 
-	@Override
-	public void update() {
+	//@Override
+	public void updateGrid() {
 		// TODO Auto-generated method stub
 		System.out.println("Update and repaint view");
 		this.repaint();	
