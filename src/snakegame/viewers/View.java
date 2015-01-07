@@ -5,6 +5,7 @@ import javax.swing.ImageIcon;
 
 import snakegame.controllers.DirectionController;
 import snakegame.controllers.GameListener;
+import snakegame.controllers.ViewController;
 import snakegame.models.Game;
 
 import java.awt.BorderLayout;
@@ -24,8 +25,14 @@ public class View extends JFrame implements GameListener {
 		this.game = new Game(width, height);
 		this.snakeGrid = new SnakeGrid(game);
 		this.addKeyListener(new DirectionController(game));
+<<<<<<< HEAD
 		game.addListener(this);
 		this.score = new ScorePanel(game);
+=======
+		this.addComponentListener(new ViewController());
+		this.game.addListener(this);
+		this.score = new ScorePanel();
+>>>>>>> origin/master
 		
 		this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		this.setIconImage(new ImageIcon("icon.png").getImage());

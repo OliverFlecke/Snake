@@ -2,16 +2,18 @@ package snakegame.models;
 
 import java.awt.Dimension;
 import java.awt.Point;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import java.util.List;
 import java.util.ArrayList;
-
+import javax.swing.Timer;
 import snakegame.DIRECTION;
 import snakegame.controllers.GameListener;
 
 /**
  *	Game model with all the game rules and logic
  */
-public class Game {
+public class Game implements ActionListener {
 	// List of viewers to notify of updates
 	List<GameListener> listeners = new ArrayList<GameListener>();
 	// The snake player
@@ -20,8 +22,14 @@ public class Game {
 	private ArrayList<Food> food;
 	// int for storing highscore
 	private int score=0;
-
+	// Dimensions of the game field
 	private Dimension size;
+	
+	
+	// Timer to control the games speed
+	private Timer gameTimer;
+	// Delay in the timer
+	private int timerValue = 200;
 
 	/**
 	 * Constructor which takes the size of the game and stores it
@@ -33,6 +41,8 @@ public class Game {
 		//creates initial food item and list
 		this.food = new ArrayList<Food>();
 		createFoodInGame(1);
+		
+		this.gameTimer = new Timer(this.timerValue, this);
 	}
 
 	/**
@@ -71,6 +81,13 @@ public class Game {
 	private void createFoodInGame(int foodValue) {
 		this.food.add(new Food(foodValue, this.getOccupiedCells(), this.getDimension()));
 	}
+	
+	/**
+	 * Start the time for the game
+	 */
+	public void startGame() {
+		this.gameTimer.start();
+	}
 
 	/**
 	 * Updates the game following a snake movement, checking for collision with food and with the snake itself
@@ -80,10 +97,9 @@ public class Game {
 		if(this.snake.checkCollision()){
 			endGame();
 		}
-		/**
-		 * removes food if in collision with snake head and increments score. Also generates new food.
-		 * Furthermore notifies viewer of update
-		 */
+		
+		// Removes food if in collision with snake head and increments score. Also generates new food.
+		// Furthermore notifies viewer of update
 		for(Food current : this.food){
 			if(current.getPosition().equals(this.snake.getHead())) {
 				this.snake.eatFood(current);
@@ -95,10 +111,53 @@ public class Game {
 	}
 	
 	/**
-	 * 
+	 * Makes the snake move in the passed direction
 	 */
 	public void moveSnake(DIRECTION moveDirection) {
-		this.snake.move(moveDirection);
+		this.snake.setDirection(moveDirection);
+	}
+	
+	/*
+	 * Makes the snake move in its current direction
+	 */
+	public void moveSnake() {
+		this.snake.move();
+		this.update();
+	}
+	
+	/**
+	 * Update the timer with a new delay value
+	 * @param newTimer The new delay time
+	 */
+	public void updateTimer(int newTimer) {
+		this.gameTimer.setDelay(newTimer);
+	}
+	
+	/** 
+	 * getter for all occupied cells
+	 * @return ArrayList<Point>
+	 */
+	public ArrayList<Point> getOccupiedCells() {	
+		ArrayList<Point> occupiedCells = snake.getPosition();
+		for(Food current : this.food)
+			occupiedCells.add(current.getPosition());
+		return occupiedCells;
+	}
+	
+	/** 
+	 * getter for all snake occupied cells
+	 * @return ArrayList<Point>
+	 */
+	public ArrayList<Point> getSnakePosition() {
+		return snake.getPosition();
+	}
+	
+	/** 
+	 * getter for all food objects
+	 * @return ArrayList<Food>
+	 */
+	public ArrayList<Food> getFood() {
+		return this.food;	
 	}
 	
 	/**
@@ -138,31 +197,13 @@ public class Game {
 		for (GameListener gl : listeners)
 			gl.endGame();
 	}
-	
-	/** 
-	 * getter for all occupied cells
-	 * @return ArrayList<Point>
+
+	/**
+	 * Move the snake each time it is notified
 	 */
-	public ArrayList<Point> getOccupiedCells() {	
-		ArrayList<Point> occupiedCells = snake.getPosition();
-		for(Food current : this.food)
-			occupiedCells.add(current.getPosition());
-		return occupiedCells;
-	}
-	
-	/** 
-	 * getter for all snake occupied cells
-	 * @return ArrayList<Point>
-	 */
-	public ArrayList<Point> getSnakePosition() {
-		return snake.getPosition();
-	}
-	
-	/** 
-	 * getter for all food objects
-	 * @return ArrayList<Food>
-	 */
-	public ArrayList<Food> getFood() {
-		return this.food;	
+	@Override
+	public void actionPerformed(ActionEvent e) {
+		this.moveSnake();
+		this.gameTimer.restart();
 	}
 }
