@@ -18,16 +18,11 @@ public class Snake {
 	private int score = 0;			// Keeps track of the score
 	
 	/**
-	 * Constructor to create a snake object 
+	 * Constructor to create a snake object with a default start point
 	 */
 	public Snake() {
 		// Set the starting position at the middle of the screen
-		position.add(new Point(Game.getDimension().width / 2, Game.getDimension().height / 2));
-		position.add(new Point(Game.getDimension().width / 2 + 1, Game.getDimension().height / 2));
-		
-		// Set the starting length of the snake
-		this.length = 4;
-		this.direction = DIRECTION.RIGHT;
+		this(new Point(Game.getDimension().width / 2, Game.getDimension().height / 2));
 	}
 	
 	/**
@@ -36,7 +31,7 @@ public class Snake {
 	 */
 	public Snake(Point startPosition) {
 		position.add(startPosition);
-		this.length = 1;
+		this.length = 2;
 	}
 	
 	/**
