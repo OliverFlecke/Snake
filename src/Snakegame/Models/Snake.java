@@ -26,7 +26,7 @@ public class Snake {
 		position.add(new Point(Game.getDimension().width / 2 + 1, Game.getDimension().height / 2));
 		
 		// Set the starting length of the snake
-		this.length = 2;
+		this.length = 4;
 		this.direction = DIRECTION.RIGHT;
 	}
 	
@@ -67,27 +67,37 @@ public class Snake {
 		if (this.direction != null) // Makes sure the direction of the snake is not null
 			switch (this.direction) {
 				case UP:
-					if (newDirection != DIRECTION.DOWN)		// Can not go down when last move was up
+					if (newDirection != DIRECTION.DOWN)	{	// Can not go down when last move was up
 						this.direction = newDirection;
+						this.move();
+					}
 					break;
 				case DOWN:
-					if (newDirection != DIRECTION.UP)		// Can not go up when last move was down
+					if (newDirection != DIRECTION.UP) {	// Can not go up when last move was down
 						this.direction = newDirection;
+						this.move();
+					}
 					break;
 				case LEFT:
-					if (newDirection != DIRECTION.RIGHT)	// Can not go right when last move was left
+					if (newDirection != DIRECTION.RIGHT) {	// Can not go right when last move was left
 						this.direction = newDirection;
+						this.move();
+					}
 					break;
 				case RIGHT:
-					if (newDirection != DIRECTION.LEFT)		// Can not go left when last move was right
+					if (newDirection != DIRECTION.LEFT)	{	// Can not go left when last move was right
 						this.direction = newDirection;
+						this.move();
+					}
 					break;
 				default:
+					// Invalid move, do nothing
 					break;
 			}
-		else 
+		else {
 			this.direction = newDirection;
-		this.move();
+			this.move();
+		}
 	}
 	
 	/**
@@ -132,6 +142,8 @@ public class Snake {
 		// If the length is smaller then the position list, remove the tail
 		if (this.position.size() > this.length) 
 			this.position.removeLast();
+		
+		System.out.println(this.position.getFirst());
 	}
 	
 	/**

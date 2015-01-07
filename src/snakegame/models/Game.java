@@ -12,13 +12,13 @@ import snakegame.controllers.GameListener;
  *	Game model with all the game rules and logic
  */
 public class Game {
-	//List of viewers to notify of updates
+	// List of viewers to notify of updates
 	List<GameListener> listeners = new ArrayList<GameListener>();
 	// The snake player
 	private Snake snake;
 	// ArrayList of all the food objects on the game field
 	private ArrayList<Food> food;
-	//int for storing highscore
+	// int for storing highscore
 	private int score=0;
 
 	private static Dimension size;
@@ -104,8 +104,7 @@ public class Game {
 	 * increments score
 	 */
 	private void incrementScore() {
-		score++;
-		
+		score++;	
 	}
 	
 	/**
@@ -115,9 +114,9 @@ public class Game {
 		return score;
 	}
 
-	/**Add listener to list
-	 * 
-	 * @param GameListener
+	/**
+	 * Add listener to list
+	 * @param GameListener Object to listen for updates
 	 */
 	public void addListener(GameListener toAdd) {
 		listeners.add(toAdd);
@@ -130,25 +129,23 @@ public class Game {
 		for (GameListener gl : listeners)
 			gl.update();
 	}
+	
 	/**
 	 * call endgame method with listeners
 	 */
 	private void endGame() {
 		for (GameListener gl : listeners)
 			gl.endGame();
-
 	}
 	
 	/** 
 	 * getter for all occupied cells
 	 * @return ArrayList<Point>
 	 */
-
 	public ArrayList<Point> getOccupiedCells() {	
 		ArrayList<Point> occupiedCells = snake.getPosition();
-		for(Food current : this.food){
+		for(Food current : this.food)
 			occupiedCells.add(current.getPosition());
-		}
 		return occupiedCells;
 	}
 	
@@ -165,8 +162,6 @@ public class Game {
 	 * @return ArrayList<Food>
 	 */
 	public ArrayList<Food> getFood() {
-
 		return this.food;	
 	}
 }
-

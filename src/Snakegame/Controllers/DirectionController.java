@@ -24,29 +24,33 @@ public class DirectionController implements KeyListener {
 
 	@Override
 	/**
-	 * Control the snake based on arrow key inputs
+	 * Control the game based on arrow key inputs
 	 */
-	public void keyPressed(KeyEvent e) {
+	public void keyPressed(KeyEvent event) {
 		System.out.println("Key pressed");
-		switch (e.getID()) {
+		int keyCode = event.getKeyCode();
+		switch (keyCode) {
 			case KeyEvent.VK_DOWN:
 				//this.player.move(DIRECTION.DOWN);
-				System.out.println("Up key pressed");
+				System.out.println("Down key pressed");
 				this.game.moveSnake(DIRECTION.DOWN);
 				this.game.update();
 				break;
 			case KeyEvent.VK_UP:
 				//this.player.move(DIRECTION.UP);
+				System.out.println("Up key pressed");
 				this.game.moveSnake(DIRECTION.UP);
 				this.game.update();
 				break;
 			case KeyEvent.VK_LEFT:
 				//this.player.move(DIRECTION.LEFT);
+				System.out.println("Left key pressed");
 				this.game.moveSnake(DIRECTION.LEFT);
 				this.game.update();
 				break;	
 			case KeyEvent.VK_RIGHT:
 				//this.player.move(DIRECTION.RIGHT);
+				System.out.println("Right key pressed");
 				this.game.moveSnake(DIRECTION.RIGHT);
 				this.game.update();
 				break;		
@@ -56,8 +60,10 @@ public class DirectionController implements KeyListener {
 	}
 
 	@Override
-	public void keyReleased(KeyEvent e) {}
+	public void keyReleased(KeyEvent event) {
+		
+	}
 
 	@Override
-	public void keyTyped(KeyEvent e) {}
+	public void keyTyped(KeyEvent event) {}
 }
