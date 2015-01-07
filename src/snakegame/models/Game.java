@@ -18,6 +18,8 @@ public class Game {
 	private Snake snake;
 	// ArrayList of all the food objects on the game field
 	private ArrayList<Food> food;
+	//int for storing highscore
+	private int score=0;
 
 	private static Dimension size;
 
@@ -80,17 +82,34 @@ public class Game {
 			endGame();
 		}
 		/**
-		 * removes food if in collision with snake head, and generates new food.
-		 * Also notifies viewer of update
+		 * removes food if in collision with snake head and increments score. Also generates new food.
+		 * Furthermore notifies viewer of update
 		 */
 		for(Food current : this.food){
 			if(current.getPosition()==this.snake.getHead()){
 				removeFood(current);
+				incrementScore();
 			}
 		}
 		notifyListener();
 
 	}
+	
+	/**
+	 * increments score
+	 */
+	private void incrementScore() {
+		score++;
+		
+	}
+	
+	/**
+	 * getter for score
+	 */
+	public int getScore(){
+		return score;
+	}
+
 	/**Add listener to list
 	 * 
 	 * @param GameListener
