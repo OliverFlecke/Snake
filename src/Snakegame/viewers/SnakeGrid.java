@@ -67,14 +67,14 @@ public class SnakeGrid extends JPanel {
        	
 	public void drawSnake(Graphics2D g2){
 	    for (Point currentPos : game.getSnakePosition()) {
-	    	g2.fillRect(currentPos.x*gameWidthScale, (Game.getDimension().height - currentPos.y)*gameHeightScale, gameWidthScale, gameHeightScale);
+	    	g2.fillRect(currentPos.x*gameWidthScale, (this.game.getDimension().height - currentPos.y)*gameHeightScale, gameWidthScale, gameHeightScale);
         }
 	}
 
 	//@Override
 	public void updateGrid() {
-		gameWidthScale = this.getSize().width / (Game.getDimension().width + 1);
-		gameHeightScale = this.getSize().height / (Game.getDimension().height + 1);
+		gameWidthScale = this.getSize().width / (this.game.getDimension().width + 1);
+		gameHeightScale = this.getSize().height / (this.game.getDimension().height + 1);
 		this.repaint();	
 	}
 	
@@ -82,7 +82,7 @@ public class SnakeGrid extends JPanel {
 		g2.setColor(Color.cyan);
 	    for (Food currentFood : game.getFood()) {
 	    	Point currentPos = currentFood.getPosition();
-	    	g2.fillRect(currentPos.x*gameWidthScale, (Game.getDimension().height - currentPos.y)*gameHeightScale, gameWidthScale, gameHeightScale);
+	    	g2.fillRect(currentPos.x*gameWidthScale, (this.game.getDimension().height - currentPos.y)*gameHeightScale, gameWidthScale, gameHeightScale);
         }		
 	}
 }

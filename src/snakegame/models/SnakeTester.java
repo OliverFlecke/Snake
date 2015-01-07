@@ -2,7 +2,6 @@ package snakegame.models;
 
 import java.awt.Point;
 import java.util.ArrayList;
-import java.util.LinkedList;
 
 import snakegame.DIRECTION;
 
@@ -23,7 +22,7 @@ public class SnakeTester {
 		snake.move(DIRECTION.DOWN);
 		System.out.println(snake.getHead());
 		*/
-		
+		game.getDimension();
 		printSnake();
 		//snake.eatFood(new Food(3));
 		snake.move(DIRECTION.UP);
