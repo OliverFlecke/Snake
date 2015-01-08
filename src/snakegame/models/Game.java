@@ -6,9 +6,12 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.List;
 import java.util.ArrayList;
+
 import javax.swing.Timer;
+
 import snakegame.DIRECTION;
 import snakegame.controllers.GameListener;
+import snakegame.models.sound.Sound;
 
 /**
  *	Game model with all the game rules and logic
@@ -24,6 +27,8 @@ public class Game implements ActionListener {
 	private int score=0;
 	// Dimensions of the game field
 	private Dimension size;
+	//Handles sound effects
+	Sound sound = new Sound();
 	
 	
 	// Timer to control the games speed
@@ -63,7 +68,7 @@ public class Game implements ActionListener {
 		return new Dimension(size);
 	}
 
-	/**
+	/**½
 	 * Remove this food object passed to method
 	 * @param food Food object to delete 
 	 */
@@ -98,13 +103,14 @@ public class Game implements ActionListener {
 			endGame();
 		}
 		
-		// Removes food if in collision with snake head and increments score. Also generates new food.
+		// Removes food, plays sound and increments score if in collision with snake head. Also generates new food.
 		// Furthermore notifies viewer of update
 		for(Food current : this.food){
 			if(current.getPosition().equals(this.snake.getHead())) {
 				this.snake.eatFood(current);
 				removeFood(current);
 				incrementScore();
+				sound.EAT.play();
 			}
 		}
 		notifyListener();
