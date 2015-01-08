@@ -167,7 +167,7 @@ public class Game implements ActionListener {
 	 * @return ArrayList<Food>
 	 */
 	public ArrayList<Food> getFood() {
-		return this.food;	
+		return this.food;
 	}
 	
 	/**
