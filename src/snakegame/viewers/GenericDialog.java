@@ -24,6 +24,7 @@ public class GenericDialog extends JFrame{
 
 		this.setIconImage(new ImageIcon("icon.png").getImage());
 		this.setPreferredSize(getPreferredSize());
+		this.setResizable(false);
 		this.pack();
 		this.setLocationRelativeTo(null);
 		this.setVisible(true);

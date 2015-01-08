@@ -1,6 +1,7 @@
 package snakegame.viewers;
 
 import java.awt.BorderLayout;
+import java.awt.Dimension;
 import java.awt.FlowLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -8,6 +9,9 @@ import java.awt.event.ActionListener;
 import javax.swing.JButton;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
+import javax.swing.SwingConstants;
+
+import com.sun.glass.events.KeyEvent;
 
 
 public class Snake extends GenericDialog{
@@ -22,7 +26,8 @@ public class Snake extends GenericDialog{
 	JButton startGameBtn = new JButton("Start Game");
 	
 	//Make JLabel
-	JLabel snake = new JLabel("SNAKE");
+	JLabel snake = new JLabel("SNAKE", SwingConstants.CENTER);
+
 	
 	//Make a JPanel to hold the btns and the labels
 	JPanel btnShelf = new JPanel();
@@ -44,8 +49,12 @@ public class Snake extends GenericDialog{
 		//Adding btns and labels to shelf
 		btnShelf.add(startGameBtn);
 		
+		snake.setPreferredSize(new Dimension(300,40));
+		dimensionsShelf.setPreferredSize(new Dimension(300,40));
 		
 		
+		//Set up enterkey to trigger Jbutton
+		startGameBtn.setMnemonic(10);
 		
 		//setting up the dimensionsShelf
 		dimensionsShelf.setLayout(new FlowLayout());
