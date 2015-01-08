@@ -2,6 +2,7 @@ package snakegame.viewers;
 
 import javax.swing.JFrame;
 import javax.swing.ImageIcon;
+import javax.swing.JPanel;
 
 import snakegame.DIRECTION;
 import snakegame.controllers.DirectionController;
@@ -42,12 +43,12 @@ public class View extends JFrame implements GameListener {
 		
 		this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		this.setIconImage(new ImageIcon("icon.png").getImage());
-		this.getContentPane().add(snakeGrid, BorderLayout.SOUTH);
-		this.getContentPane().add(score, BorderLayout.NORTH);
+		this.getContentPane().add(snakeGrid, BorderLayout.CENTER);
+		this.getContentPane().add(score, BorderLayout.PAGE_START);
 		this.pack();
 		this.setLocationRelativeTo(null);
 		this.setVisible(true);
-		this.snakeGrid.updateGrid();
+		this.update();
 		Sound.MUSIC.loop();
 	}
 
