@@ -69,6 +69,7 @@ public class SnakeGrid extends JPanel {
 	public void drawSnake(Graphics2D g2){
 		for (Snake snake : game.getSnakes()){
 		    for (Point currentPos : snake.getPosition()) {
+		    	g2.setColor(Color.black);
 		    	g2.fillRect(currentPos.x*gameWidthScale, (this.game.getDimension().height - currentPos.y)*gameHeightScale, gameWidthScale, gameHeightScale);
 
 	        }
