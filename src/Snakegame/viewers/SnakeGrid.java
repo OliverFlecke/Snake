@@ -10,6 +10,8 @@ import javax.swing.JPanel;
 
 
 
+import javax.swing.border.BevelBorder;
+
 import snakegame.models.Food;
 import snakegame.models.Game;
 import snakegame.models.Snake;
@@ -42,7 +44,7 @@ public class SnakeGrid extends JPanel {
 
 		this.setBackground(Color.WHITE);
 		this.setLayout(new GridLayout(getPreferredSize().height, getPreferredSize().width));
-		this.setBorder(BorderFactory.createEmptyBorder(10, 10, 10, 10));
+		this.setBorder(new BevelBorder(BevelBorder.RAISED));
 		this.game = game;
 		updateGrid();
 	}
@@ -71,12 +73,13 @@ public class SnakeGrid extends JPanel {
        	
 	public void drawSnake(Graphics2D g2){
 		for (Snake snake : game.getSnakes()){
-		    for (Point currentPos : game.getPosition()) {
+		    for (Point currentPos : snake.getPosition()) {
 		    	g2.fillRect(currentPos.x*gameWidthScale, (this.game.getDimension().height - currentPos.y)*gameHeightScale, gameWidthScale, gameHeightScale);
-		    	g2.setColor(Color.green);
-		    	Point head = snake.getHead();
-		    	g2.fillRect(head.x*gameWidthScale, (this.game.getDimension().height - head.y)*gameHeightScale, gameWidthScale, gameHeightScale);
+
 	        }
+	    	g2.setColor(Color.green);
+	    	Point head = snake.getHead();
+	    	g2.fillRect(head.x*gameWidthScale, (this.game.getDimension().height - head.y)*gameHeightScale, gameWidthScale, gameHeightScale);
 		}
 	}
 
