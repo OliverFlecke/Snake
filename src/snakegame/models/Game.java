@@ -6,9 +6,7 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.List;
 import java.util.ArrayList;
-
 import javax.swing.Timer;
-
 import snakegame.DIRECTION;
 import snakegame.controllers.GameListener;
 
@@ -34,18 +32,7 @@ public class Game implements ActionListener {
 	 * @param size Size of the game board
 	 */
 	public Game(Dimension newSize) {
-		// Create the list for the game
-		this.listeners = new ArrayList<GameListener>();
-		this.snakes = new ArrayList<Snake>();
-		this.food = new ArrayList<Food>();
-	
-		size = newSize;
-		this.gameTimer = new Timer(this.timerValue, this);
-		
-		// Create a default name
-		String[] names = new String[1];
-		names[0] = "Snake";
-		this.setupGame(1, names);
+		this(newSize, 1);
 	}
 
 	/**
@@ -58,39 +45,53 @@ public class Game implements ActionListener {
 	}
 	
 	/**
+	 * Constructor for multiplayer
+	 * @param width
+	 * @param height
+	 * @param numberOfPlayers
+	 */
+	public Game(int width, int height, int numberOfPlayers) {
+		this(new Dimension(width, height), numberOfPlayers);
+	}
+	
+	/**
 	 * Constructor to take the size of the game grid, and an int to define
 	 * how many players, that are playing
 	 * @param width	of the game
 	 * @param height of the game
 	 * @param numberOfPlayers in the game
 	 */
-	public Game(int width, int height, int numberOfPlayers, String[] names) {
-		this(width, height);
-		this.setupGame(numberOfPlayers, names);
+	public Game(Dimension newSize, int numberOfPlayers) {
+		this.size = newSize;
+		this.setupGame(numberOfPlayers);
 	}
 	
 	/**
 	 * Creates the snakes and food objects at the start of the game
 	 * @param numberOfPlayers Number of players in the game
 	 */
-	private void setupGame(int numberOfPlayers, String[] names) {
+	private void setupGame(int numberOfPlayers) {
+		// Create the list for the game
+		this.listeners = new ArrayList<GameListener>();
+		this.snakes = new ArrayList<Snake>();
+		this.food = new ArrayList<Food>();
+		this.gameTimer = new Timer(this.timerValue, this);
+		
 		if (numberOfPlayers == 1) {
-			this.snakes.add(new Snake(this.getDimension(), "Snake"));
-			//this.snakes.add(new Snake(this.getDimension(), "Orm"));
+			this.snakes.add(new Snake(this.getDimension()));
 			createFoodInGame(1);
 		} 
 		else if (numberOfPlayers > 1) {
 			int index = 0;
 			while (numberOfPlayers > index) {
-				this.snakes.add(new Snake(Game.createRandomPoint(this.getDimension()), 
-						this.getDimension(), names[index]));
+				this.snakes.add(new Snake(Game.createRandomPoint(this.getDimension()), this.getDimension()));
 				createFoodInGame(1);			// Create a food object for each snake
 				index++;						// Increment counter
 			}
 		}
 	}
 
-	/**½
+	/**
 	 * Remove this food object passed to method
 	 * @param food Food object to delete 
 	 */

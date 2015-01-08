@@ -23,8 +23,8 @@ public class Snake {
 	/**
 	 * Constructor to create a snake object with a default start point in the middle of the screen
 	 */
-	public Snake(Dimension gameDimension, String name) {
-		this(new Point(gameDimension.width / 2, gameDimension.height / 2), gameDimension, name);
+	public Snake(Dimension gameDimension) {
+		this(new Point(gameDimension.width / 2, gameDimension.height / 2), gameDimension);
 	}
 	
 	/**
@@ -32,8 +32,8 @@ public class Snake {
 	 * @param x coordinate of the start position
 	 * @param y coordinate of the start position
 	 */
-	public Snake(int x, int y, Dimension gameDimension, String name) {
-		this(new Point(x, y), gameDimension, name);
+	public Snake(int x, int y, Dimension gameDimension) {
+		this(new Point(x, y), gameDimension);
 	}
 	
 	/**
@@ -41,12 +41,12 @@ public class Snake {
 	 * @param startPosition for the snake
 	 * @param name of the player
 	 */
-	public Snake(Point startPosition, Dimension gameDimension, String name) {
+	public Snake(Point startPosition, Dimension gameDimension) {
 		this.position = new LinkedList<Point>();
 		position.add(startPosition);
 		this.length = 2;
 		this.gameDimension = gameDimension;
-		this.player = new Player(name);
+		this.player = new Player();
 	}
 	
 	/**
