@@ -39,7 +39,7 @@ public class GameDialog extends GenericDialog{
 	public GameDialog(Game game, View view){
 		super();
 		this.game = game;
-		int score = this.game.getScore();
+		int score = this.game.getSnakes().get(0).getScore();
 	
 		
 		this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);

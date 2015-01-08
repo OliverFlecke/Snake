@@ -13,13 +13,13 @@ public class ScorePanel extends JPanel{
 	 */
 	private static final long serialVersionUID = 98987685754434677L;
 	private Game game;
-	private JLabel label = new JLabel("0");
+	private JLabel scoreLabel = new JLabel("0");
 
 	public ScorePanel(Game game) {
 		super();
 		this.game = game;
 		this.setLayout(new GridBagLayout());
-		this.add(label);
+		this.add(scoreLabel);
 		this.setBackground(Color.PINK);
 	}
 
@@ -32,7 +32,7 @@ public class ScorePanel extends JPanel{
 		
 		String labelscore = Integer.toString(game.getSnakes().get(0).getScore());
 		
-		label.setText(labelscore);
+		scoreLabel.setText("Score: " + labelscore);
 		
 	}
 }
