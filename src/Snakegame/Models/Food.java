@@ -62,18 +62,8 @@ public class Food {
 		Point position;
 		// Insures the new food is not in an occupied cell
 		do {
-			position = this.createRandomPoint(gameDimension);
+			position = Game.createRandomPoint(gameDimension);
 		} while(occupiedCells.contains(position));	
 		return position;
-	}
-	
-	/**
-	 * Create a random point in the game field
-	 * @return A random point within the game field
-	 */
-	private Point createRandomPoint(Dimension gameDimension) {
-		int x = (int) (Math.random() * gameDimension.width);
-		int y = (int) (Math.random() * gameDimension.height);
-		return new Point(x, y);
 	}
 }

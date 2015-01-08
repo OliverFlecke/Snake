@@ -16,10 +16,10 @@ import snakegame.controllers.GameListener;
  *	Game model with all the game rules and logic
  */
 public class Game implements ActionListener {
-	List<GameListener> listeners = new ArrayList<GameListener>(); 	// List of viewers to notify of updates
-	private ArrayList<Snake> snakes = new ArrayList<Snake>();		// The snakes
+	List<GameListener> listeners; 			// List of viewers to notify of updates
+	private ArrayList<Snake> snakes;		// The snakes
 	private ArrayList<Food> food;			// ArrayList of all the food objects on the game field
-	private int score = 1;					// int for storing highscore
+	private int level = 0;					// int for storing highscore
 	private Dimension size;					// Dimensions of the game field
 
 	private boolean gameOver;				// Game states	
@@ -34,14 +34,18 @@ public class Game implements ActionListener {
 	 * @param size Size of the game board
 	 */
 	public Game(Dimension newSize) {
-		size = newSize;
-		this.snakes.add(new Snake(this.getDimension(), "Snake"));
-		//this.snakes.add(new Snake(this.getDimension(), "Orm"));
-		//creates initial food item and list
+		// Create the list for the game
+		this.listeners = new ArrayList<GameListener>();
+		this.snakes = new ArrayList<Snake>();
 		this.food = new ArrayList<Food>();
-		createFoodInGame(1);
-		
+	
+		size = newSize;
 		this.gameTimer = new Timer(this.timerValue, this);
+		
+		// Create a default name
+		String[] names = new String[1];
+		names[0] = "Snake";
+		this.setupGame(1, names);
 	}
 
 	/**
@@ -52,14 +56,38 @@ public class Game implements ActionListener {
 	public Game(int width, int height) {
 		this(new Dimension(width, height));
 	}
-
+	
 	/**
-	 * Get the dimension of the game. Creates a new object, so nobody outside this class
-	 * can edit the dimension of the game. 
-	 * @return The dimensions of the game
+	 * Constructor to take the size of the game grid, and an int to define
+	 * how many players, that are playing
+	 * @param width	of the game
+	 * @param height of the game
+	 * @param numberOfPlayers in the game
 	 */
-	public Dimension getDimension() {
-		return new Dimension(size);
+	public Game(int width, int height, int numberOfPlayers, String[] names) {
+		this(width, height);
+		this.setupGame(numberOfPlayers, names);
+	}
+	
+	/**
+	 * Creates the snakes and food objects at the start of the game
+	 * @param numberOfPlayers Number of players in the game
+	 */
+	private void setupGame(int numberOfPlayers, String[] names) {
+		if (numberOfPlayers == 1) {
+			this.snakes.add(new Snake(this.getDimension(), "Snake"));
+			//this.snakes.add(new Snake(this.getDimension(), "Orm"));
+			createFoodInGame(1);
+		} 
+		else if (numberOfPlayers > 1) {
+			int index = 0;
+			while (numberOfPlayers > index) {
+				this.snakes.add(new Snake(Game.createRandomPoint(this.getDimension()), 
+						this.getDimension(), names[index]));
+				createFoodInGame(1);			// Create a food object for each snake
+				index++;						// Increment counter
+			}
+		}
 	}
 
 	/**½
@@ -97,6 +125,16 @@ public class Game implements ActionListener {
 	}
 
 	/**
+	 * Create a random point in the game field
+	 * @return A random point within the game field
+	 */
+	public static Point createRandomPoint(Dimension gameDimension) {
+		int x = (int) (Math.random() * gameDimension.width);
+		int y = (int) (Math.random() * gameDimension.height);
+		return new Point(x, y);
+	}
+	
+	/**
 	 * Updates the game following a snake movement, checking for collision with food and with the snake itself
 	 */
 	public void update() {
@@ -112,13 +150,21 @@ public class Game implements ActionListener {
 					this.isEating = true;
 					
 					// Updates the game, so it gets harder over time
-					if (this.score % 5 == 0) {
+					if (this.level % 5 == 0) {
 						this.updateTimer();
 					} 
 				}
 			}
+			
+			ArrayList<Point> snakePositions = new ArrayList<Point>();
+			for (Snake otherSnake : this.snakes) {
+				if (!(snake.equals(otherSnake))) {
+					snakePositions.addAll(otherSnake.getPosition());
+				}
+			}
+			
 			//ends game if snake collides with itself or any other snake
-			allDead = snake.checkCollision() && allDead;		
+			allDead = snake.checkCollision(snakePositions) && allDead;		
 		}
 		if (allDead) 
 			endGame();
@@ -169,64 +215,11 @@ public class Game implements ActionListener {
 		this.updateTimer(this.timerValue);
 	}
 	
-	/** 
-	 * getter for all occupied cells
-	 * @return ArrayList<Point>
-	 */
-	public ArrayList<Point> getOccupiedCells() {	
-		ArrayList<Point> occupiedCells = new ArrayList<Point>();
-		for (Snake snake : this.snakes)
-			for (Point point : snake.getPosition())
-				occupiedCells.add(point);
-		for (Food current : this.food)
-			occupiedCells.add(current.getPosition());
-		return occupiedCells;
-	}
-	
-	/** 
-	 * getter for all snake occupied cells
-	 * @return ArrayList<Point>
-	 */
-	public ArrayList<Point> getSnakePosition() {
-		ArrayList<Point> positions = new ArrayList<Point>();
-		for (Snake snake : this.snakes) 
-			for (Point point : snake.getPosition())
-				positions.add(point);
-		return positions;
-	}
-	
-	/**
-	 * All the snakes in the game
-	 * @return The snakes in the game
-	 */
-	public ArrayList<Snake> getSnakes() {
-		// TODO make it other objects, so the outside can't modify the snakes
-		ArrayList<Snake> snakes = new ArrayList<Snake>();
-		for (Snake snake : this.snakes) 
-			snakes.add(snake);
-		return this.snakes;
-	}
-	
-	/** 
-	 * getter for all food objects
-	 * @return ArrayList<Food>
-	 */
-	public ArrayList<Food> getFood() {
-		return this.food;
-	}
-	
 	/**
 	 * increments score
 	 */
 	private void incrementScore() {
-		score++;	
-	}
-	
-	/**
-	 * getter for score
-	 */
-	public int getScore(){
-		return score;
+		level++;	
 	}
 	
 	/**
@@ -274,5 +267,59 @@ public class Game implements ActionListener {
 		} else {
 			this.gameTimer.stop();
 		}
+	}
+	/** 
+	 * getter for all occupied cells
+	 * @return ArrayList<Point>
+	 */
+	public ArrayList<Point> getOccupiedCells() {	
+		ArrayList<Point> occupiedCells = new ArrayList<Point>();
+		for (Snake snake : this.snakes)
+			for (Point point : snake.getPosition())
+				occupiedCells.add(point);
+		for (Food current : this.food)
+			occupiedCells.add(current.getPosition());
+		return occupiedCells;
+	}
+	
+	/** 
+	 * getter for all snake occupied cells
+	 * @return ArrayList<Point>
+	 */
+	public ArrayList<Point> getSnakePosition() {
+		ArrayList<Point> positions = new ArrayList<Point>();
+		for (Snake snake : this.snakes) 
+			for (Point point : snake.getPosition())
+				positions.add(point);
+		return positions;
+	}
+	
+	/**
+	 * All the snakes in the game
+	 * @return The snakes in the game
+	 */
+	public ArrayList<Snake> getSnakes() {
+		// TODO make it other objects, so the outside can't modify the snakes
+		ArrayList<Snake> snakes = new ArrayList<Snake>();
+		for (Snake snake : this.snakes) 
+			snakes.add(snake);
+		return this.snakes;
+	}
+	
+	/** 
+	 * getter for all food objects
+	 * @return ArrayList<Food>
+	 */
+	public ArrayList<Food> getFood() {
+		return this.food;
+	}
+	
+	/**
+	 * Get the dimension of the game. Creates a new object, so nobody outside this class
+	 * can edit the dimension of the game. 
+	 * @return The dimensions of the game
+	 */
+	public Dimension getDimension() {
+		return new Dimension(size);
 	}
 }

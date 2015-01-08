@@ -11,7 +11,6 @@ import snakegame.DIRECTION;
  *	Snake class
  */
 public class Snake {
-	// Position of the snake 
 	private LinkedList<Point> position;				// Position of the snake
 	private int length;								// Length of the snake
 	private DIRECTION direction;					// Movement direction 
@@ -22,10 +21,9 @@ public class Snake {
 	private Color color;
 	
 	/**
-	 * Constructor to create a snake object with a default start point
+	 * Constructor to create a snake object with a default start point in the middle of the screen
 	 */
 	public Snake(Dimension gameDimension, String name) {
-		// Set the starting position at the middle of the screen
 		this(new Point(gameDimension.width / 2, gameDimension.height / 2), gameDimension, name);
 	}
 	
@@ -41,13 +39,14 @@ public class Snake {
 	/**
 	 * Create a snake with the passed point as a starting point
 	 * @param startPosition for the snake
+	 * @param name of the player
 	 */
 	public Snake(Point startPosition, Dimension gameDimension, String name) {
 		this.position = new LinkedList<Point>();
 		position.add(startPosition);
 		this.length = 2;
 		this.gameDimension = gameDimension;
-		this.player = new Player(name, 0);
+		this.player = new Player(name);
 	}
 	
 	/**
@@ -161,7 +160,7 @@ public class Snake {
 				hasCollided = true;
 		}
 		
-		return this.checkCollision() && hasCollided;
+		return this.checkCollision() || hasCollided;
 	}
 	
 	/**
@@ -231,6 +230,14 @@ public class Snake {
 	 */
 	public String getName() {
 		return this.player.getName();
+	}
+	
+	/**
+	 * Return the player object of this snake
+	 * @return The player object of the snake
+	 */
+	public Player getPlayer() {
+		return this.player;
 	}
 	
 	/**
