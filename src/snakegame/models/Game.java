@@ -16,28 +16,18 @@ import snakegame.controllers.GameListener;
  *	Game model with all the game rules and logic
  */
 public class Game implements ActionListener {
-	// List of viewers to notify of updates
-	List<GameListener> listeners = new ArrayList<GameListener>();
-	// The snake player
-	private ArrayList<Snake> snakes = new ArrayList<Snake>();
-	// ArrayList of all the food objects on the game field
-	private ArrayList<Food> food;
-	// int for storing highscore
-	private int score = 1;
-	// Dimensions of the game field
-	private Dimension size;
+	List<GameListener> listeners = new ArrayList<GameListener>(); 	// List of viewers to notify of updates
+	private ArrayList<Snake> snakes = new ArrayList<Snake>();		// The snakes
+	private ArrayList<Food> food;			// ArrayList of all the food objects on the game field
+	private int score = 1;					// int for storing highscore
+	private Dimension size;					// Dimensions of the game field
+
+	private boolean gameOver;				// Game states	
+	private boolean isEating;				// Is eating food
 	
-	// Game states
-	private boolean gameOver;		
-	// Is eating food
-	private boolean isEating;
-	
-	// Timer to control the games speed
-	private Timer gameTimer;
-	// Delay in the timer
-	private int timerValue = 200;
-	// Game level
-	private int updateTimeValue = 20;
+	private Timer gameTimer;				// Timer to control the games speed
+	private int timerValue = 100;			// Delay in the timer
+	private int updateTimeValue = 20;		// Update time value
 
 	/**
 	 * Constructor which takes the size of the game and stores it
@@ -46,6 +36,7 @@ public class Game implements ActionListener {
 	public Game(Dimension newSize) {
 		size = newSize;
 		this.snakes.add(new Snake(this.getDimension(), "Snake"));
+		this.snakes.add(new Snake(this.getDimension(), "Orm"));
 		//creates initial food item and list
 		this.food = new ArrayList<Food>();
 		createFoodInGame(1);
@@ -112,7 +103,6 @@ public class Game implements ActionListener {
 		// Assume everyone is dead
 		boolean allDead = true;
 		// Removes food, plays sound and increments score if in collision with snake head. Also generates new food.
-		// Furthermore notifies viewer of update
 		for (Snake snake : this.snakes) {
 			for (Food current : this.food){
 				if(current.getPosition().equals(snake.getHead())) {
@@ -133,6 +123,7 @@ public class Game implements ActionListener {
 		if (allDead) 
 			endGame();
 		
+		// Furthermore notifies viewer of update
 		notifyListener();
 		this.isEating = false;
 	}
@@ -150,6 +141,16 @@ public class Game implements ActionListener {
 	private void moveSnakes() {
 		for (Snake snake : this.snakes)
 			snake.move();
+	}
+	
+	/**
+	 * Pause or unpause the game
+	 */
+	public void pause() {
+		if (this.gameTimer.isRunning()) 
+			this.gameTimer.stop();
+		else 
+			this.gameTimer.start();
 	}
 	
 	/**
@@ -199,6 +200,7 @@ public class Game implements ActionListener {
 	 * @return The snakes in the game
 	 */
 	public ArrayList<Snake> getSnakes() {
+		// TODO make it other objects, so the outside can't modify the snakes
 		ArrayList<Snake> snakes = new ArrayList<Snake>();
 		for (Snake snake : this.snakes) 
 			snakes.add(snake);

@@ -1,10 +1,10 @@
 package snakegame.models;
 
+import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.Point;
 import java.util.ArrayList;
 import java.util.LinkedList;
-
 import snakegame.DIRECTION;
 
 /**
@@ -12,15 +12,14 @@ import snakegame.DIRECTION;
  */
 public class Snake {
 	// Position of the snake 
-	private LinkedList<Point> position = new LinkedList<Point>();
+	private LinkedList<Point> position;				// Position of the snake
 	private int length;								// Length of the snake
-
 	private DIRECTION direction;					// Movement direction 
 	private DIRECTION lastDirection;				// The last direction to move in	
-	private int score = 0;							// Keeps track of the score
+	private Player player;							// Player to keep track of name and score
 	private Dimension gameDimension;				// Dimensions of the game
-	private String name;							// Name of the snake
 	private boolean isReady;						// State of the snake
+	private Color color;
 	
 	/**
 	 * Constructor to create a snake object with a default start point
@@ -44,10 +43,11 @@ public class Snake {
 	 * @param startPosition for the snake
 	 */
 	public Snake(Point startPosition, Dimension gameDimension, String name) {
+		this.position = new LinkedList<Point>();
 		position.add(startPosition);
 		this.length = 2;
 		this.gameDimension = gameDimension;
-		this.name = name;
+		this.player = new Player(name, 0);
 	}
 	
 	/**
@@ -130,8 +130,48 @@ public class Snake {
 		if (this.position.size() > this.length) 
 			this.position.removeLast();
 		
-		System.out.println(this.name + " move to [" + this.position.getFirst().x + "," 
+		System.out.println(this.player.getName() + " move to [" + this.position.getFirst().x + "," 
 		+ this.position.getFirst().y + "]");
+	}
+	
+	/**
+	 * Check to see if the snake hit itself
+	 * @return If the snake has hit itself
+	 */
+	public boolean checkCollision() {
+		if (this.length > 1)
+			for (Point current : this.position) {
+				// Check to see, if not the same object, but the same coordinates
+				if (this.getHead().equals(current)) 
+					if (!(this.position.getFirst() == current))		// Check it is not the same object
+						return true;
+			}
+		return false;
+	}
+	
+	/**
+	 * Check collision with other snakes in the game
+	 * @param otherPoints The points of the other snakes
+	 * @return True, if the snake has hit something
+	 */
+	public boolean checkCollision(ArrayList<Point> otherPoints) {
+		boolean hasCollided = false;		
+		for (Point point : otherPoints) {
+			if (this.getHead().equals(point))
+				hasCollided = true;
+		}
+		
+		return this.checkCollision() && hasCollided;
+	}
+	
+	/**
+	 * Eat food to make the snake grow and add food value to score 
+	 * @param foodValue Value of the food eaten
+	 */
+	public void eatFood(Food foodEaten) {
+		// TODO The snake should be able to eat food and score points
+		this.player.setScore(foodEaten.getValue() * 100);
+		this.length += foodEaten.getValue();
 	}
 	
 	/**
@@ -159,7 +199,7 @@ public class Snake {
 	 * @return The snakes score
 	 */
 	public int getScore() {
-		return this.score;
+		return this.player.getScore();
 	}
 	
 	/**
@@ -167,7 +207,7 @@ public class Snake {
 	 * @return The name of the snake
 	 */
 	public String getName() {
-		return this.name;
+		return this.player.getName();
 	}
 	
 	/**
@@ -186,27 +226,18 @@ public class Snake {
 	}
 	
 	/**
-	 * Check to see if the snake hit itself
-	 * @return If the snake has hit itself
+	 * Set a new color of this snake
+	 * @param newColor New color of the snake
 	 */
-	public boolean checkCollision() {
-		if (this.length > 1)
-			for (Point current : this.position) {
-				// Check to see, if not the same object, but the same coordinates
-				if (!(this.position.getFirst() == current))
-					if (this.getHead().equals(current)) 
-						return true;
-			}
-		return false;
+	public void setColor(Color newColor) {
+		this.color = newColor;
 	}
 	
 	/**
-	 * Eat food to make the snake grow and add food value to score 
-	 * @param foodValue Value of the food eaten
+	 * Return the color of the snake
+	 * @return The color of the snake
 	 */
-	public void eatFood(Food foodEaten) {
-		// TODO The snake should be able to eat food and score points
-		this.score += foodEaten.getValue() * 100;
-		this.length += foodEaten.getValue();
+	public Color getColor() {
+		return this.color;
 	}
 }
