@@ -24,7 +24,7 @@ public class Game implements ActionListener {
 	// ArrayList of all the food objects on the game field
 	private ArrayList<Food> food;
 	// int for storing highscore
-	private int score=0;
+	private int score = 1;
 	// Dimensions of the game field
 	private Dimension size;
 	
@@ -37,6 +37,8 @@ public class Game implements ActionListener {
 	private Timer gameTimer;
 	// Delay in the timer
 	private int timerValue = 200;
+	// Game level
+	private int updateTimeValue = 20;
 
 	/**
 	 * Constructor which takes the size of the game and stores it
@@ -44,7 +46,7 @@ public class Game implements ActionListener {
 	 */
 	public Game(Dimension newSize) {
 		size = newSize;
-		this.snake = new Snake(this.getDimension());
+		this.snake = new Snake(this.getDimension(), "Snake");
 		//creates initial food item and list
 		this.food = new ArrayList<Food>();
 		createFoodInGame(1);
@@ -114,6 +116,11 @@ public class Game implements ActionListener {
 				removeFood(current);
 				incrementScore();
 				this.isEating = true;
+				
+				// Updates the game, so it gets harder over time
+				if (this.score % 5 == 0) {
+					this.updateTimer();
+				} 
 			}
 		}
 		notifyListener();
@@ -140,7 +147,15 @@ public class Game implements ActionListener {
 	 * @param newTimer The new delay time
 	 */
 	public void updateTimer(int newTimer) {
-		this.gameTimer.setDelay(newTimer);
+		this.gameTimer.setInitialDelay(newTimer);
+	}
+	
+	/**
+	 * Update the time with the default value
+	 */
+	private void updateTimer() {
+		this.timerValue -= this.updateTimeValue;
+		this.updateTimer(this.timerValue);
 	}
 	
 	/** 

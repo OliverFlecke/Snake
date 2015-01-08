@@ -19,23 +19,14 @@ public class Snake {
 	private DIRECTION lastDirection;				// The last direction to move in	
 	private int score = 0;							// Keeps track of the score
 	private Dimension gameDimension;				// Dimensions of the game
+	private String name;
 	
 	/**
 	 * Constructor to create a snake object with a default start point
 	 */
-	public Snake(Dimension gameDimension) {
+	public Snake(Dimension gameDimension, String name) {
 		// Set the starting position at the middle of the screen
-		this(new Point(gameDimension.width / 2, gameDimension.height / 2), gameDimension);
-	}
-	
-	/**
-	 * Create a snake with the passed point as a starting point
-	 * @param startPosition for the snake
-	 */
-	public Snake(Point startPosition, Dimension gameDimension) {
-		position.add(startPosition);
-		this.length = 2;
-		this.gameDimension = gameDimension;
+		this(new Point(gameDimension.width / 2, gameDimension.height / 2), gameDimension, name);
 	}
 	
 	/**
@@ -43,19 +34,19 @@ public class Snake {
 	 * @param x coordinate of the start position
 	 * @param y coordinate of the start position
 	 */
-	public Snake(int x, int y, Dimension gameDimension) {
-		this(new Point(x, y), gameDimension);
+	public Snake(int x, int y, Dimension gameDimension, String name) {
+		this(new Point(x, y), gameDimension, name);
 	}
 	
 	/**
-	 * Create a snake from a array list
-	 * @param startPosition list of start points
+	 * Create a snake with the passed point as a starting point
+	 * @param startPosition for the snake
 	 */
-	public Snake(ArrayList<Point> startPosition) {
-		for (Point point : startPosition) {
-			this.position.add(point);
-		}
-		this.length = this.position.size();
+	public Snake(Point startPosition, Dimension gameDimension, String name) {
+		position.add(startPosition);
+		this.length = 2;
+		this.gameDimension = gameDimension;
+		this.name = name;
 	}
 	
 	/**
@@ -138,7 +129,8 @@ public class Snake {
 		if (this.position.size() > this.length) 
 			this.position.removeLast();
 		
-		System.out.println(this.position.getFirst());
+		System.out.println(this.name + " move to [" + this.position.getFirst().x + "," 
+		+ this.position.getFirst().y + "]");
 	}
 	
 	/**
@@ -170,6 +162,14 @@ public class Snake {
 	}
 	
 	/**
+	 * Get the name of this snake
+	 * @return The name of the snake
+	 */
+	public String getName() {
+		return this.name;
+	}
+	
+	/**
 	 * Check to see if the snake hit itself
 	 * @return If the snake has hit itself
 	 */
@@ -190,7 +190,7 @@ public class Snake {
 	 */
 	public void eatFood(Food foodEaten) {
 		// TODO The snake should be able to eat food and score points
-		this.score += foodEaten.getValue();
+		this.score += foodEaten.getValue() * 100;
 		this.length += foodEaten.getValue();
 	}
 }
