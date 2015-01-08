@@ -3,10 +3,20 @@ package snakegame.models;
 public class Player implements Comparable<Player>{
 	private String name;
 	private int score;
+	private int time;
 	
 	public Player(String name, int score){
 		this.name=name;
 		this.score=score;
+	}
+	
+	public int getTime() {
+		return time;
+	}
+
+
+	public void setTime(int time) {
+		this.time = time;
 	}
 	
 	public void addToScore(int delta){
