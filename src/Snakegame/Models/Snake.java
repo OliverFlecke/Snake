@@ -203,14 +203,6 @@ public class Snake {
 	}
 	
 	/**
-	 * Get the name of this snake
-	 * @return The name of the snake
-	 */
-	public String getName() {
-		return this.player.getName();
-	}
-	
-	/**
 	 * Setter method for the isReady field
 	 */
 	public void setReady() {
