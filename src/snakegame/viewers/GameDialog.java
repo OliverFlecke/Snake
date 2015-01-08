@@ -1,4 +1,8 @@
 package snakegame.viewers;
+import java.awt.BorderLayout;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+
 
 import java.awt.Dimension;
 import javax.swing.ImageIcon;
@@ -11,12 +15,13 @@ import snakegame.models.Game;
 
 
 
-public class GameDialog extends JFrame{
+public class GameDialog extends GenericDialog{
 
 	/**
 	 * 
 	 */
 	private static final long serialVersionUID = 1124153227936952372L;
+	private View view;
 	
 	//Create the buttons
 	JButton restartBtn = new JButton("Restart");
@@ -27,28 +32,53 @@ public class GameDialog extends JFrame{
 	
 	//Make JLabel
 	JLabel scoreText = new JLabel();
-	
+		
 	private Game game;
 	
-	public GameDialog(Game game){
+	public GameDialog(Game game, View view){
 		super();
 		this.game = game;
+		this.view = view;
 		int score = this.game.getScore();
+	
+		
 		this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		
+		scoreText.setText("Score:" + score);
 		btnShelf.add(restartBtn);
 		btnShelf.add(closeBtn);
+		this.getContentPane().add(scoreText, BorderLayout.NORTH);
+		this.getContentPane().add(btnShelf, BorderLayout.SOUTH);
 		add(btnShelf);
+		
+		
+		closeBtn.addActionListener(new ActionListener() {
+
+			public void actionPerformed(ActionEvent e) {
+				System.exit(0);
+			}
+		});	
+		
+		
+		
+		restartBtn.addActionListener(new ActionListener() {
+
+			public void actionPerformed(ActionEvent e) {
+				view.dispose();
+				new Snake();
+				closeFrame();
+			}
+		});	
+		
 		this.setIconImage(new ImageIcon("icon.png").getImage());
 		this.setPreferredSize(getPreferredSize());
 		this.pack();
 		this.setLocationRelativeTo(null);
 		this.setVisible(true);
-	}
-	
-	@Override
-	public Dimension getPreferredSize(){
-		return new Dimension(300, 150);
-
 		
 	}
-}
+	
+
+	}
+
+

@@ -1,21 +1,38 @@
 package snakegame.viewers;
 
-import java.awt.Color;
-import java.awt.Dimension;
-import java.awt.GridLayout;
+import java.awt.*;
 
 import javax.swing.*;
 
+import snakegame.models.Game;
+
 public class ScorePanel extends JPanel{
 	
-	public ScorePanel() {
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 98987685754434677L;
+	private Game game;
+	private JLabel label = new JLabel("0");
+
+	public ScorePanel(Game game) {
 		super();
-		this.setBackground(Color.BLUE);
-		this.setLayout(new GridLayout(getPreferredSize().height, getPreferredSize().width));
-	}
-	
-	public Dimension getPreferredSize(){
-		return new Dimension(10, 100);
+		this.game = game;
+		this.setLayout(new GridBagLayout());
+		this.add(label);
+		this.setBackground(Color.PINK);
 	}
 
+	@Override
+	public Dimension getPreferredSize(){
+		return new Dimension(50, 50);
+	}
+
+	public void updateScore() {
+		
+		String labelscore = Integer.toString(game.getScore());
+		
+		label.setText(labelscore);
+		
+	}
 }

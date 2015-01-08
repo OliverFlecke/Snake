@@ -25,13 +25,15 @@ public class View extends JFrame implements GameListener {
 		this.game = new Game(width, height);
 		this.snakeGrid = new SnakeGrid(game);
 		this.addKeyListener(new DirectionController(game));
+
+		game.addListener(this);
+		this.score = new ScorePanel(game);
 		this.addComponentListener(new ViewController());
 		this.game.addListener(this);
-		this.score = new ScorePanel();
 		
 		this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		this.setIconImage(new ImageIcon("icon.png").getImage());
-		this.getContentPane().add(snakeGrid, BorderLayout.CENTER);
+		this.getContentPane().add(snakeGrid, BorderLayout.SOUTH);
 		this.getContentPane().add(score, BorderLayout.NORTH);
 		this.pack();
 		this.setLocationRelativeTo(null);
@@ -42,7 +44,7 @@ public class View extends JFrame implements GameListener {
 
 	@Override
 	public void endGame() {
-		System.exit(0);
+		GameDialog endGameDialog = new GameDialog(game, this);
 		
 	}
 
@@ -51,7 +53,6 @@ public class View extends JFrame implements GameListener {
 	public void update() {
 		System.out.println("Update and repaint view");
 		snakeGrid.updateGrid();
-		score.updateUI();
-		
+		score.updateScore();
 	}
 }
