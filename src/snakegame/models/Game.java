@@ -36,7 +36,7 @@ public class Game implements ActionListener {
 	public Game(Dimension newSize) {
 		size = newSize;
 		this.snakes.add(new Snake(this.getDimension(), "Snake"));
-		this.snakes.add(new Snake(this.getDimension(), "Orm"));
+		//this.snakes.add(new Snake(this.getDimension(), "Orm"));
 		//creates initial food item and list
 		this.food = new ArrayList<Food>();
 		createFoodInGame(1);
