@@ -226,6 +226,22 @@ public class Snake {
 	}
 	
 	/**
+	 * Set the name of the player
+	 * @param name of the player
+	 */
+	public void setName(String name) {
+		this.player.setName(name);
+	}
+	
+	/**
+	 * Get the name of the player
+	 * @return The name of the player
+	 */
+	public String getName() {
+		return this.player.getName();
+	}
+	
+	/**
 	 * Set a new color of this snake
 	 * @param newColor New color of the snake
 	 */
