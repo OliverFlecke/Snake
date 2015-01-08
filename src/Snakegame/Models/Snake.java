@@ -170,7 +170,7 @@ public class Snake {
 	 */
 	public void eatFood(Food foodEaten) {
 		// TODO The snake should be able to eat food and score points
-		this.player.setScore(foodEaten.getValue() * 100);
+		this.player.addToScore(foodEaten.getValue() * 100);
 		this.length += foodEaten.getValue();
 	}
 	
