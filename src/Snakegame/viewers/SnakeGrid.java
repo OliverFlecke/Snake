@@ -3,18 +3,18 @@ package snakegame.viewers;
 import java.awt.Dimension;
 import java.awt.Point;
 
-import javax.swing.BorderFactory;
 import javax.swing.JPanel;
 
 
 
 
 
-import javax.swing.border.BevelBorder;
+import javax.swing.border.LineBorder;
 
 import snakegame.models.Food;
 import snakegame.models.Game;
 import snakegame.models.Snake;
+
 
 import java.awt.Color;
 import java.awt.GridLayout;
@@ -44,9 +44,10 @@ public class SnakeGrid extends JPanel {
 
 		this.setBackground(Color.WHITE);
 		this.setLayout(new GridLayout(getPreferredSize().height, getPreferredSize().width));
-		this.setBorder(new BevelBorder(BevelBorder.RAISED));
+		this.setBorder(new LineBorder(Color.black, 5));
 		this.game = game;
 		updateGrid();
+
 	}
 
 	@Override
@@ -63,13 +64,7 @@ public class SnakeGrid extends JPanel {
 
     }
 
-    /**
-     * Clear the game area
-     * @param g
-     */
-	public void clearCanvas(Graphics g) {
-		g.clearRect(0, 0, getPreferredSize().width, getPreferredSize().height);
-	}
+
        	
 	public void drawSnake(Graphics2D g2){
 		for (Snake snake : game.getSnakes()){

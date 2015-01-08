@@ -5,11 +5,13 @@ import java.awt.event.ActionListener;
 
 
 import java.awt.Dimension;
+
 import javax.swing.ImageIcon;
 import javax.swing.JFrame;
 import javax.swing.JButton;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
+import javax.swing.SwingConstants;
 
 import snakegame.models.Game;
 
@@ -21,7 +23,6 @@ public class GameDialog extends GenericDialog{
 	 * 
 	 */
 	private static final long serialVersionUID = 1124153227936952372L;
-	private View view;
 	
 	//Create the buttons
 	JButton restartBtn = new JButton("Restart");
@@ -31,14 +32,13 @@ public class GameDialog extends GenericDialog{
 	JPanel btnShelf = new JPanel();
 	
 	//Make JLabel
-	JLabel scoreText = new JLabel();
+	JLabel scoreText = new JLabel("", SwingConstants.CENTER);
 		
 	private Game game;
 	
 	public GameDialog(Game game, View view){
 		super();
 		this.game = game;
-		this.view = view;
 		int score = this.game.getScore();
 	
 		

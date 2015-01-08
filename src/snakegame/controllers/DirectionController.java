@@ -33,6 +33,9 @@ public class DirectionController implements KeyListener {
 		this.game = game;
 		
 		this.up = keycodes.get(DIRECTION.UP);
+		this.right = keycodes.get(DIRECTION.RIGHT);
+		this.down = keycodes.get(DIRECTION.DOWN);
+		this.left = keycodes.get(DIRECTION.LEFT);
 	}
 
 	@Override
@@ -42,8 +45,26 @@ public class DirectionController implements KeyListener {
 	public void keyPressed(KeyEvent event) {
 		System.out.println("Key pressed");
 		int keyCode = event.getKeyCode();
-		switch (keyCode) {
-			case KeyEvent.VK_DOWN:
+		
+		if (keyCode == this.up || keyCode == this.right || keyCode == this.left || keyCode == this.down) {
+			if (keyCode == this.up) 		{ this.snake.setDirection(DIRECTION.UP); } 
+			else if (keyCode == this.right) { this.snake.setDirection(DIRECTION.RIGHT); } 
+			else if (keyCode == this.down) 	{ this.snake.setDirection(DIRECTION.DOWN); } 
+			else if (keyCode == this.left) 	{ this.snake.setDirection(DIRECTION.LEFT); }
+			this.isStarted = true;
+		} else if (keyCode == KeyEvent.VK_P) {
+			this.game.pause();
+		}
+		
+		if (this.isStarted && this.firstPress) {
+			this.snake.setReady();
+			this.game.startGame();
+			this.firstPress = false;
+		}
+	}
+	/*
+	 * switch (keyCode) {
+			case this.down:
 				//this.player.move(DIRECTION.DOWN);
 				System.out.println("Down key pressed");
 				this.snake.setDirection(DIRECTION.DOWN);
@@ -70,13 +91,7 @@ public class DirectionController implements KeyListener {
 			default:
 				break;
 		}
-		
-		if (this.isStarted && this.firstPress) {
-			this.snake.setReady();
-			this.game.startGame();
-			this.firstPress = false;
-		}
-	}
+	 */
 
 	@Override
 	public void keyReleased(KeyEvent event) {}

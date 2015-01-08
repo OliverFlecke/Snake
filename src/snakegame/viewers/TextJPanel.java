@@ -37,8 +37,8 @@ public class TextJPanel extends JPanel {
 		fieldLbl.setText(lblName);
 	}
 	
-	public int getTxt(){
-		return Integer.parseInt(txtField.getText());
+	public String getTxt(){
+		return txtField.getText();
 	}
 	
 	public void setTxt(int n){
