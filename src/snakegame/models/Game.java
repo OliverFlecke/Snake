@@ -27,6 +27,8 @@ public class Game implements ActionListener {
 	private int score=0;
 	// Dimensions of the game field
 	private Dimension size;
+	// Game state
+	private boolean gameOver;	
 	//Handles sound effects
 	Sound sound = new Sound();
 	
@@ -91,6 +93,7 @@ public class Game implements ActionListener {
 	 * Start the time for the game
 	 */
 	public void startGame() {
+		this.gameOver = false;
 		this.gameTimer.start();
 	}
 
@@ -126,7 +129,7 @@ public class Game implements ActionListener {
 	/*
 	 * Makes the snake move in its current direction
 	 */
-	public void moveSnake() {
+	private void moveSnake() {
 		this.snake.move();
 		this.update();
 	}
@@ -200,6 +203,7 @@ public class Game implements ActionListener {
 	 * call endgame method with listeners
 	 */
 	private void endGame() {
+		this.gameOver = true;
 		for (GameListener gl : listeners)
 			gl.endGame();
 	}
@@ -209,7 +213,11 @@ public class Game implements ActionListener {
 	 */
 	@Override
 	public void actionPerformed(ActionEvent e) {
-		this.moveSnake();
-		this.gameTimer.restart();
+		if (!this.gameOver) {
+			this.moveSnake();
+			this.gameTimer.restart();
+		} else {
+			this.gameTimer.stop();
+		}
 	}
 }

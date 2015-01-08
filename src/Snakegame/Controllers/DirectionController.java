@@ -15,6 +15,8 @@ public class DirectionController implements KeyListener {
 	private Game game;
 	// State to see if the game is started
 	private boolean isStarted = false;
+	// State to check if it is the first press
+	private boolean firstPress = true;
 	
 	/**
 	 * Constructor, which takes the player to control
@@ -61,8 +63,10 @@ public class DirectionController implements KeyListener {
 		}
 		
 		// Start the games time, if an direction key is pressed
-		if (this.isStarted) 
+		if (this.isStarted && this.firstPress) {
 			this.game.startGame();
+			this.firstPress = false;
+		}
 	}
 
 	@Override
