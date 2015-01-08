@@ -9,6 +9,9 @@ public class Player implements Comparable<Player>{
 		this.score=score;
 	}
 	
+	public void addToScore(int delta){
+		score += delta;
+	}
 	
 	public String getName() {
 		return name;
