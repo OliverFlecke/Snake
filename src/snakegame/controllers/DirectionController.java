@@ -15,10 +15,7 @@ public class DirectionController implements KeyListener {
 	private Game game;
 	// State to see if the game is started
 	private boolean isStarted = false;
-<<<<<<< HEAD
-=======
 	// State to check if it is the first press
->>>>>>> origin/master
 	private boolean firstPress = true;
 	
 	/**

@@ -7,7 +7,7 @@ import snakegame.controllers.DirectionController;
 import snakegame.controllers.GameListener;
 import snakegame.controllers.ViewController;
 import snakegame.models.Game;
-
+import snakegame.viewers.sound.Sound;
 import java.awt.BorderLayout;
 
 public class View extends JFrame implements GameListener {
@@ -39,20 +39,25 @@ public class View extends JFrame implements GameListener {
 		this.setLocationRelativeTo(null);
 		this.setVisible(true);
 		this.snakeGrid.updateGrid();
+		Sound.MUSIC.loop();
 	}
 
 
 	@Override
 	public void endGame() {
-		GameDialog endGameDialog = new GameDialog(game, this);
-		
+		Sound.MUSIC.stop();
+		Sound.GAMEOVER.play();
+		new GameDialog(game, this);
 	}
 
 
 	@Override
 	public void update() {
-		System.out.println("Update and repaint view");
 		snakeGrid.updateGrid();
+		// If the snake is eating, play a sound
+		if (this.game.isEating()) {
+			Sound.EAT.play();
+		}
 		score.updateScore();
 	}
 }

@@ -1,4 +1,4 @@
-package snakegame.models.sound;
+package snakegame.viewers.sound;
 
 
 

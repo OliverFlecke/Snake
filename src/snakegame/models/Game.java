@@ -11,7 +11,7 @@ import javax.swing.Timer;
 
 import snakegame.DIRECTION;
 import snakegame.controllers.GameListener;
-import snakegame.models.sound.Sound;
+import snakegame.viewers.sound.Sound;
 
 /**
  *	Game model with all the game rules and logic
@@ -27,11 +27,11 @@ public class Game implements ActionListener {
 	private int score=0;
 	// Dimensions of the game field
 	private Dimension size;
-	// Game state
-	private boolean gameOver;	
-	//Handles sound effects
-	Sound sound = new Sound();
 	
+	// Game states
+	private boolean gameOver;		
+	// Is eating food
+	private boolean isEating;
 	
 	// Timer to control the games speed
 	private Timer gameTimer;
@@ -113,10 +113,11 @@ public class Game implements ActionListener {
 				this.snake.eatFood(current);
 				removeFood(current);
 				incrementScore();
-				sound.EAT.play();
+				this.isEating = true;
 			}
 		}
 		notifyListener();
+		this.isEating = false;
 	}
 	
 	/**
@@ -181,6 +182,14 @@ public class Game implements ActionListener {
 	 */
 	public int getScore(){
 		return score;
+	}
+	
+	/**
+	 * Return true if any snake is eating
+	 * @return if the snake is eating
+	 */
+	public boolean isEating() {
+		return this.isEating;
 	}
 
 	/**
