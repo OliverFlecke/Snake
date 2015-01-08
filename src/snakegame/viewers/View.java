@@ -24,7 +24,7 @@ public class View extends JFrame implements GameListener {
 		
 		this.game = new Game(width, height);
 		this.snakeGrid = new SnakeGrid(game);
-		this.addKeyListener(new DirectionController(game));
+		this.addKeyListener(new DirectionController(game, game.getSnakes().get(0)));
 		this.addComponentListener(new ViewController());
 		this.game.addListener(this);
 		this.score = new ScorePanel(game);

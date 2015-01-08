@@ -1,26 +1,33 @@
 package snakegame.controllers;
 
 import snakegame.DIRECTION;
-import snakegame.models.Snake;
 import snakegame.models.Game;
+import snakegame.models.Snake;
 
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
+import java.util.HashMap;
 
 /**
  * Controller to handle arrow key input
  */
 public class DirectionController implements KeyListener {
-	// Field for the game to control 
+	// Field for the snake to control 
+	private Snake snake;
+	// Game this controller is connected to TODO
 	private Game game;
-	// State to check if it is the first press
-	private boolean firstPress = false;
+	
+	// Key codes to react to
+	private HashMap<DIRECTION, Integer> keyCodes;
+	
+	private int[] keyCodesArray = new int[4];
 	
 	/**
 	 * Constructor, which takes the player to control
 	 * @param player Snake to control
 	 */
-	public DirectionController(Game game) {
+	public DirectionController(Game game, Snake snake) {
+		this.snake = snake;
 		this.game = game;
 	}
 
@@ -35,42 +42,34 @@ public class DirectionController implements KeyListener {
 			case KeyEvent.VK_DOWN:
 				//this.player.move(DIRECTION.DOWN);
 				System.out.println("Down key pressed");
-				this.game.moveSnake(DIRECTION.DOWN);
-				this.firstPress = true;
+				this.snake.setDirection(DIRECTION.DOWN);
+				this.game.startGame();
 				break;
 			case KeyEvent.VK_UP:
 				//this.player.move(DIRECTION.UP);
 				System.out.println("Up key pressed");
-				this.game.moveSnake(DIRECTION.UP);
-				this.firstPress = true;
+				this.snake.setDirection(DIRECTION.UP);
+				this.game.startGame();
 				break;
 			case KeyEvent.VK_LEFT:
 				//this.player.move(DIRECTION.LEFT);
 				System.out.println("Left key pressed");
-				this.game.moveSnake(DIRECTION.LEFT);
-				this.firstPress = true;
+				this.snake.setDirection(DIRECTION.LEFT);
+				this.game.startGame();
 				break;	
 			case KeyEvent.VK_RIGHT:
 				//this.player.move(DIRECTION.RIGHT);
 				System.out.println("Right key pressed");
-				this.game.moveSnake(DIRECTION.RIGHT);
-				this.firstPress = true;
+				this.snake.setDirection(DIRECTION.RIGHT);
+				this.game.startGame();
 				break;		
 			default:
 				break;
 		}
-		System.out.println(keyCode);
-		// Start the games time, if an direction key is pressed
-		if (this.firstPress) {
-			this.game.startGame();
-			this.firstPress = false;
-		}
 	}
 
 	@Override
-	public void keyReleased(KeyEvent event) {
-		
-	}
+	public void keyReleased(KeyEvent event) {}
 
 	@Override
 	public void keyTyped(KeyEvent event) {}

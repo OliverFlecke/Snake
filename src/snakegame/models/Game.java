@@ -11,7 +11,6 @@ import javax.swing.Timer;
 
 import snakegame.DIRECTION;
 import snakegame.controllers.GameListener;
-import snakegame.viewers.sound.Sound;
 
 /**
  *	Game model with all the game rules and logic
@@ -20,7 +19,7 @@ public class Game implements ActionListener {
 	// List of viewers to notify of updates
 	List<GameListener> listeners = new ArrayList<GameListener>();
 	// The snake player
-	private Snake snake;
+	private ArrayList<Snake> snakes = new ArrayList<Snake>();
 	// ArrayList of all the food objects on the game field
 	private ArrayList<Food> food;
 	// int for storing highscore
@@ -46,7 +45,7 @@ public class Game implements ActionListener {
 	 */
 	public Game(Dimension newSize) {
 		size = newSize;
-		this.snake = new Snake(this.getDimension(), "Snake");
+		this.snakes.add(new Snake(this.getDimension(), "Snake"));
 		//creates initial food item and list
 		this.food = new ArrayList<Food>();
 		createFoodInGame(1);
@@ -103,26 +102,30 @@ public class Game implements ActionListener {
 	 * Updates the game following a snake movement, checking for collision with food and with the snake itself
 	 */
 	public void update() {
-		//ends game if snake collides with itself
-		if(this.snake.checkCollision()){
-			endGame();
-		}
-		
+		// Assume everyone is dead
+		boolean allDead = true;
 		// Removes food, plays sound and increments score if in collision with snake head. Also generates new food.
 		// Furthermore notifies viewer of update
-		for(Food current : this.food){
-			if(current.getPosition().equals(this.snake.getHead())) {
-				this.snake.eatFood(current);
-				removeFood(current);
-				incrementScore();
-				this.isEating = true;
-				
-				// Updates the game, so it gets harder over time
-				if (this.score % 5 == 0) {
-					this.updateTimer();
-				} 
+		for (Snake snake : this.snakes) {
+			for (Food current : this.food){
+				if(current.getPosition().equals(snake.getHead())) {
+					snake.eatFood(current);
+					removeFood(current);
+					incrementScore();
+					this.isEating = true;
+					
+					// Updates the game, so it gets harder over time
+					if (this.score % 5 == 0) {
+						this.updateTimer();
+					} 
+				}
 			}
+			//ends game if snake collides with itself or any other snake
+			allDead = snake.checkCollision() && allDead;		
 		}
+		if (allDead) 
+			endGame();
+		
 		notifyListener();
 		this.isEating = false;
 	}
@@ -131,15 +134,15 @@ public class Game implements ActionListener {
 	 * Makes the snake move in the passed direction
 	 */
 	public void moveSnake(DIRECTION moveDirection) {
-		this.snake.setDirection(moveDirection);
+		this.snakes.get(0).setDirection(moveDirection);
 	}
 	
 	/*
 	 * Makes the snake move in its current direction
 	 */
-	private void moveSnake() {
-		this.snake.move();
-		this.update();
+	private void moveSnakes() {
+		for (Snake snake : this.snakes)
+			snake.move();
 	}
 	
 	/**
@@ -163,8 +166,11 @@ public class Game implements ActionListener {
 	 * @return ArrayList<Point>
 	 */
 	public ArrayList<Point> getOccupiedCells() {	
-		ArrayList<Point> occupiedCells = snake.getPosition();
-		for(Food current : this.food)
+		ArrayList<Point> occupiedCells = new ArrayList<Point>();
+		for (Snake snake : this.snakes)
+			for (Point point : snake.getPosition())
+				occupiedCells.add(point);
+		for (Food current : this.food)
 			occupiedCells.add(current.getPosition());
 		return occupiedCells;
 	}
@@ -174,7 +180,22 @@ public class Game implements ActionListener {
 	 * @return ArrayList<Point>
 	 */
 	public ArrayList<Point> getSnakePosition() {
-		return snake.getPosition();
+		ArrayList<Point> positions = new ArrayList<Point>();
+		for (Snake snake : this.snakes) 
+			for (Point point : snake.getPosition())
+				positions.add(point);
+		return positions;
+	}
+	
+	/**
+	 * All the snakes in the game
+	 * @return The snakes in the game
+	 */
+	public ArrayList<Snake> getSnakes() {
+		ArrayList<Snake> snakes = new ArrayList<Snake>();
+		for (Snake snake : this.snakes) 
+			snakes.add(snake);
+		return this.snakes;
 	}
 	
 	/** 
@@ -238,7 +259,8 @@ public class Game implements ActionListener {
 	@Override
 	public void actionPerformed(ActionEvent e) {
 		if (!this.gameOver) {
-			this.moveSnake();
+			this.moveSnakes();
+			this.update();
 			this.gameTimer.restart();
 		} else {
 			this.gameTimer.stop();
