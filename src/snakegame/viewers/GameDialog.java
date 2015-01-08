@@ -65,7 +65,7 @@ public class GameDialog extends GenericDialog{
 
 			public void actionPerformed(ActionEvent e) {
 				view.dispose();
-				new Snake();
+				new RunSnake();
 				closeFrame();
 			}
 		});	

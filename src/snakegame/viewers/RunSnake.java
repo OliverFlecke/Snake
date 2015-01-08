@@ -11,10 +11,9 @@ import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.SwingConstants;
 
-import com.sun.glass.events.KeyEvent;
 
 
-public class Snake extends GenericDialog{
+public class RunSnake extends GenericDialog{
 	
 	/**
 	 * 
@@ -37,7 +36,7 @@ public class Snake extends GenericDialog{
 	TextJPanel widthPanel = new TextJPanel();
 	TextJPanel heightPanel = new TextJPanel();
 	
-	public Snake(){
+	public RunSnake(){
 		
 		//Set labelName for txtPanels.
 		widthPanel.setLblName("Width:");
