@@ -30,7 +30,7 @@ public class ScorePanel extends JPanel{
 
 	public void updateScore() {
 		
-		String labelscore = Integer.toString(game.getScore());
+		String labelscore = Integer.toString(game.getSnakes().get(0).getScore());
 		
 		label.setText(labelscore);
 		

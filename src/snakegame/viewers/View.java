@@ -23,10 +23,10 @@ public class View extends JFrame implements GameListener {
 	private ScorePanel score;
 
 
-	public View(int width, int height){
+	public View(int width, int height, String name){
 		super();
-		
 		this.game = new Game(width, height);
+		this.game.getSnakes().get(0).setName(name);
 		this.snakeGrid = new SnakeGrid(game);
 		
 		HashMap<DIRECTION, Integer> defaultKeys = new HashMap<DIRECTION, Integer>();

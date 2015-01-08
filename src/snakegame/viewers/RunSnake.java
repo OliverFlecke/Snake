@@ -83,7 +83,7 @@ public class RunSnake extends GenericDialog{
 		startGameBtn.addActionListener(new ActionListener() {
 
 			public void actionPerformed(ActionEvent e) {
-				new View(widthPanel.getTxt(), heightPanel.getTxt());
+				new View(widthPanel.getTxt(), heightPanel.getTxt(), namePanel.getTxt());
 				closeFrame();
 			}
 		});
