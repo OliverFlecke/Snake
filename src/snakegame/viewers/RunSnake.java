@@ -3,13 +3,26 @@ package snakegame.viewers;
 import java.awt.BorderLayout;
 import java.awt.Dimension;
 import java.awt.FlowLayout;
+import java.awt.Font;
+import java.awt.GraphicsEnvironment;
+import java.awt.GridLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.io.File;
+
+
+
+
+
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
 
 import javax.swing.JButton;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.SwingConstants;
+
+import org.omg.CORBA.portable.InputStream;
 
 
 
@@ -33,14 +46,13 @@ public class RunSnake extends GenericDialog{
 	JPanel dimensionsShelf = new JPanel();
 	
 	//Make two textJpanels
-	TextJPanel widthPanel = new TextJPanel();
-	TextJPanel heightPanel = new TextJPanel();
+	TextJPanel widthPanel = new TextJPanel("Width:");
+	TextJPanel heightPanel = new TextJPanel("Height:");
+	TextJPanel namePanel = new TextJPanel("Name:");
 	
 	public RunSnake(){
 		
 		//Set labelName for txtPanels.
-		widthPanel.setLblName("Width:");
-		heightPanel.setLblName("Height:");
 		widthPanel.setTxt(10);
 		heightPanel.setTxt(10);
 		
@@ -59,19 +71,19 @@ public class RunSnake extends GenericDialog{
 		dimensionsShelf.setLayout(new FlowLayout());
 		dimensionsShelf.add(widthPanel);
 		dimensionsShelf.add(heightPanel);
-		this.getContentPane().add(dimensionsShelf, BorderLayout.CENTER);
-		
-		//setting up Label and btn
-		this.getContentPane().add(snake, BorderLayout.NORTH);
-		this.getContentPane().add(btnShelf, BorderLayout.SOUTH);
-		
+		this.setLayout(new GridLayout(4,0));
+		this.add(snake);
+		this.add(namePanel);
+		this.add(dimensionsShelf);
+		this.add(btnShelf);
+
 		this.pack();
 		
 		
 		startGameBtn.addActionListener(new ActionListener() {
 
 			public void actionPerformed(ActionEvent e) {
-				View view = new View(widthPanel.getTxt(), heightPanel.getTxt());
+				new View(widthPanel.getTxt(), heightPanel.getTxt());
 				closeFrame();
 			}
 		});

@@ -27,6 +27,12 @@ public class TextJPanel extends JPanel {
 		
 	}
 	
+	public TextJPanel(String lblName) {
+		this();
+		setLblName(lblName);
+		
+	}
+	
 	public void setLblName(String lblName){
 		fieldLbl.setText(lblName);
 	}

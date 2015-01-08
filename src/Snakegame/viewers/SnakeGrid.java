@@ -9,8 +9,10 @@ import javax.swing.JPanel;
 
 
 
+
 import snakegame.models.Food;
 import snakegame.models.Game;
+import snakegame.models.Snake;
 
 import java.awt.Color;
 import java.awt.GridLayout;
@@ -68,9 +70,14 @@ public class SnakeGrid extends JPanel {
 	}
        	
 	public void drawSnake(Graphics2D g2){
-	    for (Point currentPos : game.getSnakePosition()) {
-	    	g2.fillRect(currentPos.x*gameWidthScale, (this.game.getDimension().height - currentPos.y)*gameHeightScale, gameWidthScale, gameHeightScale);
-        }
+		for (Snake snake : game.getSnakes()){
+		    for (Point currentPos : game.getPosition()) {
+		    	g2.fillRect(currentPos.x*gameWidthScale, (this.game.getDimension().height - currentPos.y)*gameHeightScale, gameWidthScale, gameHeightScale);
+		    	g2.setColor(Color.green);
+		    	Point head = snake.getHead();
+		    	g2.fillRect(head.x*gameWidthScale, (this.game.getDimension().height - head.y)*gameHeightScale, gameWidthScale, gameHeightScale);
+	        }
+		}
 	}
 
 	//@Override
