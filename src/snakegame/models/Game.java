@@ -94,8 +94,15 @@ public class Game implements ActionListener {
 	 * Start the time for the game
 	 */
 	public void startGame() {
-		this.gameOver = false;
-		this.gameTimer.start();
+		boolean gameReady = true;
+		for (Snake snake : this.snakes)
+			gameReady = snake.getReady() && gameReady;
+		
+		System.out.println("Start game");
+		if (gameReady) {
+			this.gameOver = false;
+			this.gameTimer.start();
+		}
 	}
 
 	/**

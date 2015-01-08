@@ -3,12 +3,16 @@ package snakegame.viewers;
 import javax.swing.JFrame;
 import javax.swing.ImageIcon;
 
+import snakegame.DIRECTION;
 import snakegame.controllers.DirectionController;
 import snakegame.controllers.GameListener;
 import snakegame.controllers.ViewController;
 import snakegame.models.Game;
 import snakegame.viewers.sound.Sound;
+
 import java.awt.BorderLayout;
+import java.awt.event.KeyEvent;
+import java.util.HashMap;
 
 public class View extends JFrame implements GameListener {
 
@@ -24,7 +28,14 @@ public class View extends JFrame implements GameListener {
 		
 		this.game = new Game(width, height);
 		this.snakeGrid = new SnakeGrid(game);
-		this.addKeyListener(new DirectionController(game, game.getSnakes().get(0)));
+		
+		HashMap<DIRECTION, Integer> defaultKeys = new HashMap<DIRECTION, Integer>();
+		defaultKeys.put(DIRECTION.UP, KeyEvent.VK_UP);
+		defaultKeys.put(DIRECTION.RIGHT, KeyEvent.VK_RIGHT);
+		defaultKeys.put(DIRECTION.DOWN, KeyEvent.VK_DOWN);
+		defaultKeys.put(DIRECTION.LEFT, KeyEvent.VK_LEFT);
+		
+		this.addKeyListener(new DirectionController(game, game.getSnakes().get(0), defaultKeys));
 		this.addComponentListener(new ViewController());
 		this.game.addListener(this);
 		this.score = new ScorePanel(game);

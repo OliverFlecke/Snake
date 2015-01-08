@@ -17,18 +17,22 @@ public class DirectionController implements KeyListener {
 	// Game this controller is connected to TODO
 	private Game game;
 	
-	// Key codes to react to
-	private HashMap<DIRECTION, Integer> keyCodes;
+	// State of the game
+	private boolean isStarted = false;
+	private boolean firstPress = true;
 	
-	private int[] keyCodesArray = new int[4];
+	// key codes for the keys to react to
+	int up, right, down, left;
 	
 	/**
 	 * Constructor, which takes the player to control
 	 * @param player Snake to control
 	 */
-	public DirectionController(Game game, Snake snake) {
+	public DirectionController(Game game, Snake snake, HashMap<DIRECTION, Integer> keycodes) {
 		this.snake = snake;
 		this.game = game;
+		
+		this.up = keycodes.get(DIRECTION.UP);
 	}
 
 	@Override
@@ -43,28 +47,34 @@ public class DirectionController implements KeyListener {
 				//this.player.move(DIRECTION.DOWN);
 				System.out.println("Down key pressed");
 				this.snake.setDirection(DIRECTION.DOWN);
-				this.game.startGame();
+				this.isStarted = true;
 				break;
 			case KeyEvent.VK_UP:
 				//this.player.move(DIRECTION.UP);
 				System.out.println("Up key pressed");
 				this.snake.setDirection(DIRECTION.UP);
-				this.game.startGame();
+				this.isStarted = true;
 				break;
 			case KeyEvent.VK_LEFT:
 				//this.player.move(DIRECTION.LEFT);
 				System.out.println("Left key pressed");
 				this.snake.setDirection(DIRECTION.LEFT);
-				this.game.startGame();
+				this.isStarted = true;
 				break;	
 			case KeyEvent.VK_RIGHT:
 				//this.player.move(DIRECTION.RIGHT);
 				System.out.println("Right key pressed");
 				this.snake.setDirection(DIRECTION.RIGHT);
-				this.game.startGame();
+				this.isStarted = true;
 				break;		
 			default:
 				break;
+		}
+		
+		if (this.isStarted && this.firstPress) {
+			this.snake.setReady();
+			this.game.startGame();
+			this.firstPress = false;
 		}
 	}
 

@@ -19,7 +19,8 @@ public class Snake {
 	private DIRECTION lastDirection;				// The last direction to move in	
 	private int score = 0;							// Keeps track of the score
 	private Dimension gameDimension;				// Dimensions of the game
-	private String name;
+	private String name;							// Name of the snake
+	private boolean isReady;						// State of the snake
 	
 	/**
 	 * Constructor to create a snake object with a default start point
@@ -167,6 +168,21 @@ public class Snake {
 	 */
 	public String getName() {
 		return this.name;
+	}
+	
+	/**
+	 * Setter method for the isReady field
+	 */
+	public void setReady() {
+		this.isReady = true;
+	}
+	
+	/**
+	 * The state of the snake, if it is ready or not
+	 * @return If the snake is ready
+	 */
+	public boolean getReady() {
+		return this.isReady;
 	}
 	
 	/**
