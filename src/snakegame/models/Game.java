@@ -79,7 +79,7 @@ public class Game implements ActionListener {
 		this.gameOver = false;
 		
 		// Create the different snakes
-		if (numberOfPlayers > 1 && numberOfPlayers <= 4) {
+		if (numberOfPlayers >= 1 && numberOfPlayers <= 4) {
 			int index = 0;
 			while (numberOfPlayers > index) {
 				this.snakes.add(new Snake(this.createRandomPoint(), this.size));
@@ -155,6 +155,8 @@ public class Game implements ActionListener {
 	 * Updates the game following a snake movement, checking for collision with food and with the snake itself
 	 */
 	public void update() {
+		for (Snake snake : this.snakes) 
+			snake.setIsEating(false);
 		// Assume everyone is dead
 		boolean allDead = true;
 		ArrayList<Food> foodToRemove = new ArrayList<Food>();
@@ -166,7 +168,6 @@ public class Game implements ActionListener {
 						snake.eatFood(current);
 						foodToRemove.add(current);
 						incrementLevel();
-						snake.setIsEating(true);
 						
 						// Updates the game, so it gets harder over time
 						if (this.level % 10 == 0) {
@@ -195,8 +196,6 @@ public class Game implements ActionListener {
 		
 		// Furthermore notifies viewer of update
 		notifyListener();
-		for (Snake snake : this.snakes) 
-			snake.setIsEating(false);
 	}
 	
 	/**

@@ -175,6 +175,8 @@ public class Snake {
 	public void eatFood(Food foodEaten) {
 		this.player.addToScore(foodEaten.getValue() * 100);
 		this.length += foodEaten.getValue();
+		System.out.println("Is eating");
+		this.isEating = true;
 	}
 	
 	/**
