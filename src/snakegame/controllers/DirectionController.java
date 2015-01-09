@@ -14,7 +14,7 @@ import java.util.HashMap;
 public class DirectionController implements KeyListener {
 	// Field for the snake to control 
 	private Snake snake;
-	// Game this controller is connected to TODO
+	// Game this controller is connected to
 	private Game game;
 	
 	// State of the game
@@ -71,8 +71,6 @@ public class DirectionController implements KeyListener {
 			else if (keyCode == this.down) 	{ this.snake.setDirection(DIRECTION.DOWN); } 
 			else if (keyCode == this.left) 	{ this.snake.setDirection(DIRECTION.LEFT); }
 			this.isStarted = true;
-		} else if (keyCode == KeyEvent.VK_P) {
-			this.game.pause();
 		}
 		
 		if (this.isStarted && this.firstPress) {

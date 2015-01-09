@@ -6,6 +6,7 @@ import javax.swing.JPanel;
 
 import snakegame.DIRECTION;
 import snakegame.controllers.DirectionController;
+import snakegame.controllers.GameKeyboardController;
 import snakegame.controllers.GameListener;
 import snakegame.controllers.ViewController;
 import snakegame.models.Game;
@@ -48,6 +49,7 @@ public class View extends JFrame implements GameListener {
 				KeyEvent.VK_W, KeyEvent.VK_D, KeyEvent.VK_S, KeyEvent.VK_A));
 		game.getSnakes().get(1).setColor(Color.BLUE);
 		this.addComponentListener(new ViewController());
+		this.addKeyListener(new GameKeyboardController(this.game));
 		this.game.addListener(this);
 		
 		//this.score = new ScorePanel(player);  TODO implementer loop over arraylist af players
