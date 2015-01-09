@@ -14,6 +14,8 @@ public class Player implements Comparable<Player>{
 		this(name, 0);
 	}
 	
+	public Player() {}
+	
 	public int getTime() {
 		return time;
 	}

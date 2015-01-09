@@ -2,20 +2,11 @@ package snakegame.viewers;
 
 import java.awt.Dimension;
 import java.awt.Point;
-
 import javax.swing.JPanel;
-
-
-
-
-
 import javax.swing.border.LineBorder;
-
 import snakegame.models.Food;
 import snakegame.models.Game;
 import snakegame.models.Snake;
-
-
 import java.awt.Color;
 import java.awt.GridLayout;
 import java.awt.Graphics;
@@ -24,10 +15,7 @@ import java.awt.Graphics2D;
 /**
  * 
  */
-public class SnakeGrid extends JPanel {
-
-	
-	
+public class SnakeGrid extends JPanel {	
 	/**
 	 * 
 	 */
@@ -63,18 +51,18 @@ public class SnakeGrid extends JPanel {
         placeFood(g2);
 
     }
-
-
-       	
+    
 	public void drawSnake(Graphics2D g2){
 		for (Snake snake : game.getSnakes()){
 			g2.setColor(snake.getColor());
 		    for (Point currentPos : snake.getPosition()) {
-		    	if (!(currentPos.equals(snake.getHead())))
+		    	if (!(currentPos.equals(snake.getHead()))) {
 		    		g2.fillRect((int) (currentPos.x * gameWidthScale) + 1, 
 			    			(int) ((this.game.getDimension().height - currentPos.y)*gameHeightScale) + 1, 
 			    			(int) (gameWidthScale) + 1, (int) (gameHeightScale) + 1);
-	        }
+	        
+		    	}
+		    }
 	    	g2.setColor(Color.green);
 	    	Point head = snake.getHead();
 	    	g2.fillRect((int) (head.x * gameWidthScale) + 1, 
