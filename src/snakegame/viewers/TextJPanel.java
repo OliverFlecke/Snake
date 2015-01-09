@@ -21,6 +21,7 @@ public class TextJPanel extends JPanel {
 	
 	public TextJPanel() {
 		
+		this.setOpaque(false);
 		this.setLayout(new FlowLayout());
 		this.add(fieldLbl);
 		this.add(txtField);

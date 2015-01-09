@@ -25,6 +25,13 @@ public class Player implements Comparable<Player>{
 		this.time = time;
 	}
 	
+	/**
+	 * Incremt the timer of this player
+	 */
+	public void incrementTime() {
+		this.time++;
+	}
+	
 	public void addToScore(int delta){
 		this.score += delta;
 	}

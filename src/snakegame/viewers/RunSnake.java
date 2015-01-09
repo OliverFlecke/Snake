@@ -45,6 +45,10 @@ public class RunSnake extends GenericDialog{
 		widthPanel.setTxt(10);
 		heightPanel.setTxt(10);
 		
+		//Making shelfs transparent
+		btnShelf.setOpaque(false);
+		dimensionsShelf.setOpaque(false);
+		
 		
 		//Adding btns and labels to shelf
 		btnShelf.add(startGameBtn);
@@ -60,11 +64,19 @@ public class RunSnake extends GenericDialog{
 		dimensionsShelf.setLayout(new FlowLayout());
 		dimensionsShelf.add(widthPanel);
 		dimensionsShelf.add(heightPanel);
+		
 		this.setLayout(new GridLayout(4,0));
 		this.add(snake);
 		this.add(namePanel1);
 		this.add(dimensionsShelf);
 		this.add(btnShelf);
+
+		background.setLayout(new GridLayout(4,0));
+		background.add(snake);
+		background.add(namePanel1);
+		background.add(dimensionsShelf);
+		background.add(btnShelf);
+
 
 		this.pack();
 		

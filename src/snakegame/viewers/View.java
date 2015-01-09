@@ -13,6 +13,7 @@ import snakegame.models.Player;
 import snakegame.viewers.sound.Sound;
 
 import java.awt.BorderLayout;
+import java.awt.Color;
 import java.awt.event.KeyEvent;
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -27,13 +28,14 @@ public class View extends JFrame implements GameListener {
 	
 
 
-	public View(int width, int height, ArrayList<String> playernames){
+	public View(int width, int height, ArrayList<String> playerNames){
 		super();
-		this.game = new Game(width, height);
+//		this.game = new Game(width, height);
+		this.game = new Game(width, height, 2);
 		this.snakeGrid = new SnakeGrid(game);
 		
 		//passes player names to game
-		game.setPlayerNames();
+		game.setPlayerNames(playerNames);
 		
 		HashMap<DIRECTION, Integer> defaultKeys = new HashMap<DIRECTION, Integer>();
 		defaultKeys.put(DIRECTION.UP, KeyEvent.VK_UP);
@@ -42,6 +44,9 @@ public class View extends JFrame implements GameListener {
 		defaultKeys.put(DIRECTION.LEFT, KeyEvent.VK_LEFT);
 		
 		this.addKeyListener(new DirectionController(game, game.getSnakes().get(0), defaultKeys));
+		this.addKeyListener(new DirectionController(game, game.getSnakes().get(1), 
+				KeyEvent.VK_W, KeyEvent.VK_D, KeyEvent.VK_S, KeyEvent.VK_A));
+		game.getSnakes().get(1).setColor(Color.BLUE);
 		this.addComponentListener(new ViewController());
 		this.game.addListener(this);
 		
