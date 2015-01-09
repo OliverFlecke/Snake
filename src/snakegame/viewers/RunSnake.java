@@ -5,6 +5,7 @@ import java.awt.FlowLayout;
 import java.awt.GridLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.util.ArrayList;
 
 import javax.swing.JButton;
 import javax.swing.JLabel;
@@ -19,7 +20,9 @@ public class RunSnake extends GenericDialog{
 	 */
 	private static final long serialVersionUID = -647167119165272436L;
 	
-	
+	//List of names for player creation in game
+	ArrayList<String> names = new ArrayList<String>();
+		
 	//Create the buttons
 	JButton startGameBtn = new JButton("Start Game");
 	
@@ -34,7 +37,7 @@ public class RunSnake extends GenericDialog{
 	//Make two textJpanels
 	TextJPanel widthPanel = new TextJPanel("Width:");
 	TextJPanel heightPanel = new TextJPanel("Height:");
-	TextJPanel namePanel = new TextJPanel("Name:");
+	TextJPanel namePanel1 = new TextJPanel("Name:");
 	
 	public RunSnake(){
 		
@@ -61,11 +64,19 @@ public class RunSnake extends GenericDialog{
 		dimensionsShelf.setLayout(new FlowLayout());
 		dimensionsShelf.add(widthPanel);
 		dimensionsShelf.add(heightPanel);
+		
+		this.setLayout(new GridLayout(4,0));
+		this.add(snake);
+		this.add(namePanel1);
+		this.add(dimensionsShelf);
+		this.add(btnShelf);
+
 		background.setLayout(new GridLayout(4,0));
 		background.add(snake);
-		background.add(namePanel);
+		background.add(namePanel1);
 		background.add(dimensionsShelf);
 		background.add(btnShelf);
+
 
 		this.pack();
 		
@@ -73,10 +84,17 @@ public class RunSnake extends GenericDialog{
 		startGameBtn.addActionListener(new ActionListener() {
 
 			public void actionPerformed(ActionEvent e) {
+				
+				createListOfNames(); 	
 
-				new View(Integer.parseInt(widthPanel.getTxt()), Integer.parseInt(heightPanel.getTxt()), namePanel.getTxt());
+				new View(Integer.parseInt(widthPanel.getTxt()), Integer.parseInt(heightPanel.getTxt()), names);
 
 				closeFrame();
+			}
+
+			private void createListOfNames() {
+				names.add(namePanel1.getTxt());
+				
 			}
 		});
 

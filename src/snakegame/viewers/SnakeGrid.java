@@ -1,11 +1,8 @@
 package snakegame.viewers;
 
-import java.awt.Dimension;
-import java.awt.Point;
+
 
 import javax.imageio.ImageIO;
-import javax.swing.ImageIcon;
-import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.border.LineBorder;
 
@@ -13,12 +10,16 @@ import snakegame.models.Food;
 import snakegame.models.Game;
 import snakegame.models.Snake;
 
+import snakegame.viewers.sound.Sound;
+
+import java.awt.Dimension;
+import java.awt.Point;
 import java.awt.Color;
 import java.awt.GridLayout;
 import java.awt.Graphics;
 import java.awt.Graphics2D;
 import java.awt.image.BufferedImage;
-import java.io.File;
+
 import java.io.IOException;
 
 /**
@@ -99,6 +100,11 @@ public class SnakeGrid extends JPanel {
 	    	g2.fillRect((int) (head.x * gameWidthScale) + 1, 
 	    			(int) ((this.game.getDimension().height - head.y) * gameHeightScale) + 1, 
 	    			(int) (gameWidthScale + 1), (int) (gameHeightScale + 1));
+	    	
+			// If the snake is eating, play a sound
+			if (snake.isEating()) {
+				Sound.EAT.play();
+			}
 		}
 	}
 	

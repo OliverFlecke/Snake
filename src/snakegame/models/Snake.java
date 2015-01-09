@@ -18,7 +18,9 @@ public class Snake {
 	private Player player;							// Player to keep track of name and score
 	private Dimension gameDimension;				// Dimensions of the game
 	private boolean isReady;						// State of the snake
-	private Color color;
+	private boolean isEating;						// State of the snake to check if it is eating
+	private boolean isDead;							// State of the snakes life
+	private Color color;							// Color of the snake
 	
 	/**
 	 * Constructor to create a snake object with a default start point in the middle of the screen
@@ -48,6 +50,7 @@ public class Snake {
 		this.gameDimension = gameDimension;
 		this.color = Color.BLACK;
 		this.player = new Player();
+		this.isDead = false;
 	}
 	
 	/**
@@ -89,49 +92,51 @@ public class Snake {
 	 * Moves the snake in it's current direction.
 	 */
 	public void move() {
-		Point newHead;
-		Point lastHead = this.position.getFirst();
-		switch (this.direction) {
-			case UP:
-				newHead = new Point(lastHead.x, lastHead.y + 1);
-				if (newHead.y > this.gameDimension.height) {
-					newHead.y = 0;
-				}
-				break;
-			case DOWN:
-				newHead = new Point(lastHead.x, lastHead.y - 1);
-				if (newHead.y < 0) {
-					newHead.y = this.gameDimension.height;
-				}
-				break;
-			case LEFT:
-				newHead = new Point(lastHead.x - 1, lastHead.y);
-				if (newHead.x < 0) {
-					newHead.x = this.gameDimension.width;
-				}
-				break;
-			case RIGHT:
-				newHead = new Point(lastHead.x + 1, lastHead.y);
-				if (newHead.x > this.gameDimension.width) {
-					newHead.x = 0;
-				}
-				break;
-			// Makes sure that a point is created
-			default:
-				newHead = new Point();
-				break;
+		if (!(this.isDead)) {
+			Point newHead;
+			Point lastHead = this.position.getFirst();
+			switch (this.direction) {
+				case UP:
+					newHead = new Point(lastHead.x, lastHead.y + 1);
+					if (newHead.y > this.gameDimension.height) {
+						newHead.y = 0;
+					}
+					break;
+				case DOWN:
+					newHead = new Point(lastHead.x, lastHead.y - 1);
+					if (newHead.y < 0) {
+						newHead.y = this.gameDimension.height;
+					}
+					break;
+				case LEFT:
+					newHead = new Point(lastHead.x - 1, lastHead.y);
+					if (newHead.x < 0) {
+						newHead.x = this.gameDimension.width;
+					}
+					break;
+				case RIGHT:
+					newHead = new Point(lastHead.x + 1, lastHead.y);
+					if (newHead.x > this.gameDimension.width) {
+						newHead.x = 0;
+					}
+					break;
+				// Makes sure that a point is created
+				default:
+					newHead = new Point();
+					break;
+			}
+			// Update the position of the snake
+			this.position.addFirst(newHead);
+			// Update the last move direction
+			this.lastDirection = this.direction;
+			
+			// If the length is smaller then the position list, remove the tail
+			if (this.position.size() > this.length) 
+				this.position.removeLast();
+			
+			System.out.println(this.player.getName() + " move to [" + this.position.getFirst().x + "," 
+			+ this.position.getFirst().y + "]");
 		}
-		// Update the position of the snake
-		this.position.addFirst(newHead);
-		// Update the last move direction
-		this.lastDirection = this.direction;
-		
-		// If the length is smaller then the position list, remove the tail
-		if (this.position.size() > this.length) 
-			this.position.removeLast();
-		
-		System.out.println(this.player.getName() + " move to [" + this.position.getFirst().x + "," 
-		+ this.position.getFirst().y + "]");
 	}
 	
 	/**
@@ -140,12 +145,11 @@ public class Snake {
 	 */
 	public boolean checkCollision() {
 		if (this.length > 1)
-			for (Point current : this.position) {
+			for (Point current : this.position)
 				// Check to see, if not the same object, but the same coordinates
 				if (this.getHead().equals(current)) 
 					if (!(this.position.getFirst() == current))		// Check it is not the same object
 						return true;
-			}
 		return false;
 	}
 	
@@ -155,13 +159,16 @@ public class Snake {
 	 * @return True, if the snake has hit something
 	 */
 	public boolean checkCollision(ArrayList<Point> otherPoints) {
-		boolean hasCollided = false;		
+		boolean hasCollided = false;
 		for (Point point : otherPoints) {
 			if (this.getHead().equals(point))
 				hasCollided = true;
 		}
-		
-		return this.checkCollision() || hasCollided;
+		if (this.checkCollision() || hasCollided) {
+			this.isDead = true;
+			return true;
+		}	
+		return false;
 	}
 	
 	/**
@@ -265,5 +272,26 @@ public class Snake {
 	 */
 	public DIRECTION getCurrentDirection() {
 		return this.direction;
+	}
+	
+	/**
+	 * @param isEating True if the snake is eating anything in this turn
+	 */
+	public void setIsEating(boolean isEating) {
+		this.isEating = isEating;
+	}
+	
+	/**
+	 * @return True, if the snake is eating anything
+	 */
+	public boolean isEating() {
+		return this.isEating;
+	}
+	
+	/**
+	 * @return True, if the snake is dead
+	 */
+	public boolean isDead() {
+		return this.isDead;
 	}
 }
