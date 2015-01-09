@@ -34,6 +34,7 @@ public class ScorePanel extends JPanel{
 		
 		scoreLabel.setText("Score: " + player.getScore());
 		timerLabel.setText("Time: " + player.getTime());
+		nameLabel.setText("Name: " + player.getName());
 		
 	}
 }

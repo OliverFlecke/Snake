@@ -15,6 +15,7 @@ import snakegame.viewers.sound.Sound;
 
 import java.awt.BorderLayout;
 import java.awt.Color;
+import java.awt.GridLayout;
 import java.awt.event.KeyEvent;
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -26,6 +27,9 @@ public class View extends JFrame implements GameListener {
 	private SnakeGrid snakeGrid;
 	private Game game;
 	private ArrayList<ScorePanel> scorepanels;
+	private JPanel scorePanelHolder;
+
+	private ScorePanel score;
 	
 
 
@@ -34,6 +38,7 @@ public class View extends JFrame implements GameListener {
 //		this.game = new Game(width, height);
 		this.game = new Game(width, height, 2);
 		this.snakeGrid = new SnakeGrid(game);
+		this.scorePanelHolder = new JPanel();
 		
 		//passes player names to game
 		game.setPlayerNames(playerNames);
@@ -52,12 +57,18 @@ public class View extends JFrame implements GameListener {
 		this.addKeyListener(new GameKeyboardController(this.game));
 		this.game.addListener(this);
 		
-		//this.score = new ScorePanel(player);  TODO implementer loop over arraylist af players
+		this.score = new ScorePanel(game.getSnakes().get(0).getPlayer());  //TODO implementer loop over arraylist af players
 		
 		this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		this.setIconImage(new ImageIcon("icon.png").getImage());
 		this.getContentPane().add(snakeGrid, BorderLayout.CENTER);
-		// TODO cycle through player list and create scorepanels, this.getContentPane().add(score, BorderLayout.PAGE_START);
+//		this.getContentPane().add(scorePanelHolder,BorderLayout.PAGE_START);
+//		cycles through snakes creating scorepanels
+//		for(int i=0; i<game.getSnakes().size(); i++ ){
+//			scorePanelHolder.add(new ScorePanel(game.getSnakes().get(i).getPlayer()));
+//		}
+		
+		this.getContentPane().add(score,BorderLayout.PAGE_START);
 		
 		this.pack();
 		this.setLocationRelativeTo(null);
@@ -80,6 +91,6 @@ public class View extends JFrame implements GameListener {
 	public void update() {
 		snakeGrid.updateGrid();
 
-		//score.updateScorePanel();
+		score.updateScorePanel();
 	}
 }
