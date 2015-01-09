@@ -40,6 +40,7 @@ public class View extends JFrame implements GameListener {
 		this.snakeGrid = new SnakeGrid(game);
 		this.scorePanelHolder = new JPanel();
 		
+		
 		//passes player names to game
 		game.setPlayerNames(playerNames);
 		
