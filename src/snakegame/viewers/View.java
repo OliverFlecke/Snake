@@ -9,10 +9,12 @@ import snakegame.controllers.DirectionController;
 import snakegame.controllers.GameListener;
 import snakegame.controllers.ViewController;
 import snakegame.models.Game;
+import snakegame.models.Player;
 import snakegame.viewers.sound.Sound;
 
 import java.awt.BorderLayout;
 import java.awt.event.KeyEvent;
+import java.util.ArrayList;
 import java.util.HashMap;
 
 public class View extends JFrame implements GameListener {
@@ -21,14 +23,17 @@ public class View extends JFrame implements GameListener {
 
 	private SnakeGrid snakeGrid;
 	private Game game;
-	private ScorePanel score;
+	private ArrayList<ScorePanel> scorepanels;
+	
 
 
-	public View(int width, int height, String name){
+	public View(int width, int height, ArrayList<String> playernames){
 		super();
 		this.game = new Game(width, height);
-		this.game.getSnakes().get(0).setName(name);
 		this.snakeGrid = new SnakeGrid(game);
+		
+		//passes player names to game
+		game.setPlayerNames();
 		
 		HashMap<DIRECTION, Integer> defaultKeys = new HashMap<DIRECTION, Integer>();
 		defaultKeys.put(DIRECTION.UP, KeyEvent.VK_UP);
@@ -39,18 +44,21 @@ public class View extends JFrame implements GameListener {
 		this.addKeyListener(new DirectionController(game, game.getSnakes().get(0), defaultKeys));
 		this.addComponentListener(new ViewController());
 		this.game.addListener(this);
-		this.score = new ScorePanel(game);
+		
+		//this.score = new ScorePanel(player);  TODO implementer loop over arraylist af players
 		
 		this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		this.setIconImage(new ImageIcon("icon.png").getImage());
 		this.getContentPane().add(snakeGrid, BorderLayout.CENTER);
-		this.getContentPane().add(score, BorderLayout.PAGE_START);
+		// TODO cycle through player list and create scorepanels, this.getContentPane().add(score, BorderLayout.PAGE_START);
+		
 		this.pack();
 		this.setLocationRelativeTo(null);
 		this.setVisible(true);
 		this.update();
 		Sound.MUSIC.loop();
 	}
+	
 
 
 	@Override
@@ -68,6 +76,6 @@ public class View extends JFrame implements GameListener {
 		if (this.game.isEating()) {
 			Sound.EAT.play();
 		}
-		score.updateScore();
+		score.updateScorePanel();
 	}
 }
