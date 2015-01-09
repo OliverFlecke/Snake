@@ -72,8 +72,8 @@ public class SnakeGrid extends JPanel {
     }
     
     public void drawBackground(Graphics2D g2){
-    	int width = (int) (this.getHeight()*gameWidthScale);
-    	int height = (int) (this.getHeight()*gameHeightScale);
+    	int width =this.getHeight();
+    	int height =this.getHeight();
     	
 
     	for (int i=0; i < width; i +=background.getWidth()){
