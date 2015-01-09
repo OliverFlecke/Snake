@@ -160,6 +160,7 @@ public class Game implements ActionListener {
 		// Assume everyone is dead
 		boolean allDead = true;
 		ArrayList<Food> foodToRemove = new ArrayList<Food>();
+		
 		// Removes food, plays sound and increments score if in collision with snake head. Also generates new food.
 		for (Snake snake : this.snakes) {
 			if (!(snake.isDead())) {
@@ -315,10 +316,6 @@ public class Game implements ActionListener {
 	 * @return The snakes in the game
 	 */
 	public ArrayList<Snake> getSnakes() {
-		// TODO make it other objects, so the outside can't modify the snakes
-		ArrayList<Snake> snakes = new ArrayList<Snake>();
-		for (Snake snake : this.snakes) 
-			snakes.add(snake);
 		return this.snakes;
 	}
 	
@@ -343,12 +340,8 @@ public class Game implements ActionListener {
 	 * @param names List of names to the players in the game
 	 */
 	public void setPlayerNames(ArrayList<String> names) {
-		if (this.snakes.size() <= names.size()) {
-			int index = 0;
-			for (Snake snake : this.snakes) {
-				snake.setName(names.get(index));
-				index++;
-			}
+		for (int i = 0; i < names.size(); i++) {
+			this.snakes.get(i).setName(names.get(i));
 		}
 	}
 }
