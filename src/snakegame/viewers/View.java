@@ -1,5 +1,6 @@
 package snakegame.viewers;
 
+import javax.swing.BoxLayout;
 import javax.swing.JFrame;
 import javax.swing.ImageIcon;
 import javax.swing.JPanel;
@@ -15,6 +16,8 @@ import snakegame.viewers.sound.Sound;
 
 import java.awt.BorderLayout;
 import java.awt.Color;
+import java.awt.Component;
+import java.awt.FlowLayout;
 import java.awt.GridLayout;
 import java.awt.event.KeyEvent;
 import java.util.ArrayList;
@@ -29,21 +32,16 @@ public class View extends JFrame implements GameListener {
 	private ArrayList<ScorePanel> scorepanels;
 	private JPanel scorePanelHolder;
 
-	private ScorePanel score;
+	//private ScorePanel score;
 	
 
 
 	public View(int width, int height, ArrayList<String> playerNames){
 		super();
-//		this.game = new Game(width, height);
 		this.game = new Game(width, height, 2);
 		//passes player names to game
 		game.setPlayerNames(playerNames);
-		
-		String name = game.getSnakes().get(0).getName();
-		System.out.println(name);
-		name = playerNames.get(0);
-		System.out.println(name);
+	
 		this.snakeGrid = new SnakeGrid(game);
 		this.scorePanelHolder = new JPanel();
 		
@@ -63,18 +61,18 @@ public class View extends JFrame implements GameListener {
 		this.addKeyListener(new GameKeyboardController(this.game));
 		this.game.addListener(this);
 		
-		this.score = new ScorePanel(game.getSnakes().get(0).getPlayer());  //TODO implementer loop over arraylist af players
-		
 		this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		this.setIconImage(new ImageIcon("icon.png").getImage());
 		this.getContentPane().add(snakeGrid, BorderLayout.CENTER);
-//		this.getContentPane().add(scorePanelHolder,BorderLayout.PAGE_START);
-//		cycles through snakes creating scorepanels
-//		for(int i=0; i<game.getSnakes().size(); i++ ){
-//			scorePanelHolder.add(new ScorePanel(game.getSnakes().get(i).getPlayer()));
-//		}
 		
-		this.getContentPane().add(score,BorderLayout.PAGE_START);
+		scorePanelHolder.setLayout(new BoxLayout(scorePanelHolder, game.getSnakes().size()));
+		
+		this.getContentPane().add(scorePanelHolder,BorderLayout.PAGE_START);
+		
+		//cycles through snakes creating scorepanels
+		for(int i=0; i<game.getSnakes().size(); i++ ){
+			scorePanelHolder.add(new ScorePanel(game.getSnakes().get(i).getPlayer()));
+		}
 		
 		this.pack();
 		this.setLocationRelativeTo(null);
@@ -96,7 +94,10 @@ public class View extends JFrame implements GameListener {
 	@Override
 	public void update() {
 		snakeGrid.updateGrid();
-
-		score.updateScorePanel();
+		for(int i = 0; i < game.getSnakes().size(); i++ ) {
+			Component component = this.scorePanelHolder.getComponent(i);
+			if (component instanceof ScorePanel)
+				((ScorePanel) component).update();
+		}
 	}
 }

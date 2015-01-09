@@ -30,7 +30,7 @@ public class ScorePanel extends JPanel{
 		return new Dimension(50, 50);
 	}
 
-	public void updateScorePanel() {		
+	public void update() {		
 		
 		scoreLabel.setText("Score: " + player.getScore());
 		timerLabel.setText("Time: " + player.getTime());
