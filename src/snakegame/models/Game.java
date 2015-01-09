@@ -142,14 +142,14 @@ public class Game implements ActionListener {
 	public void update() {
 		// Assume everyone is dead
 		boolean allDead = true;
-		Food foodToRemove = null;
+		ArrayList<Food> foodToRemove = new ArrayList<Food>();
 		// Removes food, plays sound and increments score if in collision with snake head. Also generates new food.
 		for (Snake snake : this.snakes) {
 			if (!(snake.isDead())) {
 				for (Food current : this.food){
 					if(current.getPosition().equals(snake.getHead())) {
 						snake.eatFood(current);
-						foodToRemove = current;
+						foodToRemove.add(current);
 						incrementLevel();
 						snake.setIsEating(true);
 						
@@ -174,8 +174,9 @@ public class Game implements ActionListener {
 		}
 		if (allDead) 
 			endGame();
-		if (foodToRemove != null) 
-			this.removeFood(foodToRemove);
+		for (Food food : foodToRemove) {
+			this.removeFood(food);
+		}
 		
 		// Furthermore notifies viewer of update
 		notifyListener();
