@@ -12,6 +12,7 @@ import snakegame.models.Game;
 import snakegame.viewers.sound.Sound;
 
 import java.awt.BorderLayout;
+import java.awt.Color;
 import java.awt.event.KeyEvent;
 import java.util.HashMap;
 
@@ -26,7 +27,7 @@ public class View extends JFrame implements GameListener {
 
 	public View(int width, int height, String name){
 		super();
-		this.game = new Game(width, height);
+		this.game = new Game(width, height, 2);
 		this.game.getSnakes().get(0).setName(name);
 		this.snakeGrid = new SnakeGrid(game);
 		
@@ -37,6 +38,9 @@ public class View extends JFrame implements GameListener {
 		defaultKeys.put(DIRECTION.LEFT, KeyEvent.VK_LEFT);
 		
 		this.addKeyListener(new DirectionController(game, game.getSnakes().get(0), defaultKeys));
+		this.addKeyListener(new DirectionController(game, game.getSnakes().get(1), 
+				KeyEvent.VK_W, KeyEvent.VK_D, KeyEvent.VK_S, KeyEvent.VK_A));
+		game.getSnakes().get(1).setColor(Color.BLUE);
 		this.addComponentListener(new ViewController());
 		this.game.addListener(this);
 		this.score = new ScorePanel(game);
@@ -64,10 +68,6 @@ public class View extends JFrame implements GameListener {
 	@Override
 	public void update() {
 		snakeGrid.updateGrid();
-		// If the snake is eating, play a sound
-		if (this.game.isEating()) {
-			Sound.EAT.play();
-		}
 		score.updateScore();
 	}
 }

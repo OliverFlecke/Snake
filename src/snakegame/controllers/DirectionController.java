@@ -37,6 +37,25 @@ public class DirectionController implements KeyListener {
 		this.down = keycodes.get(DIRECTION.DOWN);
 		this.left = keycodes.get(DIRECTION.LEFT);
 	}
+	
+	/**
+	 * Take key inputs as integers
+	 * @param game
+	 * @param snake
+	 * @param up
+	 * @param right
+	 * @param down
+	 * @param left
+	 */
+	public DirectionController(Game game, Snake snake, int up, int right, int down, int left) {
+		this.snake = snake;
+		this.game = game;
+		
+		this.up = up;
+		this.right = right;
+		this.down = down;
+		this.left = left;
+	}
 
 	@Override
 	/**

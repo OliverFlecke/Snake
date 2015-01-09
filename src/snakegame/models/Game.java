@@ -20,11 +20,9 @@ public class Game implements ActionListener {
 	private int level = 0;					// int for storing highscore
 	private Dimension size;					// Dimensions of the game field
 
-	private boolean gameOver;				// Game states	
-	private boolean isEating;				// Is eating food
-	
+	private boolean gameOver;				// Game states
 	private Timer gameTimer;				// Timer to control the games speed
-	private int timerValue = 100;			// Delay in the timer
+	private int timerValue = 150;			// Delay in the timer
 	private int updateTimeValue = 20;		// Update time value
 
 	/**
@@ -76,12 +74,15 @@ public class Game implements ActionListener {
 		this.snakes = new ArrayList<Snake>();
 		this.food = new ArrayList<Food>();
 		this.gameTimer = new Timer(this.timerValue, this);
+		// Make a time value based on how big the game grid are
+		this.updateTimeValue = 200 / ((this.size.width > this.size.height) ? this.size.width : this.size.height);
 		
+		// Create the different snakes
 		if (numberOfPlayers == 1) {
 			this.snakes.add(new Snake(this.getDimension()));
 			createFoodInGame(1);
 		} 
-		else if (numberOfPlayers > 1) {
+		else if (numberOfPlayers > 1 && numberOfPlayers <= 4) {
 			int index = 0;
 			while (numberOfPlayers > index) {
 				this.snakes.add(new Snake(Game.createRandomPoint(this.getDimension()), this.getDimension()));
@@ -141,38 +142,45 @@ public class Game implements ActionListener {
 	public void update() {
 		// Assume everyone is dead
 		boolean allDead = true;
+		Food foodToRemove = null;
 		// Removes food, plays sound and increments score if in collision with snake head. Also generates new food.
 		for (Snake snake : this.snakes) {
-			for (Food current : this.food){
-				if(current.getPosition().equals(snake.getHead())) {
-					snake.eatFood(current);
-					removeFood(current);
-					incrementScore();
-					this.isEating = true;
-					
-					// Updates the game, so it gets harder over time
-					if (this.level % 5 == 0) {
-						this.updateTimer();
-					} 
+			if (!(snake.isDead())) {
+				for (Food current : this.food){
+					if(current.getPosition().equals(snake.getHead())) {
+						snake.eatFood(current);
+						foodToRemove = current;
+						incrementLevel();
+						snake.setIsEating(true);
+						
+						// Updates the game, so it gets harder over time
+						if (this.level % 10 == 0) {
+							this.updateTimer();
+						} 
+					}
 				}
-			}
-			
-			ArrayList<Point> snakePositions = new ArrayList<Point>();
-			for (Snake otherSnake : this.snakes) {
-				if (!(snake.equals(otherSnake))) {
-					snakePositions.addAll(otherSnake.getPosition());
+				// Creates an array list of all the other snakes positions in the game
+				ArrayList<Point> snakePositions = new ArrayList<Point>();
+				for (Snake otherSnake : this.snakes) {
+					if (!(snake.equals(otherSnake))) {
+						for (Point point : otherSnake.getPosition())
+							snakePositions.add(point);
+					}
 				}
+				snake.getPlayer().incrementTime();
+				//ends game if snake collides with itself or any other snake
+				allDead = snake.checkCollision(snakePositions) && allDead;		
 			}
-			
-			//ends game if snake collides with itself or any other snake
-			allDead = snake.checkCollision(snakePositions) && allDead;		
 		}
 		if (allDead) 
 			endGame();
+		if (foodToRemove != null) 
+			this.removeFood(foodToRemove);
 		
 		// Furthermore notifies viewer of update
 		notifyListener();
-		this.isEating = false;
+		for (Snake snake : this.snakes) 
+			snake.setIsEating(false);
 	}
 	
 	/**
@@ -219,16 +227,8 @@ public class Game implements ActionListener {
 	/**
 	 * increments score
 	 */
-	private void incrementScore() {
+	private void incrementLevel() {
 		level++;	
-	}
-	
-	/**
-	 * Return true if any snake is eating
-	 * @return if the snake is eating
-	 */
-	public boolean isEating() {
-		return this.isEating;
 	}
 
 	/**
