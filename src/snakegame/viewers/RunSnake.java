@@ -82,7 +82,7 @@ public class RunSnake extends GenericDialog{
 				createListOfNames(); 	
 
 				new View(Integer.parseInt(widthPanel.getTxt()), Integer.parseInt(heightPanel.getTxt()), names);
-
+				
 				closeFrame();
 			}
 

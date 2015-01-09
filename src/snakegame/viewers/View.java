@@ -37,12 +37,17 @@ public class View extends JFrame implements GameListener {
 		super();
 //		this.game = new Game(width, height);
 		this.game = new Game(width, height, 2);
+		//passes player names to game
+		game.setPlayerNames(playerNames);
+		
+		String name = game.getSnakes().get(0).getName();
+		System.out.println(name);
+		name = playerNames.get(0);
+		System.out.println(name);
 		this.snakeGrid = new SnakeGrid(game);
 		this.scorePanelHolder = new JPanel();
 		
 		
-		//passes player names to game
-		game.setPlayerNames(playerNames);
 		
 		HashMap<DIRECTION, Integer> defaultKeys = new HashMap<DIRECTION, Integer>();
 		defaultKeys.put(DIRECTION.UP, KeyEvent.VK_UP);
