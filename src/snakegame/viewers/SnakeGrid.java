@@ -2,15 +2,24 @@ package snakegame.viewers;
 
 import java.awt.Dimension;
 import java.awt.Point;
+
+import javax.imageio.ImageIO;
+import javax.swing.ImageIcon;
+import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.border.LineBorder;
+
 import snakegame.models.Food;
 import snakegame.models.Game;
 import snakegame.models.Snake;
+
 import java.awt.Color;
 import java.awt.GridLayout;
 import java.awt.Graphics;
 import java.awt.Graphics2D;
+import java.awt.image.BufferedImage;
+import java.io.File;
+import java.io.IOException;
 
 /**
  * 
@@ -23,14 +32,22 @@ public class SnakeGrid extends JPanel {
 	private double gameWidthScale;
 	private double gameHeightScale;
 	
+	private BufferedImage background;
+	
 	
 	// The game object
 	private Game game;
 
 	public SnakeGrid(Game game) {
 		super();
-
-		this.setBackground(Color.WHITE);
+		
+		//Load in the background image.
+		try {
+			background = ImageIO.read(SnakeGrid.class.getResource("images\\snakeGrassText.jpg"));
+		} catch (IOException e) {
+    		this.setBackground(Color.GRAY);
+		}
+		
 		this.setLayout(new GridLayout(getPreferredSize().height, getPreferredSize().width));
 		this.setBorder(new LineBorder(Color.black, 5));
 		this.game = game;
@@ -47,9 +64,22 @@ public class SnakeGrid extends JPanel {
         super.paintComponent(g);
 
         Graphics2D g2 = (Graphics2D) g;
+        drawBackground(g2);
         drawSnake(g2);
         placeFood(g2);
 
+    }
+    
+    public void drawBackground(Graphics2D g2){
+    	int width = this.getHeight();
+    	int height = this.getHeight();
+    	
+
+    	for (int i=0; i < width; i +=background.getWidth()){
+    		for (int j=0; j < height; j+=background.getHeight()){
+    			g2.drawImage(background, i, j, this);
+	    		}
+	    	}
     }
     
 	public void drawSnake(Graphics2D g2){
@@ -63,6 +93,7 @@ public class SnakeGrid extends JPanel {
 	        
 		    	}
 		    }
+		    
 	    	g2.setColor(Color.green);
 	    	Point head = snake.getHead();
 	    	g2.fillRect((int) (head.x * gameWidthScale) + 1, 
