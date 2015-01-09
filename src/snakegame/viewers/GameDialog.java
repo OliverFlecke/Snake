@@ -1,10 +1,8 @@
 package snakegame.viewers;
+
 import java.awt.BorderLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-
-
-import java.awt.Dimension;
 
 import javax.swing.ImageIcon;
 import javax.swing.JFrame;
@@ -40,6 +38,9 @@ public class GameDialog extends GenericDialog{
 		super();
 		this.game = game;
 		int score = this.game.getSnakes().get(0).getScore();
+		
+		//Set transparency on shelfs
+		btnShelf.setOpaque(false);
 	
 		
 		this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -47,9 +48,12 @@ public class GameDialog extends GenericDialog{
 		scoreText.setText("Score:" + score);
 		btnShelf.add(restartBtn);
 		btnShelf.add(closeBtn);
-		this.getContentPane().add(scoreText, BorderLayout.NORTH);
-		this.getContentPane().add(btnShelf, BorderLayout.SOUTH);
-		add(btnShelf);
+		
+		
+		//Arranging dialog
+		background.setLayout(new BorderLayout());
+		background.add(scoreText, BorderLayout.CENTER);
+		background.add(btnShelf, BorderLayout.SOUTH);
 		
 		
 		closeBtn.addActionListener(new ActionListener() {
