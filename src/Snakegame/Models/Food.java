@@ -17,9 +17,9 @@ public class Food {
 	 * Constructor. Creates a new food object at a random position.
 	 * @param foodValue The value of the new food. 
 	 */
-	public Food(int foodValue, ArrayList<Point> occupiedCells, Dimension gameDimension) {
+	public Food(int foodValue, Game game) {
 		this.eatValue = foodValue;
-		this.position = this.createRandomPosition(occupiedCells, gameDimension);
+		this.position = game.createRandomPoint();
 	}
 	
 	/**
@@ -52,18 +52,5 @@ public class Food {
 	 */
 	public int getY() {
 		return this.position.y;
-	}
-	
-	/**
-	 *	Creates a new random point in the game, where the food is placed 
-	 *  @return A new random point
-	 */
-	private Point createRandomPosition(ArrayList<Point> occupiedCells, Dimension gameDimension) {
-		Point position;
-		// Insures the new food is not in an occupied cell
-		do {
-			position = Game.createRandomPoint(gameDimension);
-		} while(occupiedCells.contains(position));	
-		return position;
 	}
 }

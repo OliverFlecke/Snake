@@ -44,13 +44,10 @@ public class Snake {
 	 * @param name of the player
 	 */
 	public Snake(Point startPosition, Dimension gameDimension) {
-		this.position = new LinkedList<Point>();
-		this.position.add(startPosition);
-		this.length = 2;
+		this.reset(startPosition);
 		this.gameDimension = gameDimension;
 		this.color = Color.BLACK;
 		this.player = new Player();
-		this.isDead = false;
 	}
 	
 	/**
@@ -176,9 +173,21 @@ public class Snake {
 	 * @param foodValue Value of the food eaten
 	 */
 	public void eatFood(Food foodEaten) {
-		// TODO The snake should be able to eat food and score points
 		this.player.addToScore(foodEaten.getValue() * 100);
 		this.length += foodEaten.getValue();
+	}
+	
+	/**
+	 * Reset the snake, to make it ready for a new game
+	 * @param startPosition Its starting position
+	 */
+	public void reset(Point startPosition) {
+		this.position = new LinkedList<Point>();
+		this.position.add(startPosition);
+		this.length = 2;
+		this.direction = null; 
+		this.lastDirection = null;
+		this.isDead = false;
 	}
 	
 	/**

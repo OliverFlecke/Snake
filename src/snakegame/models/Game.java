@@ -17,7 +17,7 @@ public class Game implements ActionListener {
 	List<GameListener> listeners; 			// List of viewers to notify of updates
 	private ArrayList<Snake> snakes;		// The snakes
 	private ArrayList<Food> food;			// ArrayList of all the food objects on the game field
-	private int level = 0;					// int for storing highscore
+	private int level;						// int for storing highscore
 	private Dimension size;					// Dimensions of the game field
 
 	private boolean gameOver;				// Game states
@@ -60,15 +60,15 @@ public class Game implements ActionListener {
 	 * @param numberOfPlayers in the game
 	 */
 	public Game(Dimension newSize, int numberOfPlayers) {
-		this.size = newSize;
-		this.setupGame(numberOfPlayers);
+		this.size = newSize;				
+		this.setupNewGame(numberOfPlayers);
 	}
 	
 	/**
 	 * Creates the snakes and food objects at the start of the game
 	 * @param numberOfPlayers Number of players in the game
 	 */
-	private void setupGame(int numberOfPlayers) {
+	private void setupNewGame(int numberOfPlayers) {	
 		// Create the list for the game
 		this.listeners = new ArrayList<GameListener>();
 		this.snakes = new ArrayList<Snake>();
@@ -76,19 +76,31 @@ public class Game implements ActionListener {
 		this.gameTimer = new Timer(this.timerValue, this);
 		// Make a time value based on how big the game grid are
 		this.updateTimeValue = 200 / ((this.size.width > this.size.height) ? this.size.width : this.size.height);
+		this.gameOver = false;
 		
 		// Create the different snakes
-		if (numberOfPlayers == 1) {
-			this.snakes.add(new Snake(this.getDimension()));
-			createFoodInGame(1);
-		} 
-		else if (numberOfPlayers > 1 && numberOfPlayers <= 4) {
+		if (numberOfPlayers > 1 && numberOfPlayers <= 4) {
 			int index = 0;
 			while (numberOfPlayers > index) {
-				this.snakes.add(new Snake(Game.createRandomPoint(this.getDimension()), this.getDimension()));
+				this.snakes.add(new Snake(this.createRandomPoint(), this.size));
 				createFoodInGame(1);			// Create a food object for each snake
 				index++;						// Increment counter
 			}
+		}
+	}
+	
+	/**
+	 * Restart the game
+	 */
+	public void restartGame() {
+		this.level = 0;
+		this.gameOver = false;
+		this.gameTimer = new Timer(this.timerValue, this);
+		this.food = new ArrayList<Food>();
+		
+		for (Snake snake : this.snakes) {
+			snake.reset(this.createRandomPoint());
+			this.createFoodInGame(1);
 		}
 	}
 
@@ -98,7 +110,6 @@ public class Game implements ActionListener {
 	 */
 	public void removeFood(Food eatenFood) {
 		this.food.remove(eatenFood);
-
 		// Creates a new food object, so there is always a food object in the game
 		this.createFoodInGame(1);
 	}
@@ -108,7 +119,7 @@ public class Game implements ActionListener {
 	 * @param foodValue Value to give the new food object
 	 */
 	private void createFoodInGame(int foodValue) {
-		this.food.add(new Food(foodValue, this.getOccupiedCells(), this.getDimension()));
+		this.food.add(new Food(foodValue, this));
 	}
 	
 	/**
@@ -116,10 +127,10 @@ public class Game implements ActionListener {
 	 */
 	public void startGame() {
 		boolean gameReady = true;
+		// Check to see if all snakes are ready to play
 		for (Snake snake : this.snakes)
 			gameReady = snake.getReady() && gameReady;
 		
-		System.out.println("Start game");
 		if (gameReady) {
 			this.gameOver = false;
 			this.gameTimer.start();
@@ -130,10 +141,14 @@ public class Game implements ActionListener {
 	 * Create a random point in the game field
 	 * @return A random point within the game field
 	 */
-	public static Point createRandomPoint(Dimension gameDimension) {
-		int x = (int) (Math.random() * gameDimension.width);
-		int y = (int) (Math.random() * gameDimension.height);
-		return new Point(x, y);
+	public Point createRandomPoint() {
+		Point newPoint;
+		do {
+			int x = (int) (Math.random() * this.size.width);
+			int y = (int) (Math.random() * this.size.height);
+			newPoint = new Point(x, y);
+		} while (this.getOccupiedCells().contains(newPoint));
+		return newPoint;
 	}
 	
 	/**
