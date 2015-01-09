@@ -72,12 +72,12 @@ public class SnakeGrid extends JPanel {
     }
     
     public void drawBackground(Graphics2D g2){
-    	int width =this.getHeight();
-    	int height =this.getHeight();
+    	int width = this.getWidth();
+    	int height = this.getHeight();
     	
 
     	for (int i=0; i < width; i +=background.getWidth()){
-    		for (int j=0; j < height; j+=background.getHeight()){
+    		for (int j=0; j < height; j +=background.getHeight()){
     			g2.drawImage(background, i, j, this);
 	    		}
 	    	}
