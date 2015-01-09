@@ -18,6 +18,7 @@ import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.Component;
 import java.awt.FlowLayout;
+import java.awt.GridBagLayout;
 import java.awt.GridLayout;
 import java.awt.event.KeyEvent;
 import java.util.ArrayList;
@@ -65,9 +66,9 @@ public class View extends JFrame implements GameListener {
 		this.setIconImage(new ImageIcon("icon.png").getImage());
 		this.getContentPane().add(snakeGrid, BorderLayout.CENTER);
 		
-		scorePanelHolder.setLayout(new BoxLayout(scorePanelHolder, game.getSnakes().size()));
+		scorePanelHolder.setLayout(new GridLayout(0,1));
 		
-		this.getContentPane().add(scorePanelHolder,BorderLayout.PAGE_START);
+		this.getContentPane().add(scorePanelHolder,BorderLayout.EAST);
 		
 		//cycles through snakes creating scorepanels
 		for(int i=0; i<game.getSnakes().size(); i++ ){
