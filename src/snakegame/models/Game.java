@@ -323,4 +323,17 @@ public class Game implements ActionListener {
 	public Dimension getDimension() {
 		return new Dimension(size);
 	}
+	
+	/**
+	 * @param names List of names to the players in the game
+	 */
+	public void setPlayerNames(ArrayList<String> names) {
+		if (this.snakes.size() <= names.size()) {
+			int index = 0;
+			for (Snake snake : this.snakes) {
+				snake.setName(names.get(index));
+				index++;
+			}
+		}
+	}
 }
