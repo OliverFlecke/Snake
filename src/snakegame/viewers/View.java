@@ -47,7 +47,7 @@ public class View extends JFrame implements GameListener {
 		this.scorePanelHolder = new JPanel();
 		
 		
-		
+		//TODO put somewhere else
 		HashMap<DIRECTION, Integer> defaultKeys = new HashMap<DIRECTION, Integer>();
 		defaultKeys.put(DIRECTION.UP, KeyEvent.VK_UP);
 		defaultKeys.put(DIRECTION.RIGHT, KeyEvent.VK_RIGHT);

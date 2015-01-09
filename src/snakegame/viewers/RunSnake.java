@@ -34,10 +34,13 @@ public class RunSnake extends GenericDialog{
 	JPanel btnShelf = new JPanel();
 	JPanel dimensionsShelf = new JPanel();
 	
-	//Make two textJpanels
+	//Make textJpanels
 	TextJPanel widthPanel = new TextJPanel("Width:");
 	TextJPanel heightPanel = new TextJPanel("Height:");
-	TextJPanel namePanel1 = new TextJPanel("Name:");
+	TextJPanel namePanel1 = new TextJPanel("Player 1");
+	TextJPanel namePanel2 = new TextJPanel("Player 2");
+//	TextJPanel namePanel3 = new TextJPanel("Player 3");
+//	TextJPanel namePanel4 = new TextJPanel("Player 4");
 	
 	public RunSnake(){
 		
@@ -68,6 +71,9 @@ public class RunSnake extends GenericDialog{
 		background.setLayout(new GridLayout(4,0));
 		background.add(snake);
 		background.add(namePanel1);
+		background.add(namePanel2);
+//		background.add(namePanel3);
+//		background.add(namePanel4);
 		background.add(dimensionsShelf);
 		background.add(btnShelf);
 
@@ -88,6 +94,9 @@ public class RunSnake extends GenericDialog{
 
 			private void createListOfNames() {
 				names.add(namePanel1.getTxt());
+				names.add(namePanel2.getTxt());
+//				names.add(namePanel3.getTxt());
+//				names.add(namePanel4.getTxt());
 				
 			}
 		});

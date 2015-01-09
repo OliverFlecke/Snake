@@ -26,7 +26,7 @@ public class Player implements Comparable<Player>{
 	}
 	
 	/**
-	 * Incremt the timer of this player
+	 * Increment the timer of this player
 	 */
 	public void incrementTime() {
 		this.time++;
