@@ -77,10 +77,7 @@ public class View extends JFrame implements GameListener {
 	@Override
 	public void update() {
 		snakeGrid.updateGrid();
-		// If the snake is eating, play a sound
-		if (this.game.isEating()) {
-			Sound.EAT.play();
-		}
-		score.updateScorePanel();
+
+		//score.updateScorePanel();
 	}
 }

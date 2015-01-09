@@ -65,12 +65,6 @@ public class RunSnake extends GenericDialog{
 		dimensionsShelf.add(widthPanel);
 		dimensionsShelf.add(heightPanel);
 		
-		this.setLayout(new GridLayout(4,0));
-		this.add(snake);
-		this.add(namePanel1);
-		this.add(dimensionsShelf);
-		this.add(btnShelf);
-
 		background.setLayout(new GridLayout(4,0));
 		background.add(snake);
 		background.add(namePanel1);
