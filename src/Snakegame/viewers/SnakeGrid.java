@@ -32,8 +32,8 @@ public class SnakeGrid extends JPanel {
 	 * 
 	 */
 	private static final long serialVersionUID = -1801348824563036162L;
-	private int gameWidthScale;
-	private int gameHeightScale;
+	private double gameWidthScale;
+	private double gameHeightScale;
 	
 	
 	// The game object
@@ -68,28 +68,35 @@ public class SnakeGrid extends JPanel {
        	
 	public void drawSnake(Graphics2D g2){
 		for (Snake snake : game.getSnakes()){
+			g2.setColor(snake.getColor());
 		    for (Point currentPos : snake.getPosition()) {
-		    	g2.fillRect(currentPos.x*gameWidthScale, (this.game.getDimension().height - currentPos.y)*gameHeightScale, gameWidthScale, gameHeightScale);
-
+		    	if (!(currentPos.equals(snake.getHead())))
+		    		g2.fillRect((int) (currentPos.x * gameWidthScale) + 1, 
+			    			(int) ((this.game.getDimension().height - currentPos.y)*gameHeightScale) + 1, 
+			    			(int) (gameWidthScale) + 1, (int) (gameHeightScale) + 1);
 	        }
 	    	g2.setColor(Color.green);
 	    	Point head = snake.getHead();
-	    	g2.fillRect(head.x*gameWidthScale, (this.game.getDimension().height - head.y)*gameHeightScale, gameWidthScale, gameHeightScale);
+	    	g2.fillRect((int) (head.x * gameWidthScale) + 1, 
+	    			(int) ((this.game.getDimension().height - head.y) * gameHeightScale) + 1, 
+	    			(int) (gameWidthScale + 1), (int) (gameHeightScale + 1));
 		}
-	}
-
-	//@Override
-	public void updateGrid() {
-		gameWidthScale = this.getSize().width / (this.game.getDimension().width + 1);
-		gameHeightScale = this.getSize().height / (this.game.getDimension().height + 1);
-		this.repaint();	
 	}
 	
 	public void placeFood(Graphics2D g2) {
 		g2.setColor(Color.cyan);
 	    for (Food currentFood : game.getFood()) {
 	    	Point currentPos = currentFood.getPosition();
-	    	g2.fillRect(currentPos.x*gameWidthScale, (this.game.getDimension().height - currentPos.y)*gameHeightScale, gameWidthScale, gameHeightScale);
+	    	g2.fillRect((int) (currentPos.x * gameWidthScale), 
+	    			(int) ((this.game.getDimension().height - currentPos.y) * gameHeightScale), 
+	    			(int) (gameWidthScale), (int) (gameHeightScale));
         }		
+	}
+
+	//@Override
+	public void updateGrid() {
+		gameWidthScale = this.getSize().width / (this.game.getDimension().width + 1.0);
+		gameHeightScale = this.getSize().height / (this.game.getDimension().height + 1.0);
+		this.repaint();	
 	}
 }

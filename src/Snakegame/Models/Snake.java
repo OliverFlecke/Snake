@@ -43,10 +43,11 @@ public class Snake {
 	 */
 	public Snake(Point startPosition, Dimension gameDimension, String name) {
 		this.position = new LinkedList<Point>();
-		position.add(startPosition);
+		this.position.add(startPosition);
 		this.length = 2;
 		this.gameDimension = gameDimension;
 		this.player = new Player(name);
+		this.color = Color.BLACK;
 	}
 	
 	/**
@@ -174,7 +175,6 @@ public class Snake {
 	}
 	
 	/**
-	 * Get the points that represents the position of the snake
 	 * @return The position of the snake
 	 */
 	public ArrayList<Point> getPosition() {
@@ -186,15 +186,20 @@ public class Snake {
 	}
 	
 	/**
-	 * Get the head of the snake. Get a new point object with heads coordinates 
 	 * @return The head of the snake
 	 */
 	public Point getHead() {
-		return new Point(this.position.getFirst());
+		return (this.position.getFirst());
 	}
 	
 	/**
-	 * Get the score of this snake
+	 * @return The tail of the snake
+	 */
+	public Point getTail() {
+		return this.position.getLast();
+	}
+	
+	/**
 	 * @return The snakes score
 	 */
 	public int getScore() {
@@ -209,7 +214,6 @@ public class Snake {
 	}
 	
 	/**
-	 * The state of the snake, if it is ready or not
 	 * @return If the snake is ready
 	 */
 	public boolean getReady() {
@@ -254,5 +258,12 @@ public class Snake {
 	 */
 	public Color getColor() {
 		return this.color;
+	}
+	
+	/**
+	 * @return The direction of the snake
+	 */
+	public DIRECTION getCurrentDirection() {
+		return this.direction;
 	}
 }
