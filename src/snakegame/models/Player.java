@@ -1,13 +1,22 @@
 package snakegame.models;
 
+import java.util.Random;
+import java.util.UUID;
+
 public class Player implements Comparable<Player>{
 	private String name;
 	private int score;
 	private int time;
+	private UUID iD;
 	
 	public Player(String name, int score){
 		this.name = name;
 		this.score = score;
+		this.iD = UUID.randomUUID();
+	}
+	
+	public UUID getId(){
+		return iD;
 	}
 	
 	public Player(String name) {
@@ -57,12 +66,19 @@ public class Player implements Comparable<Player>{
 
 	@Override
 	public int compareTo(Player player) {
-		if(player.score<this.score){
+		if(player.score<this.score){ //ranks lower if score is lower
 			return-1;
 		}
-		if(player.score==this.score){
-			return name.compareTo(this.name);
+		if(player.score==this.score){ //in case of equal score
+			if(player.time<this.time){ //ranks higher if time is lower
+				return 1;
+			}
+			if(player.time>this.time){ // ranks lower if time is greater
+				return -1;
+			}
+			
+			return name.compareTo(this.name); // if time and score is equal, ranks lexicographically
 		}
-		return 1;
+		return 1; //ranks higher if score is higher
 	}
 }
