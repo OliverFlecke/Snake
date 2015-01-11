@@ -1,10 +1,11 @@
 package snakegame.models;
 
+import java.net.URISyntaxException;
 import java.util.ArrayList;
 import java.util.Collections;
 
 public class TestHighScore {
-	public static void main(String[] args) {
+	public static void main(String[] args){
 		Player player1 = new Player("a",1);	
 		Player player2 = new Player("a",1);
 		Player player3 = new Player("a",1);
@@ -12,7 +13,7 @@ public class TestHighScore {
 		Player player5 = new Player("j",1);
 		Player player6 = new Player("b",98);
 		Player player7 = new Player("n",2);
-		Player player8 = new Player("m",35);
+		Player player8 = new Player("m",3588);
 		Player player9 = new Player("s",22);
 		Player player10 = new Player("d",33);
 		Player player11 = new Player("v",56);
@@ -43,7 +44,14 @@ public class TestHighScore {
 	
 		
 		HighScore highScore = new HighScore();
-		highScore.name();
+//		System.out.println("print players array");
+//		System.out.println(players);
+//		System.out.println("read from file");
+//		System.out.println(highScore.readHighScoreFromFile());
+		System.out.println("write to file");
+		highScore.writeHighScoreToFile(players);
+//		System.out.println("read file again");
+//		System.out.println(highScore.readHighScoreFromFile());
 		
 		
 		

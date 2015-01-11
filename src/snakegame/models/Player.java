@@ -8,6 +8,7 @@ public class Player implements Comparable<Player>{
 	private int time;
 	
 	public Player(String name, int score, int time){
+		this.time = time;
 		this.name = name;
 		this.score = score;
 	}

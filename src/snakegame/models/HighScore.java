@@ -1,16 +1,22 @@
 package snakegame.models;
 
+import java.io.BufferedWriter;
 import java.io.File;
+import java.io.FileWriter;
 import java.io.FileNotFoundException;
+import java.io.IOException;
+import java.io.PrintWriter;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Scanner;
 
 public class HighScore {
-	public ArrayList<Player> highScorePlayers;
+	private ArrayList<Player> highScorePlayers;
+	private File f = new File ("highscore.txt");
+
 
 	public HighScore() {
-		highScorePlayers = readHighScoreFromFile();
+		//highScorePlayers = readHighScoreFromFile();
 
 	}
 
@@ -23,7 +29,7 @@ public class HighScore {
 		highScorePlayers.addAll(players);
 		Collections.sort(highScorePlayers);
 		highScorePlayers.subList(9, highScorePlayers.size()-1).clear();
-		writeHighScoreToFile();
+		writeHighScoreToFile(highScorePlayers);
 		return checkForHighScore(players);
 
 	}
@@ -43,39 +49,62 @@ public class HighScore {
 		return newHighScorePlayers;
 	}
 
-	private void writeHighScoreToFile() {
-		//TODO
+	/**
+	 * writes name, score and time to file from an 
+	 * arrayList of players
+	 * @return 
+	 * @return
+	 */
+	public void writeHighScoreToFile(ArrayList<Player> highScoreToWrite) {
+		try {
+			
+			BufferedWriter bw = new BufferedWriter(new FileWriter(f));
+			
+			for(int i=0; i<10; i++){
+				bw.write(highScoreToWrite.get(i).getName() + " ");
+				bw.write(highScoreToWrite.get(i).getScore() + " ");
+				bw.write(highScoreToWrite.get(i).getTime());
+				bw.newLine();
+				System.out.println(highScoreToWrite.get(i).getTime());
+			}
+			bw.close();
+			System.out.println("done");
 
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
 	}
 
+	/**
+	 * Reads name, score and time from file and creates an arrayList of 
+	 * players using these parameters
+	 * @return ArrayList og high score players
+	 */
 	public ArrayList<Player> readHighScoreFromFile(){
 
+		ArrayList<Player> readResult = new ArrayList<Player>();
 
+		try {  
+			Scanner s = new Scanner(f);
+			for(int i=0; i<10; i++){
+				String name = s.next();
+				int score = s.nextInt();
+				int time = s.nextInt();
+				if(s.hasNextLine()){
+					s.nextLine();}
+				readResult.add(new Player(name,score,time));
 
-		return null;
-
+			}
+			s.close();
+		} 
+		//catch the exception
+		catch(FileNotFoundException e) {
+			e.printStackTrace();   
+		}
+		return readResult;
 	}
 
 	public ArrayList<Player> getHighScore(){
 		return highScorePlayers;		
-	}
-	public void name() {
-		System.out.println("1");
-		File file = new File("highscore.txt");
-
-		try {
-			System.out.println(2);
-			Scanner scanner = new Scanner(file);
-			while (scanner.hasNext()) {
-				System.out.println(3);
-				String line = scanner.nextLine();
-				System.out.println(line);
-			}
-			scanner.close();
-		} catch (FileNotFoundException e) {
-			e.printStackTrace();
-		}     
-
-
 	}
 }
