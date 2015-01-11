@@ -1,74 +1,59 @@
 package snakegame.models;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.UUID;
 
 public class HighScore {
-	private String fileName = "highscore.txt";
-	private ArrayList<Player> highScore;
+	private ArrayList<Player> highScorePlayers;
+
+	public HighScore() {
+		this.highScorePlayers = readHighScoreFromFile();
+	}
 
 	/**
-	 * Accepts ArrayList of players, and writes them to highscore.txt file if applicable
+	 * Accepts ArrayList of players, and writes new top ten to high score
 	 * @param players
+	 * @return ArrayList of Players who have set new high score
 	 */
-	public void submitScore(ArrayList<Player> players){
-		this.players=players;
+	public ArrayList<Player> submitScore(ArrayList<Player> players){
+		highScorePlayers.addAll(players);
+		Collections.sort(highScorePlayers);
+		highScorePlayers.subList(9, highScorePlayers.size()-1).clear();
+		writeHighScoreToFile();
+		return checkForHighScore(players);
 
 	}
+	
 	/**
-	 * checks if supplied player UUID matches any UUID on the high score list
-	 * @param player
-	 * @return
+	 * Accepts ArrayList of Players and returns an ArrayList of the Players that are on the high score
+	 * @param players
+	 * @return players
 	 */
-	public boolean checkForHighScore(Player player){
-		for (Player current : this.players){
-			if(current.getId().equals(player.getId())){
+	private ArrayList<Player> checkForHighScore(ArrayList<Player> players) {
+		for (Player current : this.currentPlayers){
+			if(current.getId().equals(currentPlayers.getId())){
 				return true;
 			}
-			return false;
-		}
-
-		public ArrayList<Player> getHighScore(){
-			
-			return highScore;
-
 		}
 
 
-		// The name of the file to open.
+		return players;
+		// TODO Auto-generated method stub
 
-
-		// This will reference one line at a time
-		String line = null;
-
-		try {
-			// FileReader reads text files in the default encoding.
-			FileReader fileReader = 
-					new FileReader(fileName);
-
-			// Always wrap FileReader in BufferedReader.
-			BufferedReader bufferedReader = 
-					new BufferedReader(fileReader);
-
-			while((line = bufferedReader.readLine()) != null) {
-				System.out.println(line);
-			}    
-
-			// Always close files.
-			bufferedReader.close();            
-		}
-		catch(FileNotFoundException ex) {
-			System.out.println(
-					"Unable to open file '" + 
-							fileName + "'");                
-		}
-		catch(IOException ex) {
-			System.out.println(
-					"Error reading file '" 
-							+ fileName + "'");                   
-			// Or we could just do this: 
-			// ex.printStackTrace();
-		}
 	}
 
+	private void writeHighScoreToFile() {
+
+	}
+
+	public ArrayList<Player> readHighScoreFromFile(){
+
+		return highScorePlayers;
+
+	}
+
+	public ArrayList<Player> getHighScore(){
+		return highScorePlayers;		
+	}
 }

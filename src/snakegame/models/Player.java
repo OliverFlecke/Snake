@@ -1,15 +1,16 @@
 package snakegame.models;
 
+import java.io.Serializable;
 import java.util.Random;
 import java.util.UUID;
 
-public class Player implements Comparable<Player>{
+public class Player implements Comparable<Player>, Serializable{
 	private String name;
 	private int score;
 	private int time;
 	private UUID iD;
 	
-	public Player(String name, int score){
+	public Player(String name, int score, int time){
 		this.name = name;
 		this.score = score;
 		this.iD = UUID.randomUUID();
@@ -20,7 +21,7 @@ public class Player implements Comparable<Player>{
 	}
 	
 	public Player(String name) {
-		this(name, 0);
+		this(name, 0, 0);
 	}
 	
 	public Player() {}
@@ -58,11 +59,11 @@ public class Player implements Comparable<Player>{
 	public int getScore() {
 		return score;
 	}
-
-
-	public void setScore(int score) {
-		this.score = score;
-	}	
+	
+	public String toString(){
+		return "name:" + name + " score:" + score + " time:" + time + "\n";
+		
+	}
 
 	@Override
 	public int compareTo(Player player) {
