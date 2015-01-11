@@ -26,15 +26,8 @@ public class HighScore {
 	 */
 	public void submitScore(ArrayList<Player> players){
 		highScorePlayers.addAll(players);
-		System.out.println("print highScorePlayers");
-		System.out.println(highScorePlayers);
 		Collections.sort(highScorePlayers);
-		System.out.println("print highScorePlayers after sort");
-		System.out.println(highScorePlayers);
-		System.out.println("do sublist action");
 		highScorePlayers.subList(10,highScorePlayers.size()).clear();
-		System.out.println("print highScorePlayers after sublist");
-		System.out.println(highScorePlayers);
 		writeHighScoreToFile(highScorePlayers);
 	}
 
@@ -43,7 +36,7 @@ public class HighScore {
 	 * @param players
 	 * @return players
 	 */
-	public ArrayList<Player> checkForHighScore(ArrayList<Player> players) {
+	public ArrayList<Player> checkIfOnHighScore(ArrayList<Player> players) {
 		ArrayList<Player> newHighScorePlayers = new ArrayList<Player>();
 		for (Player current : players){
 			if(highScorePlayers.contains(current)){
@@ -59,17 +52,14 @@ public class HighScore {
 	 */
 	private void writeHighScoreToFile(ArrayList<Player> highScoreToWrite) {
 		try {
-			
 			Formatter fm = new Formatter(f);
-			
 			for(int i=0; i<10; i++){
 				fm.format(highScoreToWrite.get(i).getName() + " ");
 				fm.format(highScoreToWrite.get(i).getScore() + " ");
 				fm.format(Integer.toString(highScoreToWrite.get(i).getScore()));
 				fm.format("%n");
 			}
-			fm.close();
-			
+			fm.close();	
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
@@ -93,11 +83,9 @@ public class HighScore {
 				if(s.hasNextLine()){
 					s.nextLine();}
 				readResult.add(new Player(name,score,time));
-
 			}
 			s.close();
 		} 
-		//catch the exception
 		catch(FileNotFoundException e) {
 			e.printStackTrace();   
 		}

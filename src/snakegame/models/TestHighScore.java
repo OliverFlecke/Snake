@@ -50,7 +50,7 @@ public class TestHighScore {
 		System.out.println("get new highscore");
 		System.out.println(highScore.getHighScore());
 		System.out.println("check if any submitted players are on highscore");
-		System.out.println(highScore.checkForHighScore(players));
+		System.out.println(highScore.checkIfOnHighScore(players));
 		
 		
 		
