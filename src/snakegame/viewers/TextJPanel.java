@@ -34,6 +34,11 @@ public class TextJPanel extends JPanel {
 		
 	}
 	
+	public TextJPanel(String lblName, String fieldTxt){
+		this(lblName);
+		setTxt(fieldTxt);
+	}
+	
 	public void setLblName(String lblName){
 		fieldLbl.setText(lblName);
 	}
@@ -42,8 +47,7 @@ public class TextJPanel extends JPanel {
 		return txtField.getText();
 	}
 	
-	public void setTxt(int n){
-		String txt = Integer.toString(n);
+	public void setTxt(String txt){
 		txtField.setText(txt);
 	}
 }

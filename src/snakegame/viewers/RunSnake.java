@@ -22,6 +22,10 @@ public class RunSnake extends GenericDialog{
 	 */
 	private static final long serialVersionUID = -647167119165272436L;
 	
+	
+	//Set up the playerPanel for singleplayer
+	PlayerPanel playerPanel = new PlayerPanel(1);
+	
 	//List of names for player creation in game
 	ArrayList<String> names = new ArrayList<String>();
 		
@@ -44,7 +48,7 @@ public class RunSnake extends GenericDialog{
 	TextJPanel widthPanel = new TextJPanel("Width:");
 	TextJPanel heightPanel = new TextJPanel("Height:");
 	TextJPanel namePanel1 = new TextJPanel("Player 1");
-	TextJPanel namePanel2 = new TextJPanel("Player 2");
+//	TextJPanel namePanel2 = new TextJPanel("Player 2");
 //	TextJPanel namePanel3 = new TextJPanel("Player 3");
 //	TextJPanel namePanel4 = new TextJPanel("Player 4");
 	
@@ -54,8 +58,8 @@ public class RunSnake extends GenericDialog{
 		comboPlayers.setSelectedIndex(0);
 		
 		//Set labelName for txtPanels.
-		widthPanel.setTxt(10);
-		heightPanel.setTxt(10);
+		widthPanel.setTxt(Integer.toString(10));
+		heightPanel.setTxt(Integer.toString(10));
 		
 		//Making shelfs transparent
 		btnShelf.setOpaque(false);
@@ -77,10 +81,11 @@ public class RunSnake extends GenericDialog{
 		dimensionsShelf.add(widthPanel);
 		dimensionsShelf.add(heightPanel);
 		
-		background.setLayout(new GridLayout(4,0));
+		background.setLayout(new GridLayout(5,4));
 		background.add(snake);
-		background.add(namePanel1);
-		background.add(namePanel2);
+		background.add(new PlayerSelectPanel(playerPanel));
+		background.add(playerPanel);
+//		background.add(namePanel2);
 //		background.add(namePanel3);
 //		background.add(namePanel4);
 		background.add(dimensionsShelf);
@@ -103,7 +108,7 @@ public class RunSnake extends GenericDialog{
 
 			private void createListOfNames() {
 				names.add(namePanel1.getTxt());
-				names.add(namePanel2.getTxt());
+//				names.add(namePanel2.getTxt());
 //				names.add(namePanel3.getTxt());
 //				names.add(namePanel4.getTxt());
 				
@@ -112,6 +117,5 @@ public class RunSnake extends GenericDialog{
 
 				
 	}
-	
 		
 }
