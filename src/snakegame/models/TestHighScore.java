@@ -6,23 +6,20 @@ import java.util.Collections;
 
 public class TestHighScore {
 	public static void main(String[] args){
-		Player player1 = new Player("a",1);	
-		Player player2 = new Player("a",1);
-		Player player3 = new Player("a",1);
-		Player player4 = new Player("f",1);
-		Player player5 = new Player("j",1);
-		Player player6 = new Player("b",98);
-		Player player7 = new Player("n",2);
-		Player player8 = new Player("m",3588);
-		Player player9 = new Player("s",22);
-		Player player10 = new Player("d",33);
-		Player player11 = new Player("v",56);
-		Player player12 = new Player("z",78);
-		Player player13 = new Player("x",23);
-		Player player14 = new Player("l",35);
-		player1.setTime(23);
-		player2.setTime(50);
-		player3.setTime(34);
+		Player player1 = new Player("allan",785,123);	
+		Player player2 = new Player("b",2,2);
+		Player player3 = new Player("c",3,3);
+		Player player4 = new Player("d",4,4);
+//		Player player5 = new Player("e",5);
+//		Player player6 = new Player("f",6);
+//		Player player7 = new Player("g",7);
+//		Player player8 = new Player("h",8);
+//		Player player9 = new Player("i",9);
+//		Player player10 = new Player("j",10);
+//		Player player11 = new Player("k",11);
+//		Player player12 = new Player("l",12);
+//		Player player13 = new Player("m",13);
+//		Player player14 = new Player("n",14);
 		
 		ArrayList<Player> players =  new ArrayList<Player>();
 		
@@ -30,29 +27,30 @@ public class TestHighScore {
 		players.add(player2);
 		players.add(player3);
 		players.add(player4);
-		players.add(player5);
-		players.add(player6);
-		players.add(player7);
-		players.add(player8);
-		players.add(player9);
-		players.add(player10);
-		players.add(player11);
-		players.add(player12);
-		players.add(player13);
-		players.add(player14);
+//		players.add(player5);
+//		players.add(player6);
+//		players.add(player7);
+//		players.add(player8);
+//		players.add(player9);
+//		players.add(player10);
+//		players.add(player11);
+//		players.add(player12);
+//		players.add(player13);
+//		players.add(player14);
 		
 	
 		
 		HighScore highScore = new HighScore();
-//		System.out.println("print players array");
-//		System.out.println(players);
-//		System.out.println("read from file");
-//		System.out.println(highScore.readHighScoreFromFile());
-		System.out.println("write to file");
-		highScore.writeHighScoreToFile(players);
-//		System.out.println("read file again");
-//		System.out.println(highScore.readHighScoreFromFile());
-		
+		System.out.println("print players array");
+		System.out.println(players);
+		System.out.println("get current highscore");
+		System.out.println(highScore.getHighScore());
+		System.out.println("submit score");
+		highScore.submitScore(players);
+		System.out.println("get new highscore");
+		System.out.println(highScore.getHighScore());
+		System.out.println("check if any submitted players are on highscore");
+		System.out.println(highScore.checkForHighScore(players));
 		
 		
 		

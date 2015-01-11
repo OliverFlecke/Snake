@@ -1,13 +1,11 @@
 package snakegame.models;
 
-import java.io.BufferedWriter;
 import java.io.File;
-import java.io.FileWriter;
 import java.io.FileNotFoundException;
 import java.io.IOException;
-import java.io.PrintWriter;
 import java.util.ArrayList;
 import java.util.Collections;
+import java.util.Formatter;
 import java.util.Scanner;
 
 public class HighScore {
@@ -16,22 +14,28 @@ public class HighScore {
 
 
 	public HighScore() {
-		//highScorePlayers = readHighScoreFromFile();
+		highScorePlayers = readHighScoreFromFile();
 
 	}
 
 	/**
 	 * Accepts ArrayList of players, and writes new top ten to high score
 	 * @param players
+	 * @return 
 	 * @return ArrayList of Players who have set new high score
 	 */
-	public ArrayList<Player> submitScore(ArrayList<Player> players){
+	public void submitScore(ArrayList<Player> players){
 		highScorePlayers.addAll(players);
+		System.out.println("print highScorePlayers");
+		System.out.println(highScorePlayers);
 		Collections.sort(highScorePlayers);
-		highScorePlayers.subList(9, highScorePlayers.size()-1).clear();
+		System.out.println("print highScorePlayers after sort");
+		System.out.println(highScorePlayers);
+		System.out.println("do sublist action");
+		highScorePlayers.subList(10,highScorePlayers.size()).clear();
+		System.out.println("print highScorePlayers after sublist");
+		System.out.println(highScorePlayers);
 		writeHighScoreToFile(highScorePlayers);
-		return checkForHighScore(players);
-
 	}
 
 	/**
@@ -39,7 +43,7 @@ public class HighScore {
 	 * @param players
 	 * @return players
 	 */
-	private ArrayList<Player> checkForHighScore(ArrayList<Player> players) {
+	public ArrayList<Player> checkForHighScore(ArrayList<Player> players) {
 		ArrayList<Player> newHighScorePlayers = new ArrayList<Player>();
 		for (Player current : players){
 			if(highScorePlayers.contains(current)){
@@ -51,25 +55,21 @@ public class HighScore {
 
 	/**
 	 * writes name, score and time to file from an 
-	 * arrayList of players
-	 * @return 
-	 * @return
+	 * ArrayList of 10 players
 	 */
-	public void writeHighScoreToFile(ArrayList<Player> highScoreToWrite) {
+	private void writeHighScoreToFile(ArrayList<Player> highScoreToWrite) {
 		try {
 			
-			BufferedWriter bw = new BufferedWriter(new FileWriter(f));
+			Formatter fm = new Formatter(f);
 			
 			for(int i=0; i<10; i++){
-				bw.write(highScoreToWrite.get(i).getName() + " ");
-				bw.write(highScoreToWrite.get(i).getScore() + " ");
-				bw.write(highScoreToWrite.get(i).getTime());
-				bw.newLine();
-				System.out.println(highScoreToWrite.get(i).getTime());
+				fm.format(highScoreToWrite.get(i).getName() + " ");
+				fm.format(highScoreToWrite.get(i).getScore() + " ");
+				fm.format(Integer.toString(highScoreToWrite.get(i).getScore()));
+				fm.format("%n");
 			}
-			bw.close();
-			System.out.println("done");
-
+			fm.close();
+			
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
@@ -80,7 +80,7 @@ public class HighScore {
 	 * players using these parameters
 	 * @return ArrayList og high score players
 	 */
-	public ArrayList<Player> readHighScoreFromFile(){
+	private ArrayList<Player> readHighScoreFromFile(){
 
 		ArrayList<Player> readResult = new ArrayList<Player>();
 
