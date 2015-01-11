@@ -5,7 +5,6 @@ import java.io.FileNotFoundException;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Scanner;
-import java.util.UUID;
 
 public class HighScore {
 	public ArrayList<Player> highScorePlayers;
@@ -61,14 +60,18 @@ public class HighScore {
 		return highScorePlayers;		
 	}
 	public void name() {
+		System.out.println("1");
 		File file = new File("highscore.txt");
 
 		try {
+			System.out.println(2);
 			Scanner scanner = new Scanner(file);
-			while (scanner.hasNextLine()) {
+			while (scanner.hasNext()) {
+				System.out.println(3);
 				String line = scanner.nextLine();
 				System.out.println(line);
 			}
+			scanner.close();
 		} catch (FileNotFoundException e) {
 			e.printStackTrace();
 		}     
