@@ -9,7 +9,6 @@ import javax.swing.border.LineBorder;
 import snakegame.models.Food;
 import snakegame.models.Game;
 import snakegame.models.Snake;
-
 import snakegame.viewers.sound.Sound;
 
 import java.awt.Dimension;
@@ -19,7 +18,6 @@ import java.awt.GridLayout;
 import java.awt.Graphics;
 import java.awt.Graphics2D;
 import java.awt.image.BufferedImage;
-
 import java.io.IOException;
 
 /**
@@ -103,6 +101,7 @@ public class SnakeGrid extends JPanel {
 	    	
 			// If the snake is eating, play a sound
 			if (snake.isEating()) {
+				System.out.println("Snake eats");
 				Sound.EAT.play();
 			}
 		}

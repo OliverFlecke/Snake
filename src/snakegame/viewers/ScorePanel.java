@@ -1,7 +1,10 @@
 package snakegame.viewers;
 
 import java.awt.*;
+
 import javax.swing.*;
+import javax.swing.border.LineBorder;
+
 import snakegame.models.Player;
 
 public class ScorePanel extends JPanel{
@@ -18,22 +21,25 @@ public class ScorePanel extends JPanel{
 	public ScorePanel(Player player) {
 		super();
 		this.player = player;
-		this.setLayout(new GridLayout());
+		this.setLayout(new GridLayout(0,1));
 		this.add(nameLabel);
 		this.add(scoreLabel);
 		this.add(timerLabel);
-		this.setBackground(Color.PINK);
+		this.setBackground(Color.MAGENTA);
+		//top, left, bottom, right-for setting border
+		this.setBorder(BorderFactory.createMatteBorder(5, 0, 5, 5, Color.DARK_GRAY));
 	}
 
 	@Override
 	public Dimension getPreferredSize(){
-		return new Dimension(50, 50);
+		return new Dimension(200, 50);
 	}
 
-	public void updateScorePanel() {		
+	public void update() {		
 		
 		scoreLabel.setText("Score: " + player.getScore());
 		timerLabel.setText("Time: " + player.getTime());
+		nameLabel.setText("Name: " + player.getName());
 		
 	}
 }

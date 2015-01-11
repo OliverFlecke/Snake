@@ -79,7 +79,7 @@ public class Game implements ActionListener {
 		this.gameOver = false;
 		
 		// Create the different snakes
-		if (numberOfPlayers > 1 && numberOfPlayers <= 4) {
+		if (numberOfPlayers >= 1 && numberOfPlayers <= 4) {
 			int index = 0;
 			while (numberOfPlayers > index) {
 				this.snakes.add(new Snake(this.createRandomPoint(), this.size));
@@ -155,9 +155,12 @@ public class Game implements ActionListener {
 	 * Updates the game following a snake movement, checking for collision with food and with the snake itself
 	 */
 	public void update() {
+		for (Snake snake : this.snakes) 
+			snake.setIsEating(false);
 		// Assume everyone is dead
 		boolean allDead = true;
 		ArrayList<Food> foodToRemove = new ArrayList<Food>();
+		
 		// Removes food, plays sound and increments score if in collision with snake head. Also generates new food.
 		for (Snake snake : this.snakes) {
 			if (!(snake.isDead())) {
@@ -166,7 +169,6 @@ public class Game implements ActionListener {
 						snake.eatFood(current);
 						foodToRemove.add(current);
 						incrementLevel();
-						snake.setIsEating(true);
 						
 						// Updates the game, so it gets harder over time
 						if (this.level % 10 == 0) {
@@ -195,8 +197,6 @@ public class Game implements ActionListener {
 		
 		// Furthermore notifies viewer of update
 		notifyListener();
-		for (Snake snake : this.snakes) 
-			snake.setIsEating(false);
 	}
 	
 	/**
@@ -316,10 +316,6 @@ public class Game implements ActionListener {
 	 * @return The snakes in the game
 	 */
 	public ArrayList<Snake> getSnakes() {
-		// TODO make it other objects, so the outside can't modify the snakes
-		ArrayList<Snake> snakes = new ArrayList<Snake>();
-		for (Snake snake : this.snakes) 
-			snakes.add(snake);
 		return this.snakes;
 	}
 	
@@ -344,12 +340,8 @@ public class Game implements ActionListener {
 	 * @param names List of names to the players in the game
 	 */
 	public void setPlayerNames(ArrayList<String> names) {
-		if (this.snakes.size() <= names.size()) {
-			int index = 0;
-			for (Snake snake : this.snakes) {
-				snake.setName(names.get(index));
-				index++;
-			}
+		for (int i = 0; i < names.size(); i++) {
+			this.snakes.get(i).setName(names.get(i));
 		}
 	}
 }
