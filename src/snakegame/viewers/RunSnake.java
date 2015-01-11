@@ -5,9 +5,11 @@ import java.awt.FlowLayout;
 import java.awt.GridLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.event.KeyEvent;
 import java.util.ArrayList;
 
 import javax.swing.JButton;
+import javax.swing.JComboBox;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.SwingConstants;
@@ -26,6 +28,10 @@ public class RunSnake extends GenericDialog{
 	//Create the buttons
 	JButton startGameBtn = new JButton("Start Game");
 	
+	//creating a combobox
+	String[] numbOfPlayers = {"1","2","3","4"};
+	JComboBox<String> comboPlayers = new JComboBox<String>(numbOfPlayers);
+	
 	//Make JLabel
 	JLabel snake = new JLabel("SNAKE", SwingConstants.CENTER);
 
@@ -40,6 +46,9 @@ public class RunSnake extends GenericDialog{
 	TextJPanel namePanel1 = new TextJPanel("Name:");
 	
 	public RunSnake(){
+		
+		//Setting up combobox
+		comboPlayers.setSelectedIndex(0);
 		
 		//Set labelName for txtPanels.
 		widthPanel.setTxt(10);
@@ -58,7 +67,7 @@ public class RunSnake extends GenericDialog{
 		
 		
 		//Set up enterkey to trigger Jbutton
-		startGameBtn.setMnemonic(10);
+		startGameBtn.setMnemonic(KeyEvent.VK_ENTER);
 		
 		//setting up the dimensionsShelf
 		dimensionsShelf.setLayout(new FlowLayout());
