@@ -31,6 +31,9 @@ public class GameDialog extends GenericDialog{
 	
 	//Make JLabel
 	JLabel scoreText = new JLabel("", SwingConstants.CENTER);
+	
+	//Make highscore tabel
+	
 		
 	private Game game;
 	
@@ -44,6 +47,7 @@ public class GameDialog extends GenericDialog{
 	
 		
 		this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		
 		
 		scoreText.setText("Score:" + score);
 		btnShelf.add(restartBtn);
