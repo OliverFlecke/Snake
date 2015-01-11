@@ -76,7 +76,7 @@ public class Player implements Comparable<Player>{
 				return -1;
 			}
 			
-			return name.compareTo(this.name); // if time and score is equal, ranks lexicographically
+			return this.name.compareTo(player.name); // if time and score is equal, ranks lexicographically
 		}
 		return 1; //ranks higher if score is higher
 	}

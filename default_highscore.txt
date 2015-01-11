@@ -1,0 +1,10 @@
+highscore1 0 0
+highscore2 0 0
+highscore3 0 0
+highscore4 0 0
+highscore5 0 0
+highscore6 0 0
+highscore7 0 0
+highscore8 0 0
+highscore9 0 0
+highscore10 0 0
