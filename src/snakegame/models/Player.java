@@ -1,27 +1,24 @@
 package snakegame.models;
 
-import java.io.Serializable;
-import java.util.Random;
-import java.util.UUID;
 
-public class Player implements Comparable<Player>, Serializable{
+
+public class Player implements Comparable<Player>{
 	private String name;
 	private int score;
 	private int time;
-	private UUID iD;
 	
 	public Player(String name, int score, int time){
 		this.name = name;
 		this.score = score;
-		this.iD = UUID.randomUUID();
 	}
 	
-	public UUID getId(){
-		return iD;
-	}
 	
 	public Player(String name) {
 		this(name, 0, 0);
+	}
+	
+	public Player(String name, int score) {
+		this(name, score, 0);
 	}
 	
 	public Player() {}

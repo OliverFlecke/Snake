@@ -1,14 +1,18 @@
 package snakegame.models;
 
+import java.io.File;
+import java.io.FileNotFoundException;
 import java.util.ArrayList;
 import java.util.Collections;
+import java.util.Scanner;
 import java.util.UUID;
 
 public class HighScore {
-	private ArrayList<Player> highScorePlayers;
+	public ArrayList<Player> highScorePlayers;
 
 	public HighScore() {
-		this.highScorePlayers = readHighScoreFromFile();
+		highScorePlayers = readHighScoreFromFile();
+
 	}
 
 	/**
@@ -24,36 +28,51 @@ public class HighScore {
 		return checkForHighScore(players);
 
 	}
-	
+
 	/**
-	 * Accepts ArrayList of Players and returns an ArrayList of the Players that are on the high score
+	 * Accepts ArrayList of Players and returns an ArrayList of the Players that are new on the high score
 	 * @param players
 	 * @return players
 	 */
 	private ArrayList<Player> checkForHighScore(ArrayList<Player> players) {
-		for (Player current : this.currentPlayers){
-			if(current.getId().equals(currentPlayers.getId())){
-				return true;
+		ArrayList<Player> newHighScorePlayers = new ArrayList<Player>();
+		for (Player current : players){
+			if(highScorePlayers.contains(current)){
+				newHighScorePlayers.add(current);
 			}
 		}
-
-
-		return players;
-		// TODO Auto-generated method stub
-
+		return newHighScorePlayers;
 	}
 
 	private void writeHighScoreToFile() {
+		//TODO
 
 	}
 
 	public ArrayList<Player> readHighScoreFromFile(){
 
-		return highScorePlayers;
+
+
+		return null;
 
 	}
 
 	public ArrayList<Player> getHighScore(){
 		return highScorePlayers;		
+	}
+	public void name() {
+		File file = new File("highscore.txt");
+
+		try {
+			Scanner scanner = new Scanner(file);
+			while (scanner.hasNextLine()) {
+				String line = scanner.nextLine();
+				System.out.println(line);
+			}
+		} catch (FileNotFoundException e) {
+			e.printStackTrace();
+		}     
+
+
 	}
 }

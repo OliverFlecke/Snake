@@ -40,15 +40,12 @@ public class TestHighScore {
 		players.add(player13);
 		players.add(player14);
 		
-		System.out.println(players);
-		Collections.sort(players);
-		System.out.println(players);
-		players.subList(9, players.size()-1).clear();
-		System.out.println(players);
-		
-		System.out.println();
+	
 		
 		HighScore highScore = new HighScore();
+		highScore.name();
+		
+		
 		
 		
 	}
