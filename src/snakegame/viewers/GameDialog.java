@@ -35,7 +35,7 @@ public class GameDialog extends GenericDialog{
 	
 	//Make highscore tabel
 	HighScore highScore = new HighScore();
-	HighScoreTable table = new HighScoreTable(highScore.getHighScore());
+	HighScoreTable table = new HighScoreTable();
 	
 		
 	private Game game;

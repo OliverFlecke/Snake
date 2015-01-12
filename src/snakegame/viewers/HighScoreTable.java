@@ -8,22 +8,28 @@ import javax.swing.JPanel;
 import javax.swing.JTable;
 
 import snakegame.models.Player;
+import snakegame.models.HighScore;
 
 public class HighScoreTable extends JPanel{
 	private String[] columnNames = {"#", 
 			"Name",
 			"Score",
 			"Time"};
+	private ArrayList<Player> highScorePlayers;
 
-	public HighScoreTable(ArrayList<Player> players){
+	public HighScoreTable(){
+		
+		HighScore highScore = new HighScore();
+		highScorePlayers = highScore.getHighScore();
+		
 		
 		Object[][] data = new Object[10][4]; 
 		int j = 1;
 		for(int i=0; i<10; i++){
 			data[i][0]=j;
-			data[i][1]=players.get(i).getName();
-			data[i][2]=players.get(i).getScore();
-			data[i][3]=players.get(i).getTime();
+			data[i][1]=highScorePlayers.get(i).getName();
+			data[i][2]=highScorePlayers.get(i).getScore();
+			data[i][3]=highScorePlayers.get(i).getTime();
 			j++;
 		}
 		

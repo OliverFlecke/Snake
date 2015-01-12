@@ -7,4 +7,4 @@ highscore6 6 5
 highscore7 7 4
 highscore8 8 3
 highscore9 9 2
-highscore10 10
+highscore10 10 1

@@ -10,12 +10,14 @@ import java.util.Scanner;
 
 public class HighScore {
 	private ArrayList<Player> highScorePlayers;
+	private ArrayList<Player> newHighScorePlayers;
 	private File f = new File ("highscore.txt");
 
 
 	public HighScore() {
 		highScorePlayers = readHighScoreFromFile();
-
+		newHighScorePlayers = new ArrayList<Player>();
+		
 	}
 
 	/**
@@ -29,21 +31,23 @@ public class HighScore {
 		Collections.sort(highScorePlayers);
 		highScorePlayers.subList(10,highScorePlayers.size()).clear();
 		writeHighScoreToFile(highScorePlayers);
+		refreshNewHighScorePlayers(players);
 	}
 
 	/**
-	 * Accepts ArrayList of Players and returns an ArrayList of the Players that are new on the high score
+	 * Accepts ArrayList of Players objects and returns an ArrayList 
+	 * of the Player objects that are on the current high score
 	 * @param players
+	 * @return 
 	 * @return players
 	 */
-	public ArrayList<Player> checkIfOnHighScore(ArrayList<Player> players) {
-		ArrayList<Player> newHighScorePlayers = new ArrayList<Player>();
+	private void refreshNewHighScorePlayers(ArrayList<Player> players) {
+		newHighScorePlayers.clear();		
 		for (Player current : players){
 			if(highScorePlayers.contains(current)){
 				newHighScorePlayers.add(current);
 			}
 		}
-		return newHighScorePlayers;
 	}
 
 	/**
@@ -94,5 +98,9 @@ public class HighScore {
 
 	public ArrayList<Player> getHighScore(){
 		return highScorePlayers;		
+	}
+	
+	public ArrayList<Player>getNewHighScorePlayers(){
+		return newHighScorePlayers;
 	}
 }
