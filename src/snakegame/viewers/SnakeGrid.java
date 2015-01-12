@@ -101,7 +101,6 @@ public class SnakeGrid extends JPanel {
 	    	
 			// If the snake is eating, play a sound
 			if (snake.isEating()) {
-				System.out.println("Snake eats");
 				Sound.EAT.play();
 			}
 		}

@@ -208,13 +208,6 @@ public class Game implements ActionListener {
 		notifyListener();
 	}
 	
-	/**
-	 * Makes the snake move in the passed direction
-	 */
-	public void moveSnake(DIRECTION moveDirection) {
-		this.snakes.get(0).setDirection(moveDirection);
-	}
-	
 	/*
 	 * Makes the snake move in its current direction
 	 */
@@ -281,8 +274,6 @@ public class Game implements ActionListener {
 			players.add(snake.getPlayer());
 		}
 		HighScore.submitScore(players);
-		
-		System.out.println(players);
 		
 		this.gameOver = true;
 		for (GameListener gl : listeners)

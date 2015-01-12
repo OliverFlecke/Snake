@@ -128,8 +128,8 @@ public class Snake {
 			if (this.position.size() > this.length) 
 				this.position.removeLast();
 			
-			System.out.println(this.player.getName() + " move to [" + this.position.getFirst().x + "," 
-			+ this.position.getFirst().y + "]");
+//			System.out.println(this.player.getName() + " move to [" + this.position.getFirst().x + "," 
+//			+ this.position.getFirst().y + "]"); // Debug
 		}
 	}
 	
