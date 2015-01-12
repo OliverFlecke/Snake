@@ -1,6 +1,5 @@
 package snakegame.viewers;
 
-import javax.swing.BoxLayout;
 import javax.swing.JFrame;
 import javax.swing.ImageIcon;
 import javax.swing.JPanel;
@@ -11,14 +10,11 @@ import snakegame.controllers.GameKeyboardController;
 import snakegame.controllers.GameListener;
 import snakegame.controllers.ViewController;
 import snakegame.models.Game;
-import snakegame.models.Player;
 import snakegame.viewers.sound.Sound;
 
 import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.Component;
-import java.awt.FlowLayout;
-import java.awt.GridBagLayout;
 import java.awt.GridLayout;
 import java.awt.event.KeyEvent;
 import java.util.ArrayList;
@@ -30,7 +26,6 @@ public class View extends JFrame implements GameListener {
 
 	private SnakeGrid snakeGrid;
 	private Game game;
-	private ArrayList<ScorePanel> scorepanels;
 	private JPanel scorePanelHolder;
 	private ArrayList<DirectionController> dirController;
 
@@ -40,7 +35,7 @@ public class View extends JFrame implements GameListener {
 
 	public View(int width, int height, ArrayList<String> playerNames){
 		super();
-		this.game = new Game(width, height, 2);
+		this.game = new Game(width, height, playerNames.size());
 		//passes player names to game
 		game.setPlayerNames(playerNames);
 	
@@ -56,9 +51,10 @@ public class View extends JFrame implements GameListener {
 		defaultKeys.put(DIRECTION.LEFT, KeyEvent.VK_LEFT);
 		
 		this.addKeyListener(new DirectionController(game, game.getSnakes().get(0), defaultKeys));
-		this.addKeyListener(new DirectionController(game, game.getSnakes().get(1), 
-				KeyEvent.VK_W, KeyEvent.VK_D, KeyEvent.VK_S, KeyEvent.VK_A));
-		game.getSnakes().get(1).setColor(Color.BLUE);
+		//this.addKeyListener(new DirectionController(game, game.getSnakes().get(1), 
+		//		KeyEvent.VK_W, KeyEvent.VK_D, KeyEvent.VK_S, KeyEvent.VK_A));
+		//game.getSnakes().get(1).setColor(Color.BLUE);
+		
 		this.addComponentListener(new ViewController());
 		this.addKeyListener(new GameKeyboardController(this.game));
 		this.game.addListener(this);

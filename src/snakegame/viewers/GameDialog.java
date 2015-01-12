@@ -77,6 +77,7 @@ public class GameDialog extends GenericDialog{
 			public void actionPerformed(ActionEvent e) {
 				view.dispose();
 				new RunSnake();
+				//game.restartGame();
 				closeFrame();
 			}
 		});	

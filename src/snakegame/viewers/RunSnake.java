@@ -31,6 +31,8 @@ public class RunSnake extends GenericDialog{
 		
 	//Create the buttons
 	JButton startGameBtn = new JButton("Start Game");
+	JButton controlsbtn = new JButton("Controls");
+	JButton highScoreBtn = new JButton("HighScore");
 	
 	//creating a combobox
 	String[] numbOfPlayers = {"1","2","3","4"};
@@ -66,8 +68,11 @@ public class RunSnake extends GenericDialog{
 		dimensionsShelf.setOpaque(false);
 		
 		
-		//Adding btns and labels to shelf
+		//Setting up layout and adding buttons to shelf
+		btnShelf.setLayout(new FlowLayout());
 		btnShelf.add(startGameBtn);
+		btnShelf.add(highScoreBtn);
+		btnShelf.add(controlsbtn);
 		
 		snake.setPreferredSize(new Dimension(300,40));
 		dimensionsShelf.setPreferredSize(new Dimension(300,40));
@@ -96,10 +101,6 @@ public class RunSnake extends GenericDialog{
 
 			public void actionPerformed(ActionEvent e) {
 				
-				names = playerPanel.names();
-				for (String name : names){
-					System.out.println(name);
-				}
 				new View(Integer.parseInt(widthPanel.getTxt()), Integer.parseInt(heightPanel.getTxt()), playerPanel.names());
 				
 				closeFrame();
