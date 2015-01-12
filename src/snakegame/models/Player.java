@@ -15,6 +15,11 @@ public class Player implements Comparable<Player>{
 	
 	public Player() {}
 	
+	public void reset() {
+		this.score = 0;
+		this.time = 0;
+	}
+	
 	public int getTime() {
 		return time;
 	}

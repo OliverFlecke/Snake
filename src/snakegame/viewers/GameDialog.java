@@ -13,6 +13,7 @@ import javax.swing.SwingConstants;
 
 import snakegame.models.Game;
 import snakegame.models.HighScore;
+import snakegame.viewers.sound.Sound;
 
 
 
@@ -77,6 +78,8 @@ public class GameDialog extends GenericDialog{
 				//view.dispose();
 				//new RunSnake();
 				game.restartGame();
+				view.createScorePanels();
+				view.update();
 				closeFrame();
 			}
 		});	

@@ -51,7 +51,7 @@ public class View extends JFrame implements GameListener {
 	/**
 	 * Create score panels with current players
 	 */
-	private void createScorePanels() {
+	public void createScorePanels() {
 		this.scorePanelHolder.removeAll();
 		//cycles through snakes creating scorepanels
 		for(int i=0; i<game.getSnakes().size(); i++ ){
@@ -92,13 +92,12 @@ public class View extends JFrame implements GameListener {
 	public void endGame() {
 		Sound.MUSIC.stop();
 		Sound.GAMEOVER.play();
-		new GameDialog(game, this);
 		
 		// Reset the game for new round, if wanted
 		for (DirectionController controller : this.directionController) {
 			controller.reset();
 		}
-		this.createScorePanels();
+		new GameDialog(game, this);
 	}
 
 

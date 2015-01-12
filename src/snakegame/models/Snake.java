@@ -189,7 +189,7 @@ public class Snake {
 		this.isEating = false;
 		this.isReady = false;
 		
-		if (this.player != null) {
+		if (this.player != null) {		
 			this.player = new Player(this.getName(), 0, 0); 
 		}
 	}
