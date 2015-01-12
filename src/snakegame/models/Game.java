@@ -275,12 +275,11 @@ public class Game implements ActionListener {
 	 */
 	private void endGame() {
 		// Save the score
-		HighScore highScore = new HighScore();
 		ArrayList<Player> players = new ArrayList<Player>();
 		for (Snake snake : this.snakes) {
 			players.add(snake.getPlayer());
 		}
-		highScore.submitScore(players);
+		HighScore.submitScore(players);
 		
 		this.gameOver = true;
 		for (GameListener gl : listeners)

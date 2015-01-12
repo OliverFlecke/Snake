@@ -8,16 +8,14 @@ import java.util.Collections;
 import java.util.Formatter;
 import java.util.Scanner;
 
-public class HighScore {
-	private ArrayList<Player> highScorePlayers;
-	private ArrayList<Player> newHighScorePlayers;
-	private File f = new File ("highscore.txt");
+public final class HighScore {
+
+	private static File f = new File ("highscore.txt");
+	private static ArrayList<Player> highScorePlayers = readHighScoreFromFile();
+	private static ArrayList<Player> newHighScorePlayers = new ArrayList<Player>();
 
 
-	public HighScore() {
-		highScorePlayers = readHighScoreFromFile();
-		newHighScorePlayers = new ArrayList<Player>();
-		
+	private HighScore() {
 	}
 
 	/**
@@ -26,7 +24,7 @@ public class HighScore {
 	 * @return 
 	 * @return ArrayList of Players who have set new high score
 	 */
-	public void submitScore(ArrayList<Player> players){
+	public static void submitScore(ArrayList<Player> players){
 		highScorePlayers.addAll(players);
 		Collections.sort(highScorePlayers);
 		highScorePlayers.subList(10,highScorePlayers.size()).clear();
@@ -41,7 +39,7 @@ public class HighScore {
 	 * @return 
 	 * @return players
 	 */
-	private void refreshNewHighScorePlayers(ArrayList<Player> players) {
+	private static void refreshNewHighScorePlayers(ArrayList<Player> players) {
 		newHighScorePlayers.clear();		
 		for (Player current : players){
 			if(highScorePlayers.contains(current)){
@@ -54,7 +52,7 @@ public class HighScore {
 	 * writes name, score and time to file from an 
 	 * ArrayList of 10 players
 	 */
-	private void writeHighScoreToFile(ArrayList<Player> highScoreToWrite) {
+	private static void writeHighScoreToFile(ArrayList<Player> highScoreToWrite) {
 		try {
 			Formatter fm = new Formatter(f);
 			for(int i=0; i<10; i++){
@@ -72,9 +70,9 @@ public class HighScore {
 	/**
 	 * Reads name, score and time from file and creates an arrayList of 
 	 * players using these parameters
-	 * @return ArrayList og high score players
+	 * @return ArrayList of high score players
 	 */
-	private ArrayList<Player> readHighScoreFromFile(){
+	private static ArrayList<Player> readHighScoreFromFile(){
 
 		ArrayList<Player> readResult = new ArrayList<Player>();
 
@@ -96,11 +94,11 @@ public class HighScore {
 		return readResult;
 	}
 
-	public ArrayList<Player> getHighScore(){
+	public static ArrayList<Player> getHighScore(){
 		return highScorePlayers;		
 	}
 	
-	public ArrayList<Player>getNewHighScorePlayers(){
+	public static ArrayList<Player>getNewHighScorePlayers(){
 		return newHighScorePlayers;
 	}
 }

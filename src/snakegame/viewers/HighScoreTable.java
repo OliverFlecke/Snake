@@ -19,8 +19,7 @@ public class HighScoreTable extends JPanel{
 
 	public HighScoreTable(){
 		
-		HighScore highScore = new HighScore();
-		highScorePlayers = highScore.getHighScore();
+		highScorePlayers = HighScore.getHighScore();
 		
 		
 		Object[][] data = new Object[10][4]; 

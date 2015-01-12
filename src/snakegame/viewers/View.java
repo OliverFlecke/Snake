@@ -1,6 +1,5 @@
 package snakegame.viewers;
 
-import javax.swing.BoxLayout;
 import javax.swing.JFrame;
 import javax.swing.ImageIcon;
 import javax.swing.JPanel;
@@ -20,7 +19,6 @@ public class View extends JFrame implements GameListener {
 
 	private SnakeGrid snakeGrid;
 	private Game game;
-	private ArrayList<ScorePanel> scorepanels;
 	private JPanel scorePanelHolder;
 	private ArrayList<DirectionController> directionController = new ArrayList<DirectionController>();
 
@@ -31,11 +29,11 @@ public class View extends JFrame implements GameListener {
 	public View(int width, int height, ArrayList<String> playerNames) {
 		super();
 		this.game = new Game(width, height, playerNames);
-		this.snakeGrid = new SnakeGrid(game);
-		this.scorePanelHolder = new JPanel();
-		
 		// Create the controllers to control players and game with keyboard event and other
 		this.createControllers(playerNames.size());
+		
+		this.snakeGrid = new SnakeGrid(game);
+		this.scorePanelHolder = new JPanel();	
 		
 		this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		this.setIconImage(new ImageIcon("icon.png").getImage());
