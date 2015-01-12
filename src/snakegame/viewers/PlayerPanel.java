@@ -1,6 +1,7 @@
 package snakegame.viewers;
 
 import java.awt.GridLayout;
+import java.util.ArrayList;
 
 import javax.swing.JPanel;
 
@@ -14,6 +15,7 @@ public class PlayerPanel extends JPanel {
 	
 	//make an array with room for as many textJpanels as there are players
 	private TextJPanel[] playerArray = new TextJPanel[4];
+	private ArrayList<String> names = new ArrayList<String>();
 	
 	
 	public PlayerPanel(int numbOfPlayers){
@@ -37,6 +39,7 @@ public class PlayerPanel extends JPanel {
 
 	public void updatePlayers(int numbOfPlayers){
 		this.removeAll();
+		playerArray = new TextJPanel[4];
 
 		for (int i=1; i <= numbOfPlayers; i ++){
 			TextJPanel newPanel = new TextJPanel("Player" + i, "Player"+i+"Name");
@@ -46,5 +49,18 @@ public class PlayerPanel extends JPanel {
 		}
 		this.revalidate();
 		this.repaint();
-	}	
+	}
+	
+	public ArrayList<String> names(){
+		
+		names.clear();
+		
+		for(int i=0; i < 4; i++){
+			if (playerArray[i] instanceof TextJPanel ){
+				names.add(i, playerArray[i].getTxt());
+			}
+			
+		}
+		return names;
+	}
 }
