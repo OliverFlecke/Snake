@@ -85,9 +85,6 @@ public class RunSnake extends GenericDialog{
 		background.add(snake);
 		background.add(new PlayerSelectPanel(playerPanel));
 		background.add(playerPanel);
-//		background.add(namePanel2);
-//		background.add(namePanel3);
-//		background.add(namePanel4);
 		background.add(dimensionsShelf);
 		background.add(btnShelf);
 
@@ -99,19 +96,13 @@ public class RunSnake extends GenericDialog{
 
 			public void actionPerformed(ActionEvent e) {
 				
-				createListOfNames(); 	
-
-				new View(Integer.parseInt(widthPanel.getTxt()), Integer.parseInt(heightPanel.getTxt()), names);
+				names = playerPanel.names();
+				for (String name : names){
+					System.out.println(name);
+				}
+				new View(Integer.parseInt(widthPanel.getTxt()), Integer.parseInt(heightPanel.getTxt()), playerPanel.names());
 				
 				closeFrame();
-			}
-
-			private void createListOfNames() {
-				names.add(namePanel1.getTxt());
-//				names.add(namePanel2.getTxt());
-//				names.add(namePanel3.getTxt());
-//				names.add(namePanel4.getTxt());
-				
 			}
 		});
 
