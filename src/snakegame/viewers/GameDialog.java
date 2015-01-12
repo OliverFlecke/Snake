@@ -16,7 +16,6 @@ import snakegame.models.HighScore;
 import snakegame.viewers.sound.Sound;
 
 
-
 public class GameDialog extends GenericDialog{
 
 	/**
@@ -34,7 +33,7 @@ public class GameDialog extends GenericDialog{
 	//Make JLabel
 	JLabel scoreText = new JLabel("", SwingConstants.CENTER);
 	
-	//Make highscore tabel
+	//Make high score tabel
 	HighScoreTable table = new HighScoreTable();
 	
 		
