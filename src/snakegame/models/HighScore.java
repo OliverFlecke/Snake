@@ -9,9 +9,10 @@ import java.util.Formatter;
 import java.util.Scanner;
 
 public final class HighScore {
-	private static ArrayList<Player> highScorePlayers = readHighScoreFromFile();
-	private static ArrayList<Player> newHighScorePlayers = new ArrayList<Player>();;
+
 	private static File f = new File ("highscore.txt");
+	private static ArrayList<Player> highScorePlayers = readHighScoreFromFile();
+	private static ArrayList<Player> newHighScorePlayers = new ArrayList<Player>();
 
 
 	private HighScore() {
@@ -69,7 +70,7 @@ public final class HighScore {
 	/**
 	 * Reads name, score and time from file and creates an arrayList of 
 	 * players using these parameters
-	 * @return ArrayList og high score players
+	 * @return ArrayList of high score players
 	 */
 	private static ArrayList<Player> readHighScoreFromFile(){
 

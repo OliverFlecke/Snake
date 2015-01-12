@@ -40,15 +40,14 @@ public class TestHighScore {
 		
 	
 		
-		HighScore highScore = new HighScore();
 		System.out.println("print players array");
 		System.out.println(players);
 		System.out.println("get current highscore");
-		System.out.println(highScore.getHighScore());
+		System.out.println(HighScore.getHighScore());
 		System.out.println("submit score");
-		highScore.submitScore(players);
+		HighScore.submitScore(players);
 		System.out.println("get new highscore");
-		System.out.println(highScore.getHighScore());
+		System.out.println(HighScore.getHighScore());
 		System.out.println("check if any submitted players are on highscore");
 		
 		
