@@ -12,7 +12,6 @@ import javax.swing.JPanel;
 import javax.swing.SwingConstants;
 
 import snakegame.models.Game;
-import snakegame.models.HighScore;
 
 
 
@@ -33,7 +32,7 @@ public class GameDialog extends GenericDialog{
 	//Make JLabel
 	JLabel scoreText = new JLabel("", SwingConstants.CENTER);
 	
-	//Make highscore tabel
+	//Make high score tabel
 	HighScoreTable table = new HighScoreTable();
 	
 		
