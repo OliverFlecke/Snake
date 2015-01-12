@@ -51,7 +51,7 @@ public class GenericDialog extends JFrame{
 	
 	@Override
 	public Dimension getPreferredSize(){
-		return new Dimension(450, 275);
+		return new Dimension(450, 400);
 
 		
 	}

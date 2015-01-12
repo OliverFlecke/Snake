@@ -1,32 +1,46 @@
 package snakegame.viewers;
 
+import java.awt.BorderLayout;
+import java.util.ArrayList;
+
+import javax.swing.BorderFactory;
 import javax.swing.JPanel;
 import javax.swing.JTable;
 
+import snakegame.models.Player;
+
 public class HighScoreTable extends JPanel{
-	String[] columnNames = {"First Name",
-			"Last Name",
-			"Sport",
-			"# of Years",
-	"Vegetarian"};
+	private String[] columnNames = {"#", 
+			"Name",
+			"Score",
+			"Time"};
 
-	Object[][] data = {
-			{"Kathy", "Smith",
-				"Snowboarding", new Integer(5), new Boolean(false)},
-				{"John", "Doe",
-					"Rowing", new Integer(3), new Boolean(true)},
-					{"Sue", "Black",
-						"Knitting", new Integer(2), new Boolean(false)},
-						{"Jane", "White",
-							"Speed reading", new Integer(20), new Boolean(true)},
-							{"Joe", "Brown",
-								"Pool", new Integer(10), new Boolean(false)}
-	};
-
-	public HighScoreTable(){
-
+	public HighScoreTable(ArrayList<Player> players){
+		
+		Object[][] data = new Object[10][4]; 
+		int j = 1;
+		for(int i=0; i<10; i++){
+			data[i][0]=j;
+			data[i][1]=players.get(i).getName();
+			data[i][2]=players.get(i).getScore();
+			data[i][3]=players.get(i).getTime();
+			j++;
+		}
+		
 		JTable table = new JTable(data, columnNames);
+		table.setEnabled(false);
+		table.getTableHeader().setResizingAllowed(false);
+		table.getTableHeader().setReorderingAllowed(false);
+		
+		this.setOpaque(false);
 
-		this.add(table);
+		this.add(table);    
+		
+		this.setBorder(BorderFactory.createEmptyBorder(30, 20, 10, 20));
+		
+		this.setLayout(new BorderLayout());
+		this.add(table.getTableHeader(), BorderLayout.PAGE_START);
+		this.add(table, BorderLayout.CENTER);
 	}
+	
 }

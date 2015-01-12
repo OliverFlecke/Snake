@@ -12,6 +12,7 @@ import javax.swing.JPanel;
 import javax.swing.SwingConstants;
 
 import snakegame.models.Game;
+import snakegame.models.HighScore;
 
 
 
@@ -33,6 +34,8 @@ public class GameDialog extends GenericDialog{
 	JLabel scoreText = new JLabel("", SwingConstants.CENTER);
 	
 	//Make highscore tabel
+	HighScore highScore = new HighScore();
+	HighScoreTable table = new HighScoreTable(highScore.getHighScore());
 	
 		
 	private Game game;
@@ -48,7 +51,6 @@ public class GameDialog extends GenericDialog{
 		
 		this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		
-		
 		scoreText.setText("Score:" + score);
 		btnShelf.add(restartBtn);
 		btnShelf.add(closeBtn);
@@ -56,6 +58,7 @@ public class GameDialog extends GenericDialog{
 		
 		//Arranging dialog
 		background.setLayout(new BorderLayout());
+		background.add(table,BorderLayout.NORTH);
 		background.add(scoreText, BorderLayout.CENTER);
 		background.add(btnShelf, BorderLayout.SOUTH);
 		
