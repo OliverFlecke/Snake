@@ -25,9 +25,9 @@ public class ScorePanel extends JPanel{
 		this.add(nameLabel);
 		this.add(scoreLabel);
 		this.add(timerLabel);
-		this.setBackground(Color.MAGENTA);
+		this.setBackground(new Color(121,115,79));
 		//top, left, bottom, right-for setting border
-		this.setBorder(BorderFactory.createMatteBorder(5, 0, 5, 5, Color.DARK_GRAY));
+		this.setBorder(BorderFactory.createMatteBorder(5, 0, 5, 5, new Color(167,160,108)));
 	}
 
 	@Override
