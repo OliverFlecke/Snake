@@ -31,7 +31,6 @@ public class View extends JFrame implements GameListener {
 		this.game = new Game(width, height, playerNames);
 		// Create the controllers to control players and game with keyboard event and other
 		this.createControllers(playerNames.size());
-		
 		this.snakeGrid = new SnakeGrid(game);
 		this.scorePanelHolder = new JPanel();	
 		
@@ -40,21 +39,33 @@ public class View extends JFrame implements GameListener {
 		this.getContentPane().add(snakeGrid, BorderLayout.CENTER);
 		
 		scorePanelHolder.setLayout(new GridLayout(0,1));
-		
 		this.getContentPane().add(scorePanelHolder,BorderLayout.EAST);
-		
-		//cycles through snakes creating scorepanels
-		for(int i=0; i<game.getSnakes().size(); i++ ){
-			scorePanelHolder.add(new ScorePanel(game.getSnakes().get(i).getPlayer()));
-		}
+		this.createScorePanels();
 		
 		this.pack();
 		this.setLocationRelativeTo(null);
 		this.setVisible(true);
 		this.update();
+	}
+
+	/**
+	 * Create score panels with current players
+	 */
+	private void createScorePanels() {
+		this.scorePanelHolder.removeAll();
+		//cycles through snakes creating scorepanels
+		for(int i=0; i<game.getSnakes().size(); i++ ){
+			scorePanelHolder.add(new ScorePanel(game.getSnakes().get(i).getPlayer()));
+		}
+		
+		// Start the music
 		Sound.MUSIC.loop();
 	}
 	
+	/**
+	 * Create controllers for all the players in the game
+	 * @param numOfPlayers Number of players to create controls for
+	 */
 	public void createControllers(int numOfPlayers) {
 		this.addComponentListener(new ViewController());
 		this.addKeyListener(new GameKeyboardController(this.game));
@@ -82,9 +93,12 @@ public class View extends JFrame implements GameListener {
 		Sound.MUSIC.stop();
 		Sound.GAMEOVER.play();
 		new GameDialog(game, this);
+		
+		// Reset the game for new round, if wanted
 		for (DirectionController controller : this.directionController) {
 			controller.reset();
 		}
+		this.createScorePanels();
 	}
 
 
