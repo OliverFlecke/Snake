@@ -1,5 +1,6 @@
 package snakegame.viewers;
 
+import java.awt.Dimension;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
@@ -15,6 +16,7 @@ public class SnakeButton extends JButton{
 
 	public SnakeButton(String text, PlayerPanel parentwindow){
 		this.setText(text);
+		this.setPreferredSize(getPreferredSize());
 		
 		
 		this.addActionListener(new ActionListener() { 
@@ -37,7 +39,12 @@ public class SnakeButton extends JButton{
 		return Integer.parseInt(this.getText());
 	}
 
+	@Override
+	public Dimension getPreferredSize(){
+		return new Dimension(45,40);
 
+		
+	}
 	
 		
 	
