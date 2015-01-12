@@ -74,9 +74,9 @@ public class GameDialog extends GenericDialog{
 		restartBtn.addActionListener(new ActionListener() {
 
 			public void actionPerformed(ActionEvent e) {
-				view.dispose();
-				new RunSnake();
-				//game.restartGame();
+				//view.dispose();
+				//new RunSnake();
+				game.restartGame();
 				closeFrame();
 			}
 		});	

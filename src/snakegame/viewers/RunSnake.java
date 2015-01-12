@@ -49,10 +49,6 @@ public class RunSnake extends GenericDialog{
 	//Make textJpanels
 	TextJPanel widthPanel = new TextJPanel("Width:");
 	TextJPanel heightPanel = new TextJPanel("Height:");
-	TextJPanel namePanel1 = new TextJPanel("Player 1");
-//	TextJPanel namePanel2 = new TextJPanel("Player 2");
-//	TextJPanel namePanel3 = new TextJPanel("Player 3");
-//	TextJPanel namePanel4 = new TextJPanel("Player 4");
 	
 	public RunSnake(){
 		
@@ -60,8 +56,8 @@ public class RunSnake extends GenericDialog{
 		comboPlayers.setSelectedIndex(0);
 		
 		//Set labelName for txtPanels.
-		widthPanel.setTxt(Integer.toString(10));
-		heightPanel.setTxt(Integer.toString(10));
+		widthPanel.setTxt(Integer.toString(40));
+		heightPanel.setTxt(Integer.toString(40));
 		
 		//Making shelfs transparent
 		btnShelf.setOpaque(false);
