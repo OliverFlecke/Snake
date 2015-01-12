@@ -39,6 +39,18 @@ public class DirectionController implements KeyListener {
 	}
 	
 	/**
+	 * Take a player type
+	 * @param game
+	 * @param snake
+	 * @param playerType
+	 */
+	public DirectionController(Game game, Snake snake, int playerNumber) {
+		this.game = game;
+		this.snake = snake;
+		this.setPlayerType(playerNumber);
+	}
+	
+	/**
 	 * Take key inputs as integers
 	 * @param game
 	 * @param snake
@@ -65,12 +77,40 @@ public class DirectionController implements KeyListener {
 		this.firstPress = true;
 	}
 
+	public void setPlayerType(int playerNumber) {
+		switch (playerNumber) {
+			case 0:
+				this.up = KeyEvent.VK_UP;
+				this.down = KeyEvent.VK_DOWN;
+				this.left = KeyEvent.VK_LEFT;
+				this.right = KeyEvent.VK_RIGHT;
+				break;
+			case 1:
+				this.up = KeyEvent.VK_W;
+				this.right = KeyEvent.VK_D;
+				this.down = KeyEvent.VK_S;
+				this.left = KeyEvent.VK_A;
+				break;
+			case 2: 
+				this.up = KeyEvent.VK_T;
+				this.right = KeyEvent.VK_H;
+				this.down = KeyEvent.VK_G;
+				this.left = KeyEvent.VK_F;
+				break;
+			case 3:
+				this.up = KeyEvent.VK_I;
+				this.right = KeyEvent.VK_L;
+				this.down = KeyEvent.VK_K;
+				this.left = KeyEvent.VK_J;
+				break;
+		}
+	}
+	
 	@Override
 	/**
 	 * Control the game based on arrow key inputs
 	 */
 	public void keyPressed(KeyEvent event) {
-		System.out.println("Key pressed");
 		int keyCode = event.getKeyCode();
 		
 		if (keyCode == this.up || keyCode == this.right || keyCode == this.left || keyCode == this.down) {

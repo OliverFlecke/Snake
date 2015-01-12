@@ -6,7 +6,9 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.List;
 import java.util.ArrayList;
+
 import javax.swing.Timer;
+
 import snakegame.DIRECTION;
 import snakegame.controllers.GameListener;
 
@@ -272,6 +274,14 @@ public class Game implements ActionListener {
 	 * call endgame method with listeners
 	 */
 	private void endGame() {
+		// Save the score
+		HighScore highScore = new HighScore();
+		ArrayList<Player> players = new ArrayList<Player>();
+		for (Snake snake : this.snakes) {
+			players.add(snake.getPlayer());
+		}
+		highScore.submitScore(players);
+		
 		this.gameOver = true;
 		for (GameListener gl : listeners)
 			gl.endGame();

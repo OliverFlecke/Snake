@@ -34,7 +34,6 @@ public class GameDialog extends GenericDialog{
 	JLabel scoreText = new JLabel("", SwingConstants.CENTER);
 	
 	//Make highscore tabel
-	HighScore highScore = new HighScore();
 	HighScoreTable table = new HighScoreTable();
 	
 		
