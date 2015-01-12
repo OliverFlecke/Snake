@@ -32,6 +32,7 @@ public class View extends JFrame implements GameListener {
 	private Game game;
 	private ArrayList<ScorePanel> scorepanels;
 	private JPanel scorePanelHolder;
+	private ArrayList<DirectionController> dirController;
 
 	//private ScorePanel score;
 	

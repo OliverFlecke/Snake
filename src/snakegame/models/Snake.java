@@ -189,17 +189,15 @@ public class Snake {
 		this.direction = null; 
 		this.lastDirection = null;
 		this.isDead = false;
+		this.isEating = false;
+		this.isReady = false;
 	}
 	
 	/**
 	 * @return The position of the snake
 	 */
 	public ArrayList<Point> getPosition() {
-		ArrayList<Point> out = new ArrayList<Point>();
-		for (Point current : this.position) {
-			out.add(new Point(current));
-		}
-		return out;
+		return new ArrayList<Point>(this.position);
 	}
 	
 	/**

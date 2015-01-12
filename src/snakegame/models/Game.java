@@ -52,6 +52,11 @@ public class Game implements ActionListener {
 		this(new Dimension(width, height), numberOfPlayers);
 	}
 	
+	public Game(int width, int height, ArrayList<String> names) {
+		this(width, height, names.size());
+		this.setPlayerNames(names);
+	}
+	
 	/**
 	 * Constructor to take the size of the game grid, and an int to define
 	 * how many players, that are playing
@@ -95,7 +100,8 @@ public class Game implements ActionListener {
 	public void restartGame() {
 		this.level = 0;
 		this.gameOver = false;
-		this.gameTimer = new Timer(this.timerValue, this);
+		this.gameTimer.stop();
+		this.updateTimer(this.timerValue);
 		this.food = new ArrayList<Food>();
 		
 		for (Snake snake : this.snakes) {
@@ -236,8 +242,7 @@ public class Game implements ActionListener {
 	 * Update the time with the default value
 	 */
 	private void updateTimer() {
-		this.timerValue -= this.updateTimeValue;
-		this.updateTimer(this.timerValue);
+		this.updateTimer(this.timerValue - this.updateTimeValue);
 	}
 	
 	/**

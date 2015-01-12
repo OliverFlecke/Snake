@@ -56,6 +56,14 @@ public class DirectionController implements KeyListener {
 		this.down = down;
 		this.left = left;
 	}
+	
+	/** 
+	 * Reset the controller. 
+	 */
+	public void reset() {
+		this.isStarted = false;
+		this.firstPress = true;
+	}
 
 	@Override
 	/**
