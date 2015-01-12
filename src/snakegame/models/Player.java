@@ -7,19 +7,10 @@ public class Player implements Comparable<Player>{
 	private int score;
 	private int time;
 	
-	public Player(String name, int score, int time){
-		this.time = time;
+	public Player(String name, int score, int time) {
 		this.name = name;
 		this.score = score;
-	}
-	
-	
-	public Player(String name) {
-		this(name, 0, 0);
-	}
-	
-	public Player(String name, int score) {
-		this(name, score, 0);
+		this.time = time;
 	}
 	
 	public Player() {}
@@ -27,7 +18,6 @@ public class Player implements Comparable<Player>{
 	public int getTime() {
 		return time;
 	}
-
 
 	public void setTime(int time) {
 		this.time = time;

@@ -1,6 +1,5 @@
 package snakegame.models;
 
-import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.Point;
 import java.util.ArrayList;
@@ -20,7 +19,6 @@ public class Snake {
 	private boolean isReady;						// State of the snake
 	private boolean isEating;						// State of the snake to check if it is eating
 	private boolean isDead;							// State of the snakes life
-	private Color color;							// Color of the snake
 	
 	/**
 	 * Constructor to create a snake object with a default start point in the middle of the screen
@@ -46,7 +44,6 @@ public class Snake {
 	public Snake(Point startPosition, Dimension gameDimension) {
 		this.reset(startPosition);
 		this.gameDimension = gameDimension;
-		this.color = Color.BLACK;
 		this.player = new Player();
 	}
 	
@@ -191,6 +188,10 @@ public class Snake {
 		this.isDead = false;
 		this.isEating = false;
 		this.isReady = false;
+		
+		if (this.player != null) {
+			this.player = new Player(this.getName(), 0, 0); 
+		}
 	}
 	
 	/**
@@ -257,22 +258,6 @@ public class Snake {
 	 */
 	public Player getPlayer() {
 		return this.player;
-	}
-	
-	/**
-	 * Set a new color of this snake
-	 * @param newColor New color of the snake
-	 */
-	public void setColor(Color newColor) {
-		this.color = newColor;
-	}
-	
-	/**
-	 * Return the color of the snake
-	 * @return The color of the snake
-	 */
-	public Color getColor() {
-		return this.color;
 	}
 	
 	/**

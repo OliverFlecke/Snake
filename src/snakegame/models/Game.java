@@ -110,6 +110,7 @@ public class Game implements ActionListener {
 			snake.reset(this.createRandomPoint());
 			this.createFoodInGame(1);
 		}
+		this.notifyListener();
 	}
 
 	/**
@@ -280,6 +281,8 @@ public class Game implements ActionListener {
 			players.add(snake.getPlayer());
 		}
 		HighScore.submitScore(players);
+		
+		System.out.println(players);
 		
 		this.gameOver = true;
 		for (GameListener gl : listeners)
