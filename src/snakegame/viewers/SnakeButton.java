@@ -4,6 +4,7 @@ import java.awt.Dimension;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
+import javax.swing.ImageIcon;
 import javax.swing.JButton;
 
 public class SnakeButton extends JButton{
@@ -15,6 +16,11 @@ public class SnakeButton extends JButton{
 	private static final long serialVersionUID = 823916396398596298L;
 
 	public SnakeButton(String text, PlayerPanel parentwindow){
+		
+		
+		this.setIcon(new ImageIcon(SnakeButton.class.getResource("images\\smallBtn.jpg")));
+		this.setHorizontalTextPosition(JButton.CENTER);
+		this.setVerticalTextPosition(JButton.CENTER);
 		this.setText(text);
 		this.setPreferredSize(getPreferredSize());
 		

@@ -14,7 +14,7 @@ public class TextJPanel extends JPanel {
 	private static final long serialVersionUID = -7687886054921145470L;
 
 	//Create txtField
-	public JTextField txtField = new JTextField(5);
+	public JTextField txtField = new JTextField(10);
 	
 	//Create Lbl
 	public JLabel fieldLbl = new JLabel();
