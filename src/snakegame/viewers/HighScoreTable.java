@@ -41,11 +41,20 @@ public class HighScoreTable extends JPanel{
 
 		this.add(table);    
 		
-		this.setBorder(BorderFactory.createEmptyBorder(30, 20, 10, 20));
+		this.setBorder(BorderFactory.createEmptyBorder(50, 20, 10, 20));
 		
 		this.setLayout(new BorderLayout());
 		this.add(table.getTableHeader(), BorderLayout.PAGE_START);
 		this.add(table, BorderLayout.CENTER);
+		
+		System.out.println(HighScore.getNewHighScorePlayers());
+		
+		changeHighScoreRowColor();
+	}
+
+	private void changeHighScoreRowColor() {
+		// TODO Auto-generated method stub
+		
 	}
 	
 }
