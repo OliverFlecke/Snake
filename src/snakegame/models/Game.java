@@ -126,7 +126,7 @@ public class Game implements ActionListener {
 	 * @param foodValue Value to give the new food object
 	 */
 	private void createFoodInGame(int foodValue) {
-		this.food.add(new Food(foodValue, this));
+		this.food.add(new Food(foodValue, this.createRandomPoint()));
 	}
 	
 	/**
@@ -162,8 +162,6 @@ public class Game implements ActionListener {
 	 * Updates the game following a snake movement, checking for collision with food and with the snake itself
 	 */
 	public void update() {
-		for (Snake snake : this.snakes) 
-			snake.setIsEating(false);
 		// Assume everyone is dead
 		boolean allDead = true;
 		ArrayList<Food> foodToRemove = new ArrayList<Food>();

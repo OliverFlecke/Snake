@@ -86,6 +86,7 @@ public class Snake {
 	 * Moves the snake in it's current direction.
 	 */
 	public void move() {
+		this.isEating = false;
 		if (!(this.isDead)) {
 			Point newHead;
 			Point lastHead = this.position.getFirst();
@@ -138,12 +139,11 @@ public class Snake {
 	 * @return If the snake has hit itself
 	 */
 	public boolean checkCollision() {
-		if (this.length > 1)
-			for (Point current : this.position)
-				// Check to see, if not the same object, but the same coordinates
-				if (this.getHead().equals(current)) 
-					if (!(this.position.getFirst() == current))		// Check it is not the same object
-						return true;
+		for (Point current : this.position)
+			// Check to see, if not the same object, but the same coordinates
+			if (this.getHead().equals(current)) 
+				if (!(this.getHead() == current))		// Check it is not the same object
+					return true;
 		return false;
 	}
 	
@@ -161,8 +161,9 @@ public class Snake {
 		if (this.checkCollision() || hasCollided) {
 			this.isDead = true;
 			return true;
-		}	
-		return false;
+		} else {
+			return false;
+		}
 	}
 	
 	/**
@@ -223,20 +224,6 @@ public class Snake {
 	}
 	
 	/**
-	 * Setter method for the isReady field
-	 */
-	public void setReady() {
-		this.isReady = true;
-	}
-	
-	/**
-	 * @return If the snake is ready
-	 */
-	public boolean getReady() {
-		return this.isReady;
-	}
-	
-	/**
 	 * Set the name of the player
 	 * @param name of the player
 	 */
@@ -268,13 +255,6 @@ public class Snake {
 	}
 	
 	/**
-	 * @param isEating True if the snake is eating anything in this turn
-	 */
-	public void setIsEating(boolean isEating) {
-		this.isEating = isEating;
-	}
-	
-	/**
 	 * @return True, if the snake is eating anything
 	 */
 	public boolean isEating() {
@@ -286,5 +266,19 @@ public class Snake {
 	 */
 	public boolean isDead() {
 		return this.isDead;
+	}
+	
+	/**
+	 * Setter method for the isReady field
+	 */
+	public void setReady() {
+		this.isReady = true;
+	}
+	
+	/**
+	 * @return If the snake is ready
+	 */
+	public boolean getReady() {
+		return this.isReady;
 	}
 }

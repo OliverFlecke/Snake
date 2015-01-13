@@ -60,19 +60,20 @@ public class Player implements Comparable<Player>{
 
 	@Override
 	public int compareTo(Player player) {
-		if(player.score<this.score){ //ranks lower if score is lower
-			return-1;
+		if (player.score < this.score){ //ranks lower if score is lower
+			return -1;
 		}
-		if(player.score==this.score){ //in case of equal score
-			if(player.time<this.time){ //ranks higher if time is lower
+		else if (player.score == this.score){ //in case of equal score
+			if (player.time < this.time){ //ranks higher if time is lower
 				return 1;
 			}
-			if(player.time>this.time){ // ranks lower if time is greater
+			if (player.time > this.time){ // ranks lower if time is greater
 				return -1;
 			}
 			
 			return this.name.compareTo(player.name); // if time and score is equal, ranks lexicographically
+		} else {
+			return 1; //ranks higher if score is higher
 		}
-		return 1; //ranks higher if score is higher
 	}
 }
