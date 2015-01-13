@@ -30,9 +30,9 @@ public class RunSnake extends GenericDialog{
 	ArrayList<String> names = new ArrayList<String>();
 		
 	//Create the buttons
-	JButton startGameBtn = new JButton("Start Game");
-	JButton controlsBtn = new JButton("Controls");
-	JButton highScoreBtn = new JButton("HighScore");
+	JButton startGameBtn = new BigButton("Start Game");
+	JButton controlsBtn = new BigButton("Controls");
+	JButton highScoreBtn = new BigButton("HighScore");
 	
 
 	
@@ -41,7 +41,7 @@ public class RunSnake extends GenericDialog{
 	JComboBox<String> comboPlayers = new JComboBox<String>(numbOfPlayers);
 	
 	//Make JLabel
-	JLabel snake = new JLabel("SNAKE", SwingConstants.CENTER);
+	JLabel snake = new JLabel("", SwingConstants.CENTER);
 
 	
 	//Make a JPanel to hold the btns and the labels

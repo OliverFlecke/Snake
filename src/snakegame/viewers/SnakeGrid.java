@@ -32,6 +32,7 @@ public class SnakeGrid extends JPanel {
 	private double gameHeightScale;
 	
 	private BufferedImage background;
+	private BufferedImage food;
 	
 	
 	// The game object
@@ -43,6 +44,13 @@ public class SnakeGrid extends JPanel {
 		//Load in the background image.
 		try {
 			background = ImageIO.read(SnakeGrid.class.getResource("images\\snakeGrassText.jpg"));
+		} catch (IOException e) {
+    		this.setBackground(Color.GRAY);
+		}
+		
+		//Load in the background image.
+		try {
+			food = ImageIO.read(SnakeGrid.class.getResource("images\\foodText.png"));
 		} catch (IOException e) {
     		this.setBackground(Color.GRAY);
 		}
@@ -110,9 +118,9 @@ public class SnakeGrid extends JPanel {
 		g2.setColor(Color.cyan);
 	    for (Food currentFood : game.getFood()) {
 	    	Point currentPos = currentFood.getPosition();
-	    	g2.fillRect((int) (currentPos.x * gameWidthScale), 
+	    	g2.drawImage(food, (int) (currentPos.x * gameWidthScale), 
 	    			(int) ((this.game.getDimension().height - currentPos.y) * gameHeightScale), 
-	    			(int) (gameWidthScale), (int) (gameHeightScale));
+	    			(int) (gameWidthScale)+10, (int) (gameHeightScale)+10, this);
         }		
 	}
 

@@ -1,13 +1,16 @@
 package snakegame.viewers;
 
+import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
+import javax.swing.border.Border;
+import javax.swing.border.LineBorder;
 
-public class SnakeButton extends JButton{
+public class BigButton extends JButton{
 	
 	
 	/**
@@ -15,23 +18,15 @@ public class SnakeButton extends JButton{
 	 */
 	private static final long serialVersionUID = 823916396398596298L;
 
-	public SnakeButton(String text, PlayerPanel parentwindow){
+	public BigButton(String text){
 		
 		
-		this.setIcon(new ImageIcon(SnakeButton.class.getResource("images\\smallBtn.jpg")));
+		this.setIcon(new ImageIcon(SmallButton.class.getResource("images\\bigBtn.jpg")));
 		this.setHorizontalTextPosition(JButton.CENTER);
 		this.setVerticalTextPosition(JButton.CENTER);
 		this.setText(text);
 		this.setPreferredSize(getPreferredSize());
-		
-		
-		this.addActionListener(new ActionListener() { 
-		
-		public void actionPerformed(ActionEvent e) {
-			parentwindow.updatePlayers(getTxt());
-		}
-		
-		});
+		//this.setBorder(new LineBorder(new Color(167,160,108)));
 		
 	}
 	
@@ -47,7 +42,7 @@ public class SnakeButton extends JButton{
 
 	@Override
 	public Dimension getPreferredSize(){
-		return new Dimension(45,40);
+		return new Dimension(100,30);
 
 		
 	}

@@ -19,7 +19,7 @@ public class PlayerSelectPanel extends JPanel {
 		this.setOpaque(false);
 		this.setLayout(new FlowLayout());
 		for (int i=1; i <=4; i ++){
-			this.add(new SnakeButton(""+ i, playerPanel));
+			this.add(new SmallButton(""+ i, playerPanel));
 		}
 		
 	}
