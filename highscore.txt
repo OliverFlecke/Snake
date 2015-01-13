@@ -1,10 +1,10 @@
-Player1Name 1500 1500
-Player1Name 1100 1100
-Player2Name 600 600
-Player1Name 500 500
-seb 300 300
-lasse 300 300
+Player1Name 700 700
+Player1Name 400 400
 Player1Name 100 100
-Player1Name 100 100
+Player2Name 100 100
 highscore10 10 10
 highscore9 9 9
+highscore8 8 8
+highscore7 7 7
+highscore6 6 6
+highscore5 5 5

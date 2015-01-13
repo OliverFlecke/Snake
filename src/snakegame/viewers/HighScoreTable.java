@@ -41,7 +41,7 @@ public class HighScoreTable extends JPanel{
 
 		this.add(table);    
 		
-		this.setBorder(BorderFactory.createEmptyBorder(50, 20, 10, 20));
+		this.setBorder(BorderFactory.createEmptyBorder(70, 20, 10, 20));
 		
 		this.setLayout(new BorderLayout());
 		this.add(table.getTableHeader(), BorderLayout.PAGE_START);
