@@ -1,10 +1,10 @@
+Player1Name 2400 2400
+Player1Name 2400 2400
+Player1Name 2100 2100
 Player1Name 1800 1800
 Player1Name 1800 1800
+Player1Name 1500 1500
+Player1Name 1500 1500
+Player1Name 1500 1500
+Player1Name 1500 1500
 Player1Name 1400 1400
-Player1Name 1200 1200
-Player1Name 1000 1000
-Player1Name 600 600
-highscore10 10 10
-highscore9 9 9
-highscore8 8 8
-highscore7 7 7
