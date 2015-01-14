@@ -145,7 +145,7 @@ public class TextureShelf {
 			}
 		}
 		
-		if (beforeCurPos.x != afterCurPos.x && beforeCurPos.y == afterCurPos.y){
+		if (beforeCurPos.x != afterCurPos.x && beforeCurPos.y == afterCurPos.y && curPos.y == afterCurPos.y){
 			
 			//Load in the image for the head.
 			try {
@@ -156,20 +156,10 @@ public class TextureShelf {
 		}
 		
 		if (beforeCurPos.x < afterCurPos.x && beforeCurPos.y > afterCurPos.y && curPos.y == beforeCurPos.y && curPos.y > afterCurPos.y && curPos.x > beforeCurPos.x && curPos.x == afterCurPos.x){
-			System.out.println(curPos);
+			
 			//Load in the image for the head.
 			try {
 				imageForBody = ImageIO.read(SnakeGrid.class.getResource("images\\shenronBodyBendDown.png"));
-			} catch (IOException e) {
-				imageForBody = null;
-			}
-		}
-		
-		if (beforeCurPos.x > afterCurPos.x && beforeCurPos.y < afterCurPos.y && curPos.y == beforeCurPos.y && curPos.y < afterCurPos.y && curPos.x < beforeCurPos.x && curPos.x == afterCurPos.x){
-			System.out.println(curPos);
-			//Load in the image for the head.
-			try {
-				imageForBody = ImageIO.read(SnakeGrid.class.getResource("images\\shenronBodyBendLeft.png"));
 			} catch (IOException e) {
 				imageForBody = null;
 			}
