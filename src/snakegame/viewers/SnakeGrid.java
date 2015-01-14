@@ -28,6 +28,7 @@ public class SnakeGrid extends JPanel {
 	 * 
 	 */
 	private static final long serialVersionUID = -1801348824563036162L;
+	
 	private double gameWidthScale;
 	private double gameHeightScale;
 	
@@ -66,7 +67,7 @@ public class SnakeGrid extends JPanel {
 	public Dimension getPreferredSize(){
 		return new Dimension(500, 500);
 	}
-
+	@Override
     public void paintComponent(Graphics g) {
         super.paintComponent(g);
 
@@ -74,6 +75,7 @@ public class SnakeGrid extends JPanel {
         drawBackground(g2);
         drawSnake(g2);
         placeFood(g2);
+        
 
     }
     
@@ -91,6 +93,7 @@ public class SnakeGrid extends JPanel {
     
 	public void drawSnake(Graphics2D g2){
 		for (Snake snake : game.getSnakes()){
+			System.out.println(snake.getCurrentDirection());
 			g2.setColor(Color.BLACK);
 		    for (Point currentPos : snake.getPosition()) {
 		    	if (!(currentPos.equals(snake.getHead()))) {
@@ -103,9 +106,9 @@ public class SnakeGrid extends JPanel {
 		    
 	    	g2.setColor(Color.green);
 	    	Point head = snake.getHead();
-	    	g2.fillRect((int) (head.x * gameWidthScale) + 1, 
+	    	g2.drawImage(TextureShelf.snakeHead(snake.getCurrentDirection()),(int) (head.x * gameWidthScale) + 1, 
 	    			(int) ((this.game.getDimension().height - head.y) * gameHeightScale) + 1, 
-	    			(int) (gameWidthScale + 1), (int) (gameHeightScale + 1));
+	    			(int) (gameWidthScale + 1), (int) (gameHeightScale + 1), this);
 	    	
 			// If the snake is eating, play a sound
 			if (snake.isEating()) {
