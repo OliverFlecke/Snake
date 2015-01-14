@@ -1,3 +1,6 @@
+Player1Name 2700 2700
+Player1Name 1600 1600
+Player1Name 1100 1100
 highscore10 10 10
 highscore9 9 9
 highscore8 8 8
@@ -5,6 +8,3 @@ highscore7 7 7
 highscore6 6 6
 highscore5 5 5
 highscore4 4 4
-highscore3 3 3
-highscore2 2 2
-highscore1 1 1
