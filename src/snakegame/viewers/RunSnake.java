@@ -58,8 +58,13 @@ public class RunSnake extends GenericDialog{
 		comboPlayers.setSelectedIndex(0);
 		
 		//Set labelName for txtPanels.
+<<<<<<< HEAD
 		widthPanel.setTxt(Integer.toString(10));
 		heightPanel.setTxt(Integer.toString(10));
+=======
+		widthPanel.setTxt(Integer.toString(30));
+		heightPanel.setTxt(Integer.toString(30));
+>>>>>>> origin/master
 		
 		//Set size
 		startGameBtn.setPreferredSize(new Dimension(100,30));
