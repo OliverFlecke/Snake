@@ -93,10 +93,9 @@ public class SnakeGrid extends JPanel {
     
 	public void drawSnake(Graphics2D g2){
 		for (Snake snake : game.getSnakes()){
-			System.out.println(snake.getCurrentDirection());
 			g2.setColor(Color.BLACK);
 		    for (Point currentPos : snake.getPosition()) {
-		    	if (!(currentPos.equals(snake.getHead()))) {
+		    	if (!(currentPos.equals(snake.getHead())) && !(currentPos.equals(snake.getTail()))) {
 		    		g2.fillRect((int) (currentPos.x * gameWidthScale) + 1, 
 			    			(int) ((this.game.getDimension().height - currentPos.y)*gameHeightScale) + 1, 
 			    			(int) (gameWidthScale) + 1, (int) (gameHeightScale) + 1);
@@ -104,11 +103,29 @@ public class SnakeGrid extends JPanel {
 		    	}
 		    }
 		    
-	    	g2.setColor(Color.green);
+		    
+	    	Point tail = snake.getTail();
 	    	Point head = snake.getHead();
+	    	Point secondLastPoint;
+	    	//find secondlast point but get head if secondlast point is head.
+	    	if (snake.getPosition().get(snake.getPosition().size()-1) != head){
+	    		secondLastPoint = snake.getPosition().get(snake.getPosition().size()-1);
+	    	} else {
+	    		secondLastPoint = head;
+	    	}
+	    	
+	    	g2.drawImage(TextureShelf.snakeTail(tail, secondLastPoint),(int) (tail.x * gameWidthScale) + 1, 
+	    			(int) ((this.game.getDimension().height - tail.y) * gameHeightScale) + 1, 
+	    			(int) (gameWidthScale + 1), (int) (gameHeightScale + 1), this);
+		    
+	    	g2.setColor(Color.green);
+	    	
 	    	g2.drawImage(TextureShelf.snakeHead(snake.getCurrentDirection()),(int) (head.x * gameWidthScale) + 1, 
 	    			(int) ((this.game.getDimension().height - head.y) * gameHeightScale) + 1, 
 	    			(int) (gameWidthScale + 1), (int) (gameHeightScale + 1), this);
+
+	    	
+
 	    	
 			// If the snake is eating, play a sound
 			if (snake.isEating()) {

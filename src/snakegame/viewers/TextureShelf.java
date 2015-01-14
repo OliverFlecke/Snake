@@ -5,12 +5,15 @@ import java.io.IOException;
 
 import javax.imageio.ImageIO;
 
+import java.awt.Point;
+
 import snakegame.DIRECTION;
 
 public class TextureShelf {
 	
 	// making variables for the picures
-	public static BufferedImage imageForHead;
+	private static BufferedImage imageForHead;
+	private static BufferedImage imageForTail;
 	
 	
 	
@@ -81,5 +84,49 @@ public class TextureShelf {
 		return imageForHead;
 	}
 
-	
+	public static BufferedImage snakeTail(Point snakeTail, Point secondLastPoint){
+		
+		
+		if (snakeTail.y < secondLastPoint.y){
+			
+			//Load in the image for the head.
+			try {
+				imageForTail = ImageIO.read(SnakeGrid.class.getResource("images\\shenronTailUp.png"));
+			} catch (IOException e) {
+				imageForTail = null;
+			}
+		}
+		
+		if (snakeTail.y > secondLastPoint.y){
+			
+			//Load in the image for the head.
+			try {
+				imageForTail = ImageIO.read(SnakeGrid.class.getResource("images\\shenronTailDown.png"));
+			} catch (IOException e) {
+				imageForTail = null;
+			}
+		}
+		
+		if (snakeTail.x > secondLastPoint.x){
+			
+			//Load in the image for the head.
+			try {
+				imageForTail = ImageIO.read(SnakeGrid.class.getResource("images\\shenronTailLeft.png"));
+			} catch (IOException e) {
+				imageForTail = null;
+			}
+		}
+		
+		if (snakeTail.x < secondLastPoint.x){
+			
+			//Load in the image for the head.
+			try {
+				imageForTail = ImageIO.read(SnakeGrid.class.getResource("images\\shenronTailRight.png"));
+			} catch (IOException e) {
+				imageForTail = null;
+			}
+		}
+		
+		return imageForTail;
+	}	
 }
