@@ -60,6 +60,7 @@ public class RunSnake extends GenericDialog{
 		//Set labelName for txtPanels.
 		widthPanel.setTxt(Integer.toString(30));
 		heightPanel.setTxt(Integer.toString(30));
+
 		
 		//Set size
 		startGameBtn.setPreferredSize(new Dimension(100,30));

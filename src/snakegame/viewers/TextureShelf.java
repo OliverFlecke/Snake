@@ -14,6 +14,7 @@ public class TextureShelf {
 	// making variables for the picures
 	private static BufferedImage imageForHead;
 	private static BufferedImage imageForTail;
+	private static BufferedImage imageForBody;
 	
 	
 	
@@ -128,5 +129,43 @@ public class TextureShelf {
 		}
 		
 		return imageForTail;
-	}	
+	}
+	
+	public static BufferedImage snakeBody(Point beforeCurPos, Point curPos, Point afterCurPos){
+		
+		
+		
+		if (beforeCurPos.y != afterCurPos.y && beforeCurPos.x == afterCurPos.x){
+			
+			//Load in the image for the head.
+			try {
+				imageForBody = ImageIO.read(SnakeGrid.class.getResource("images\\shenronBodyVertical.png"));
+			} catch (IOException e) {
+				imageForBody = null;
+			}
+		}
+		
+		if (beforeCurPos.x != afterCurPos.x && beforeCurPos.y == afterCurPos.y && curPos.y == afterCurPos.y){
+			
+			//Load in the image for the head.
+			try {
+				imageForBody = ImageIO.read(SnakeGrid.class.getResource("images\\shenronBodyHorizontal.png"));
+			} catch (IOException e) {
+				imageForBody = null;
+			}
+		}
+		
+		if (beforeCurPos.x < afterCurPos.x && beforeCurPos.y > afterCurPos.y && curPos.y == beforeCurPos.y && curPos.y > afterCurPos.y && curPos.x > beforeCurPos.x && curPos.x == afterCurPos.x){
+			
+			//Load in the image for the head.
+			try {
+				imageForBody = ImageIO.read(SnakeGrid.class.getResource("images\\shenronBodyBendDown.png"));
+			} catch (IOException e) {
+				imageForBody = null;
+			}
+		}
+		
+
+		return imageForBody;
+	}
 }
