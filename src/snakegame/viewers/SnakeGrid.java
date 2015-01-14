@@ -109,7 +109,7 @@ public class SnakeGrid extends JPanel {
 	    	Point secondLastPoint;
 	    	//find secondlast point but get head if secondlast point is head.
 	    	if (snake.getPosition().get(snake.getPosition().size()-1) != head){
-	    		secondLastPoint = snake.getPosition().get(snake.getPosition().size()-1);
+	    		secondLastPoint = snake.getPosition().get(snake.getPosition().size()-2);
 	    	} else {
 	    		secondLastPoint = head;
 	    	}
