@@ -127,36 +127,6 @@ public class DirectionController implements KeyListener {
 			this.firstPress = false;
 		}
 	}
-	/*
-	 * switch (keyCode) {
-			case this.down:
-				//this.player.move(DIRECTION.DOWN);
-				System.out.println("Down key pressed");
-				this.snake.setDirection(DIRECTION.DOWN);
-				this.isStarted = true;
-				break;
-			case KeyEvent.VK_UP:
-				//this.player.move(DIRECTION.UP);
-				System.out.println("Up key pressed");
-				this.snake.setDirection(DIRECTION.UP);
-				this.isStarted = true;
-				break;
-			case KeyEvent.VK_LEFT:
-				//this.player.move(DIRECTION.LEFT);
-				System.out.println("Left key pressed");
-				this.snake.setDirection(DIRECTION.LEFT);
-				this.isStarted = true;
-				break;	
-			case KeyEvent.VK_RIGHT:
-				//this.player.move(DIRECTION.RIGHT);
-				System.out.println("Right key pressed");
-				this.snake.setDirection(DIRECTION.RIGHT);
-				this.isStarted = true;
-				break;		
-			default:
-				break;
-		}
-	 */
 
 	@Override
 	public void keyReleased(KeyEvent event) {}
