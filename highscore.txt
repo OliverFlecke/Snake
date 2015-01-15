@@ -1,4 +1,5 @@
 Player1Name 1900 1900
+Player1Name 1500 1500
 Player1Name 1300 1300
 Player1Name 1100 1100
 Player1Name 1100 1100
@@ -7,4 +8,3 @@ Player1Name 1100 1100
 Player1Name 1000 1000
 Player1Name 1000 1000
 Player1Name 1000 1000
-highscore10 10 10
