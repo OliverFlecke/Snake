@@ -155,9 +155,7 @@ public class TextureShelf {
 			}
 		}
 		
-		if (beforeCurPos.x < afterCurPos.x && beforeCurPos.y > afterCurPos.y 
-				&& curPos.y == beforeCurPos.y && curPos.y > afterCurPos.y 
-				&& curPos.x > beforeCurPos.x && curPos.x == afterCurPos.x){
+		if (beforeCurPos.x < afterCurPos.x && beforeCurPos.y > afterCurPos.y && curPos.y == beforeCurPos.y && curPos.y > afterCurPos.y && curPos.x > beforeCurPos.x && curPos.x == afterCurPos.x){
 			
 			//Load in the image for the head.
 			try {
