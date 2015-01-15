@@ -10,7 +10,7 @@ import java.util.Scanner;
 
 public final class HighScore {
 
-	private static File f = new File ("highscore.txt");
+	private static File file = new File ("highscore.txt");
 	private static ArrayList<Player> highScorePlayers = readHighScoreFromFile();
 	private static ArrayList<Player> newHighScorePlayers = new ArrayList<Player>();
 
@@ -54,7 +54,7 @@ public final class HighScore {
 	 */
 	private static void writeHighScoreToFile(ArrayList<Player> highScoreToWrite) {
 		try {
-			Formatter fm = new Formatter(f);
+			Formatter fm = new Formatter(file);
 			for(int i=0; i<10; i++){
 				fm.format(highScoreToWrite.get(i).getName() + " ");
 				fm.format(highScoreToWrite.get(i).getScore() + " ");
@@ -77,7 +77,7 @@ public final class HighScore {
 		ArrayList<Player> readResult = new ArrayList<Player>();
 
 		try {  
-			Scanner s = new Scanner(f);
+			Scanner s = new Scanner(file);
 			for(int i=0; i<10; i++){
 				String name = s.next();
 				int score = s.nextInt();

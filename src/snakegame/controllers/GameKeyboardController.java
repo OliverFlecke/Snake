@@ -5,7 +5,7 @@ import java.awt.event.KeyListener;
 
 import snakegame.models.Game;
 
-public class GameKeyboardController implements KeyListener{
+public class GameKeyboardController implements KeyListener {
 	// Field for the game
 	private Game game;
 	

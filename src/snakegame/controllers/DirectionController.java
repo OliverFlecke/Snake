@@ -22,7 +22,7 @@ public class DirectionController implements KeyListener {
 	private boolean firstPress = true;
 	
 	// key codes for the keys to react to
-	int up, right, down, left;
+	private int up, right, down, left;
 	
 	/**
 	 * Constructor, which takes the player to control
@@ -112,14 +112,14 @@ public class DirectionController implements KeyListener {
 	 */
 	public void keyPressed(KeyEvent event) {
 		int keyCode = event.getKeyCode();
-		
-		if (keyCode == this.up || keyCode == this.right || keyCode == this.left || keyCode == this.down) {
-			if (keyCode == this.up) 		{ this.snake.setDirection(DIRECTION.UP); } 
-			else if (keyCode == this.right) { this.snake.setDirection(DIRECTION.RIGHT); } 
-			else if (keyCode == this.down) 	{ this.snake.setDirection(DIRECTION.DOWN); } 
-			else if (keyCode == this.left) 	{ this.snake.setDirection(DIRECTION.LEFT); }
-			this.isStarted = true;
-		}
+		if (!this.snake.isDead())
+			if (keyCode == this.up || keyCode == this.right || keyCode == this.left || keyCode == this.down) {
+				if (keyCode == this.up) 		{ this.snake.setDirection(DIRECTION.UP); } 
+				else if (keyCode == this.right) { this.snake.setDirection(DIRECTION.RIGHT); } 
+				else if (keyCode == this.down) 	{ this.snake.setDirection(DIRECTION.DOWN); } 
+				else if (keyCode == this.left) 	{ this.snake.setDirection(DIRECTION.LEFT); }
+				this.isStarted = true;
+			}
 		
 		if (this.isStarted && this.firstPress) {
 			this.snake.setReady();
