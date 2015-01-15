@@ -28,7 +28,7 @@ public class PlayerPanel extends JPanel {
 		this.setOpaque(false);
 		
 		for (int i=1; i <= numbOfPlayers; i ++){
-			TextJPanel newPanel = new TextJPanel("Player" + i, "Player"+i+"Name");
+			TextJPanel newPanel = new TextJPanel("Player" + i, "Player"+i);
 			playerArray[i-1] = newPanel;
 			this.add(newPanel);
 			
