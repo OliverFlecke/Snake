@@ -29,10 +29,7 @@ public class GameDialog extends GenericDialog{
 	
 	//Make a JPanel to hold the btns
 	JPanel btnShelf = new JPanel();
-	
-	//Make JLabel
-	JLabel scoreText = new JLabel("", SwingConstants.CENTER);
-	
+		
 	//Make high score tabel
 	HighScoreTable table = new HighScoreTable();
 	
@@ -42,7 +39,6 @@ public class GameDialog extends GenericDialog{
 	public GameDialog(Game game, View view){
 		super();
 		this.game = game;
-		int score = this.game.getSnakes().get(0).getScore();
 		
 		//Set transparency on shelfs
 		btnShelf.setOpaque(false);
@@ -50,7 +46,6 @@ public class GameDialog extends GenericDialog{
 		
 		this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		
-		scoreText.setText("Score:" + score);
 		btnShelf.add(restartBtn);
 		btnShelf.add(closeBtn);
 		
@@ -58,7 +53,7 @@ public class GameDialog extends GenericDialog{
 		//Arranging dialog
 		background.setLayout(new BorderLayout());
 		background.add(table,BorderLayout.NORTH);
-		background.add(scoreText, BorderLayout.CENTER);
+		background.add(new ScoreText(game), BorderLayout.CENTER);
 		background.add(btnShelf, BorderLayout.SOUTH);
 		
 		
