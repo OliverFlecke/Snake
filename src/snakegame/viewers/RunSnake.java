@@ -111,6 +111,14 @@ public class RunSnake extends GenericDialog{
 				closeFrame();
 			}
 		});
+		
+		highScoreBtn.addActionListener(new ActionListener() {
+
+			public void actionPerformed(ActionEvent e) {
+				
+				new StandAloneHighScore();
+			}
+		});
 
 				
 	}
