@@ -155,7 +155,8 @@ public class TextureShelf {
 			}
 		}
 		
-		if (beforeCurPos.x < afterCurPos.x && beforeCurPos.y > afterCurPos.y && curPos.y == beforeCurPos.y && curPos.y > afterCurPos.y && curPos.x > beforeCurPos.x && curPos.x == afterCurPos.x){
+		if ((pointLeftOfCurrent(curPos, beforeCurPos) && pointUnderCurrent(curPos, afterCurPos)
+				|| pointLeftOfCurrent(curPos, afterCurPos) && pointUnderCurrent(curPos, beforeCurPos))){
 			
 			//Load in the image for the head.
 			try {
@@ -164,8 +165,56 @@ public class TextureShelf {
 				imageForBody = null;
 			}
 		}
+
+		if ((pointRightOfCurrent(curPos, afterCurPos) && pointOverCurrent(curPos, beforeCurPos))
+				|| (pointRightOfCurrent(curPos, beforeCurPos) && pointOverCurrent(curPos, afterCurPos))){
+			
+			//Load in the image for the head.
+			try {
+				imageForBody = ImageIO.read(SnakeGrid.class.getResource("images\\shenronBodyBendLeft.png"));
+			} catch (IOException e) {
+				imageForBody = null;
+			}
+		}
 		
+		if ((pointLeftOfCurrent(curPos, beforeCurPos) && pointOverCurrent(curPos, afterCurPos))
+				|| (pointLeftOfCurrent(curPos, afterCurPos) && pointOverCurrent(curPos, beforeCurPos))){
+			
+			//Load in the image for the head.
+			try {
+				imageForBody = ImageIO.read(SnakeGrid.class.getResource("images\\shenronBodyBendUp.png"));
+			} catch (IOException e) {
+				imageForBody = null;
+			}
+		}
+		
+		if (pointRightOfCurrent(curPos, beforeCurPos) && pointUnderCurrent(curPos, afterCurPos)
+				|| pointRightOfCurrent(curPos, afterCurPos) && pointUnderCurrent(curPos, beforeCurPos)){
+			
+			//Load in the image for the head.
+			try {
+				imageForBody = ImageIO.read(SnakeGrid.class.getResource("images\\shenronBodyBendRight.png"));
+			} catch (IOException e) {
+				imageForBody = null;
+			}
+		}
+
 
 		return imageForBody;
 	}
+	
+
+	private static boolean pointLeftOfCurrent(Point current, Point other){
+		return  current.x > other.x && current.y == other.y;
+	}
+	private static boolean pointRightOfCurrent(Point current, Point other){
+		return current.x < other.x && current.y == other.y;
+		}
+	
+	private static boolean pointOverCurrent(Point current, Point other){
+		return current.x == other.x && current.y < other.y;
+		}
+	private static boolean pointUnderCurrent(Point current, Point other){
+		return current.x == other.x && current.y > other.y;
+		}
 }

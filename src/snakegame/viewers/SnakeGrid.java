@@ -98,8 +98,8 @@ public class SnakeGrid extends JPanel {
 		    	if (!(currentPos.equals(snake.getHead())) && !(currentPos.equals(snake.getTail()))) {
 		    		Point pointBeforeCurrent;
 		    		Point pointAfterCurrent;
-		    		pointBeforeCurrent = snake.getPosition().get(snake.getPosition().indexOf(currentPos)-1);
-		    		pointAfterCurrent = snake.getPosition().get(snake.getPosition().indexOf(currentPos)+1);
+		    		pointBeforeCurrent = snake.getPosition().get(snake.getPosition().indexOf(currentPos)+1);
+		    		pointAfterCurrent = snake.getPosition().get(snake.getPosition().indexOf(currentPos)-1);
 		    		g2.drawImage(TextureShelf.snakeBody(pointBeforeCurrent, currentPos, pointAfterCurrent), (int) (currentPos.x * gameWidthScale) + 1, 
 			    			(int) ((this.game.getDimension().height - currentPos.y)*gameHeightScale) + 1, 
 			    			(int) (gameWidthScale) + 1, (int) (gameHeightScale) + 1, this);
