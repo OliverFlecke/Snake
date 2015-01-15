@@ -154,8 +154,8 @@ public class TextureShelf {
 				imageForBody = null;
 			}
 		}
-		
 
+		// Bending logic
 		if ((pointRightOfCurrent(curPos, afterCurPos) && pointOverCurrent(curPos, beforeCurPos))
 				|| (pointRightOfCurrent(curPos, beforeCurPos) && pointOverCurrent(curPos, afterCurPos))){
 			
@@ -177,7 +177,7 @@ public class TextureShelf {
 				imageForBody = null;
 			}
 		}
-		
+
 		if (pointRightOfCurrent(curPos, beforeCurPos) && pointUnderCurrent(curPos, afterCurPos)
 				|| pointRightOfCurrent(curPos, afterCurPos) && pointUnderCurrent(curPos, beforeCurPos)){
 			
@@ -197,8 +197,6 @@ public class TextureShelf {
 				imageForBody = null;
 			}
 		}
-
-
 		return imageForBody;
 	}
 	

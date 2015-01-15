@@ -191,7 +191,7 @@ public class Snake {
 		this.isReady = false;
 		
 		if (this.player != null) {		
-			this.player.reset();
+			this.player = new Player(this.getName(), 0, 0); 
 		}
 	}
 	
