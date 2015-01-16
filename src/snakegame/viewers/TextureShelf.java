@@ -86,7 +86,7 @@ public class TextureShelf {
 	}
 
 	public static BufferedImage snakeTail(Point snakeTail, Point secondLastPoint){
-		
+		checkPoint(snakeTail, secondLastPoint);
 		
 		if (snakeTail.y < secondLastPoint.y){
 			
@@ -132,7 +132,8 @@ public class TextureShelf {
 	}
 	
 	public static BufferedImage snakeBody(Point beforeCurPos, Point curPos, Point afterCurPos){
-		
+		checkPoint(curPos, beforeCurPos);
+		checkPoint(curPos, afterCurPos);
 		
 		
 		if (beforeCurPos.y != afterCurPos.y && beforeCurPos.x == afterCurPos.x){
@@ -213,5 +214,21 @@ public class TextureShelf {
 	}
 	private static boolean pointUnderCurrent(Point current, Point other){
 		return current.x == other.x && current.y > other.y;
+	}
+	
+	private static void checkPoint(Point current, Point other) {
+		if (other.x - current.x > 1) {
+			other.x = -1;
+		} else 
+		if (other.x - current.x < -1) {
+			other.x = current.x + 1;
+		}
+		
+		if (other.y - current.y > 1) {
+			other.y = -1;
+		} else 
+		if (other.y - current.y < -1) {
+			other.y = current.y + 1;
+		}
 	}
 }

@@ -98,8 +98,8 @@ public class SnakeGrid extends JPanel {
 		    	if (!(currentPos.equals(snake.getHead())) && !(currentPos.equals(snake.getTail()))) {
 		    		Point pointBeforeCurrent;
 		    		Point pointAfterCurrent;
-		    		pointBeforeCurrent = snake.getPosition().get(snake.getPosition().indexOf(currentPos)+1);
-		    		pointAfterCurrent = snake.getPosition().get(snake.getPosition().indexOf(currentPos)-1);
+		    		pointBeforeCurrent = new Point(snake.getPosition().get(snake.getPosition().indexOf(currentPos)+1));
+		    		pointAfterCurrent = new Point(snake.getPosition().get(snake.getPosition().indexOf(currentPos)-1));
 		    		g2.drawImage(TextureShelf.snakeBody(pointBeforeCurrent, currentPos, pointAfterCurrent), (int) (currentPos.x * gameWidthScale) + 1, 
 			    			(int) ((this.game.getDimension().height - currentPos.y)*gameHeightScale) + 1, 
 			    			(int) (gameWidthScale) + 1, (int) (gameHeightScale) + 1, this);
@@ -113,7 +113,7 @@ public class SnakeGrid extends JPanel {
 	    	Point secondLastPoint;
 	    	//find secondlast point but get head if secondlast point is head.
 	    	if (snake.getPosition().get(snake.getPosition().size()-1) != head){
-	    		secondLastPoint = snake.getPosition().get(snake.getPosition().size()-2);
+	    		secondLastPoint = new Point(snake.getPosition().get(snake.getPosition().size()-2));
 	    	} else {
 	    		secondLastPoint = head;
 	    	}
