@@ -84,7 +84,7 @@ public class Game implements ActionListener {
 		this.gameOver = false;
 		
 		// Create the different snakes
-		if (numberOfPlayers >= 1) {
+		if (numberOfPlayers >= 1 && numberOfPlayers <= (this.size.height * this.size.width) / 2) {
 			int index = 0;
 			while (numberOfPlayers > index) {
 				this.snakes.add(new Snake(this.createRandomPoint(), this.size));
