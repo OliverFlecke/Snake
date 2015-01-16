@@ -61,6 +61,8 @@ public class PlayerPanel extends JPanel {
 			}
 			
 		}
-		return names;
+		return names
+				
+				;
 	}
 }
