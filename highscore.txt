@@ -2,9 +2,9 @@ Player1Name 1600 1600
 Player1Name 1500 1500
 Player1Name 1500 1500
 Player1Name 1400 1400
+Player1Name 1300 1300
 Player1Name 100 100
 Player2Name 100 100
-Player4Name 100 100
 Player3Name 100 100
+Player4Name 100 100
 highscore10 10 10
-highscore9 9 9
