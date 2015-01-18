@@ -6,16 +6,19 @@ import javax.swing.BorderFactory;
 import javax.swing.JFrame;
 
 /**
- * Dialog to show the highscore 
+ * Dialog to show the highscore in a table 
  */
 public class StandAloneHighScore extends GenericDialog{
 
-	/**
-	 * 
-	 */
 	private static final long serialVersionUID = 5036302346854160772L;
 	
-	public StandAloneHighScore(){
+	/**
+	 * Constructor for the highscore table
+	 */
+	public StandAloneHighScore() {
+		super("High Score");
+		
+		// Create a table with the highscore data
 		HighScoreTable table = new HighScoreTable();
 		background.setLayout(new GridLayout(0,1));
 		background.add(table);

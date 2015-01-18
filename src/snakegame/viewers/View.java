@@ -32,7 +32,7 @@ public class View extends JFrame implements GameListener {
 	 * @param playerNames Names of the players in the game
 	 */
 	public View(int width, int height, ArrayList<String> playerNames) {
-		super();
+		super("Snake");
 		this.game = new Game(width, height, playerNames);
 		
 		// Create the controllers to control players and game with keyboard event and other
@@ -99,8 +99,12 @@ public class View extends JFrame implements GameListener {
 		}
 	}
 
+	/**
+	 * From the GameListener interface. Is called each time any class this is subscribed to fires an endGame event
+	 */
 	@Override
 	public void endGame() {
+		// Stops the music and plays endgame music
 		Sound.MUSIC.stop();
 		Sound.GAMEOVER.play();
 		
@@ -108,10 +112,14 @@ public class View extends JFrame implements GameListener {
 		for (DirectionController controller : this.directionController) {
 			controller.reset();
 		}
+		// Creates a new game dialog
 		new GameDialog(game, this);
 	}
 
-
+	/**
+	 * From the GameListener interface. Is called each time any class this is subscribed to fires an update event.
+	 * This redraws everything on screen
+	 */
 	@Override
 	public void update() {
 		snakeGrid.updateGrid();

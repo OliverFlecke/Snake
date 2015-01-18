@@ -4,16 +4,21 @@ import java.awt.Dimension;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
 
+/**
+ * Class to represent a large button
+ */
 public class BigButton extends JButton{
-	
-	
 	/**
 	 * 
 	 */
 	private static final long serialVersionUID = 823916396398596298L;
 
+	/**
+	 * Constructor. Sets the default text on the button
+	 * @param text to display on the button
+	 */
 	public BigButton(String text){
-		
+		// Set the icon of the button
 		try {
 			this.setIcon(new ImageIcon(getClass().getResource("images/bigBtn.jpg")));
 		} catch (Exception e) {}
@@ -22,7 +27,6 @@ public class BigButton extends JButton{
 		this.setVerticalTextPosition(JButton.CENTER);
 		this.setText(text);
 		this.setPreferredSize(getPreferredSize());
-		//this.setBorder(new LineBorder(new Color(167,160,108)));
 		
 	}
 	

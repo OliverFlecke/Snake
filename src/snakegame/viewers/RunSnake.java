@@ -19,16 +19,16 @@ import javax.swing.SwingConstants;
  */
 public class RunSnake extends GenericDialog{
 	
+	/**
+	 * Start of the snake game. Main method for the entire application
+	 * @param args
+	 */
 	public static void main(String[] args) {
 		//new RunSnake();
 		new RunSnake();
 	}
 	
-	/**
-	 * 
-	 */
 	private static final long serialVersionUID = -647167119165272436L;
-	
 	
 	//Set up the playerPanel for singleplayer
 	PlayerPanel playerPanel = new PlayerPanel(1);
@@ -56,8 +56,11 @@ public class RunSnake extends GenericDialog{
 	TextJPanel widthPanel = new TextJPanel("Width:");
 	TextJPanel heightPanel = new TextJPanel("Height:");
 	
+	/**
+	 * Constructor. Creates the start dialog with settings for the snake game
+	 */
 	public RunSnake(){
-		
+		super("Start Snake");
 		//Setting up combobox
 		comboPlayers.setSelectedIndex(0);
 		
@@ -85,7 +88,7 @@ public class RunSnake extends GenericDialog{
 		snake.setPreferredSize(new Dimension(300,40));
 		dimensionsShelf.setPreferredSize(new Dimension(300,40));
 		
-		//Set up enterkey to trigger Jbutton
+		//Set up enterkey to trigger Jbutton. Used to start the game faster
 		startGameBtn.setMnemonic(KeyEvent.VK_ENTER);
 		
 		//setting up the dimensionsShelf
@@ -102,6 +105,10 @@ public class RunSnake extends GenericDialog{
 
 		this.pack();
 		
+		/**
+		 * Listener for the start game button. Checks the input in the fields, and creates a view
+		 * with the given input
+		 */
 		startGameBtn.addActionListener(new ActionListener() {
 
 			public void actionPerformed(ActionEvent e) {
@@ -130,19 +137,20 @@ public class RunSnake extends GenericDialog{
 			}
 		});
 		
+		/**
+		 * Listener for the highscore. Displays the highscore if pressed
+		 */
 		highScoreBtn.addActionListener(new ActionListener() {
-
 			public void actionPerformed(ActionEvent e) {
-				
 				new StandAloneHighScore();
 			}
 		});
-
 		
+		/**
+		 * Listener for controls button. Shows the controls for the four players in the game
+		 */
 		controlsBtn.addActionListener(new ActionListener() {
-
 			public void actionPerformed(ActionEvent e) {
-				
 				new ControlsDialog();
 			}
 		});		

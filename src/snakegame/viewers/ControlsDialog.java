@@ -18,8 +18,9 @@ public class ControlsDialog extends GenericDialog{
 	/**
 	 * Constructor for the controls dialog
 	 */
-	public ControlsDialog(){
-		//Change background
+	public ControlsDialog() {
+		super("Controls");
+		// Change background
 		try {
 			background.setIcon(new ImageIcon(GenericDialog.class.getResource("images/snakeControlsBG.jpg")));
 		} catch (Exception e) { 
@@ -34,6 +35,10 @@ public class ControlsDialog extends GenericDialog{
 		this.pack();
 	}
 	
+	/**
+	 * Override the preferred size of the dialog
+	 * @return dimension of the dialog
+	 */
 	@Override
 	public Dimension getPreferredSize(){
 		return new Dimension(435, 425);
