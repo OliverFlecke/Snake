@@ -22,7 +22,7 @@ public class ControlsDialog extends GenericDialog{
         background.setIcon(new ImageIcon(GenericDialog.class.getResource("images\\snakeControlsBG.jpg")));
         
         
-        //Set exit to only dispose of the current window
+        //Set close operation to only dispose of the current window
         this.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
         
         //Resize window
