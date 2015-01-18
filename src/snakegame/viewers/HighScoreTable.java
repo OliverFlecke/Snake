@@ -36,7 +36,7 @@ public class HighScoreTable extends JPanel{
 		
 		// Read the data in to a object array 
 		Object[][] data = new Object[10][4]; 
-		for(int i = 0; i < highScorePlayers.size(); i++){
+		for(int i = 0; i < highScorePlayers.size() - 1; i++){
 			data[i][0] = i + 1;
 			data[i][1] = highScorePlayers.get(i).getName();
 			data[i][2] = highScorePlayers.get(i).getScore();
