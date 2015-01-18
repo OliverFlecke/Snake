@@ -116,14 +116,27 @@ public class RunSnake extends GenericDialog{
 		startGameBtn.addActionListener(new ActionListener() {
 
 			public void actionPerformed(ActionEvent e) {
+				boolean inputIsGood = true;
 				// Makes the width and height between 5 and 100
-				int width = Integer.parseInt(widthPanel.getTxt());
+				int width = 0;
+				int height = 0;
+				try {
+					width = Integer.parseInt(widthPanel.getTxt()); 
+				} catch (Exception ex) {
+					//ex.printStackTrace();
+					inputIsGood = false;
+				}
 				if (width > 100) 
 					width = 100;
 				else if (width < 5) 
 					width = 5;
-
-				int height = Integer.parseInt(heightPanel.getTxt());
+				
+				try {
+					height = Integer.parseInt(heightPanel.getTxt());
+				} catch (Exception ex) {
+					//ex.printStackTrace();
+					inputIsGood = false;
+				}
 				if (height > 100)
 					height = 100;
 				else if (height < 5) 
@@ -132,12 +145,18 @@ public class RunSnake extends GenericDialog{
 				// Insures the names don't have whitespace
 				ArrayList<String> playerNames = new ArrayList<String>();
 				for (String name : playerPanel.names()) {
+					if (name.isEmpty()) {
+						inputIsGood = false;
+						break;
+					}
 					playerNames.add(name.replaceAll("\\s+", ""));
 				}
 
-				// Create the view with the game
-				new View(width, height,	playerNames);
-				closeFrame();
+				if (inputIsGood) {
+					// Create the view with the game
+					new View(width, height,	playerNames);
+					closeFrame();
+				}
 			}
 		});
 
