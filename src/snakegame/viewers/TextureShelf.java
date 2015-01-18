@@ -15,37 +15,13 @@ public class TextureShelf {
 	private static BufferedImage imageForHead;
 	private static BufferedImage imageForTail;
 	private static BufferedImage imageForBody;
-	
-	
-	
-	
 
-	
-
-	
-	
-	public static BufferedImage snakeHead(DIRECTION direction, int id){
-		
-		
+	public static BufferedImage snakeHead(DIRECTION direction, int id){		
 		//Direction check
 		if (direction == null){
 			direction = DIRECTION.UP;
 		}
 		
-		//Load in the image for the head.
-//		try {
-//			switch (id) {
-//				case 1:
-//					imageForHead = ImageIO.read(SnakeGrid.class.getResource("images\\player2HeadUp.png"));
-//				case 0:
-//				default:
-//					imageForHead = ImageIO.read(SnakeGrid.class.getResource("images\\player1HeadUp.png"));
-//					break;
-//			}
-//		} catch (IOException e) {
-//			 imageForHead = null;
-//		}
-//		
 		switch(direction) {
 		
 		case UP:

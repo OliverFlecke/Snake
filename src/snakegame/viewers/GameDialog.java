@@ -29,12 +29,8 @@ public class GameDialog extends GenericDialog{
 	//Make high score tabel
 	HighScoreTable table = new HighScoreTable();
 	
-		
-	private Game game;
-	
 	public GameDialog(Game game, View view){
 		super();
-		this.game = game;
 		
 		//Set transparency on shelfs
 		btnShelf.setOpaque(false);

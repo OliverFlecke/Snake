@@ -17,6 +17,11 @@ import javax.swing.SwingConstants;
 
 public class RunSnake extends GenericDialog{
 	
+	public static void main(String[] args) {
+		//new RunSnake();
+		new RunSnake();
+	}
+	
 	/**
 	 * 
 	 */

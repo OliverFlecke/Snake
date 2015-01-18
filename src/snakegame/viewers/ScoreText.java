@@ -14,10 +14,8 @@ public class ScoreText extends JPanel{
 	 * 
 	 */
 	private static final long serialVersionUID = 926545560343290713L;
-	private Game game;
 	
 	public ScoreText(Game game){
-		this.game = game;
 		this.setOpaque(false);
 		if(game.getSnakes().size()<=2){
 			this.setLayout(new GridLayout(2,1));
