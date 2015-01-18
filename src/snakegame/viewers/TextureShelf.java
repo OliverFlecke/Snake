@@ -2,17 +2,21 @@ package snakegame.viewers;
 
 import java.awt.image.BufferedImage;
 import java.io.IOException;
-import java.util.ArrayList;
+import java.util.HashMap;
+
 import javax.imageio.ImageIO;
+
 import java.awt.Point;
+
 import snakegame.DIRECTION;
+import snakegame.models.Food;
 
 /**
  * Responsible for reading all images for the snakes' bodies, head and tail into the program
  */
 public class TextureShelf {
 	// Arraylist for the food images
-	private static ArrayList<BufferedImage> foodImages = new ArrayList<BufferedImage>();
+	private static HashMap<Food, BufferedImage> foodImages = new HashMap<Food, BufferedImage>();
 	
 	/**
 	 * Getting the head image based on the passed direction and the player's id
@@ -393,14 +397,61 @@ public class TextureShelf {
 	}
 	
 	// Get the image of the food obejct
-	public static BufferedImage getFoodImage(int index) {
-		BufferedImage foodImage = null;
+	public static BufferedImage getFoodImage(Food food, int numberOfFood) {
+		if (foodImages.isEmpty()) {
+			while (numberOfFood-- > 0) {
+				getRandomFoodImage(food);
+			}
+			return foodImages.get(food);
+		} else {
+			if (foodImages.containsKey(food))
+				return foodImages.get(food);
+			else 
+				return getRandomFoodImage(food);
+		}
+	}
+
+	private static BufferedImage getRandomFoodImage(Food food) {
+		// Find a random image
 		try {
-			foodImage = ImageIO.read(TextureShelf.class.getResource("images/foodText.png"));
+			int number = (int) (Math.random() * 7) + 1;
+			switch (number) {
+				case 1:
+					foodImages.put(food, ImageIO.read(TextureShelf.class.getResource("images/food/dragonball1.png")));
+					break;
+				case 2:
+					foodImages.put(food, ImageIO.read(TextureShelf.class.getResource("images/food/dragonball2.png")));
+					break;
+				case 3:
+					foodImages.put(food, ImageIO.read(TextureShelf.class.getResource("images/food/dragonball3.png")));
+					break;
+				case 4: 
+					foodImages.put(food, ImageIO.read(TextureShelf.class.getResource("images/food/dragonball4.png")));
+					break;
+				case 5:
+					foodImages.put(food, ImageIO.read(TextureShelf.class.getResource("images/food/dragonball5.png")));
+					break;
+				case 6: 
+					foodImages.put(food, ImageIO.read(TextureShelf.class.getResource("images/food/dragonball6.png")));
+					break;
+				case 7: 
+					foodImages.put(food, ImageIO.read(TextureShelf.class.getResource("images/food/dragonball7.png")));
+					break;
+				default:
+					break;
+			}
 		} catch (IOException e) {
 			
 		}
-		return foodImage;
+		return foodImages.get(food);
+	}
+	
+	/**
+	 * Remove the passed food object from the images hashmap
+	 * @param food object to remove
+	 */
+	public static void removeFood(Food food) {
+		foodImages.remove(food);
 	}
 	
 	/**

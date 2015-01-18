@@ -40,6 +40,7 @@ public class SnakeGrid extends JPanel {
 	
 	// The game object
 	private Game game;
+	private ArrayList<Food> lastFoodArray;
 
 	/**
 	 * Constructor for the snakegrid
@@ -64,6 +65,7 @@ public class SnakeGrid extends JPanel {
 		this.setLayout(new GridLayout(getPreferredSize().height, getPreferredSize().width));
 		this.setBorder(new LineBorder(new Color(167,160,108), 5));
 		this.game = game;
+		this.lastFoodArray = new ArrayList<Food>();
 		updateGrid();
 
 	}
@@ -146,19 +148,33 @@ public class SnakeGrid extends JPanel {
 		}
 	}
 	
+	/**
+	 * Draw the food objects on the game grid
+	 * @param g2
+	 */
 	public void placeFood(Graphics2D g2) {
 		g2.setColor(Color.cyan);
-		int index = 0;
 	    for (Food currentFood : game.getFood()) {
 	    	Point currentPos = currentFood.getPosition();
-	    	g2.drawImage(TextureShelf.getFoodImage(index), (int) (currentPos.x * gameWidthScale), 
+	    	g2.drawImage(TextureShelf.getFoodImage(currentFood, game.getSnakes().size()), (int) (currentPos.x * gameWidthScale), 
 	    			(int) ((this.game.getDimension().height - currentPos.y) * gameHeightScale), 
 	    			(int) (gameWidthScale)+10, (int) (gameHeightScale)+10, this);
-	    	index++;
         }		
+	    
+	    // Insures the images gets remove again
+	    for (Food currentFood : this.lastFoodArray) {
+	    	if (!(game.getFood().contains(currentFood)))
+	    		TextureShelf.removeFood(currentFood);
+	    }
+	    this.lastFoodArray.clear();
+	    for (Food currentFood : game.getFood()) {
+	    	this.lastFoodArray.add(currentFood);
+	    }
 	}
 
-	//@Override
+	/**
+	 * Update the scales of the grid
+	 */
 	public void updateGrid() {
 		gameWidthScale = this.getSize().width / (this.game.getDimension().width + 1.0);
 		gameHeightScale = this.getSize().height / (this.game.getDimension().height + 1.0);
