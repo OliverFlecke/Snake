@@ -17,8 +17,9 @@ public class SmallButton extends JButton{
 
 	public SmallButton(String text, PlayerPanel parentwindow){
 		
-		
-		this.setIcon(new ImageIcon(SmallButton.class.getResource("images\\smallBtn.jpg")));
+		try {
+			this.setIcon(new ImageIcon(getClass().getResource("images/smallBtn.jpg")));
+		} catch (Exception e) {}
 		this.setHorizontalTextPosition(JButton.CENTER);
 		this.setVerticalTextPosition(JButton.CENTER);
 		this.setText(text);
@@ -35,8 +36,6 @@ public class SmallButton extends JButton{
 		});
 		
 	}
-	
-	
 	
 	public void setTxt(String text) {
 		this.setText(text);

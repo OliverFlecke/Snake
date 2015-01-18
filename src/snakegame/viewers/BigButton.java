@@ -14,8 +14,10 @@ public class BigButton extends JButton{
 
 	public BigButton(String text){
 		
+		try {
+			this.setIcon(new ImageIcon(getClass().getResource("images/bigBtn.jpg")));
+		} catch (Exception e) {}
 		
-		this.setIcon(new ImageIcon(SmallButton.class.getResource("images\\bigBtn.jpg")));
 		this.setHorizontalTextPosition(JButton.CENTER);
 		this.setVerticalTextPosition(JButton.CENTER);
 		this.setText(text);
@@ -23,8 +25,6 @@ public class BigButton extends JButton{
 		//this.setBorder(new LineBorder(new Color(167,160,108)));
 		
 	}
-	
-	
 	
 	public void setTxt(String text) {
 		this.setText(text);
@@ -37,10 +37,5 @@ public class BigButton extends JButton{
 	@Override
 	public Dimension getPreferredSize(){
 		return new Dimension(100,30);
-
-		
 	}
-	
-		
-	
 }

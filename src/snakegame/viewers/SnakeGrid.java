@@ -44,14 +44,14 @@ public class SnakeGrid extends JPanel {
 		
 		//Load in the background image.
 		try {
-			background = ImageIO.read(SnakeGrid.class.getResource("images\\snakeGrassText.jpg"));
+			background = ImageIO.read(SnakeGrid.class.getResource("images/snakeGrassText.jpg"));
 		} catch (IOException e) {
     		this.setBackground(Color.GRAY);
 		}
 		
 		//Load in the background image.
 		try {
-			food = ImageIO.read(SnakeGrid.class.getResource("images\\foodText.png"));
+			food = ImageIO.read(SnakeGrid.class.getResource("images/foodText.png"));
 		} catch (IOException e) {
     		this.setBackground(Color.GRAY);
 		}

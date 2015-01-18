@@ -30,11 +30,11 @@ public class TextureShelf {
 			try {
 				switch (id) {
 					case 1:
-						imageForHead = ImageIO.read(SnakeGrid.class.getResource("images\\player2HeadUp.png"));
+						imageForHead = ImageIO.read(SnakeGrid.class.getResource("images/player2HeadUp.png"));
 						break;
 					case 0:
 					default:
-						imageForHead = ImageIO.read(SnakeGrid.class.getResource("images\\player1HeadUp.png"));
+						imageForHead = ImageIO.read(SnakeGrid.class.getResource("images/player1HeadUp.png"));
 						break;
 				}
 			} catch (IOException e) {
@@ -48,11 +48,11 @@ public class TextureShelf {
 			try {
 				switch (id) {
 					case 1:
-						imageForHead = ImageIO.read(SnakeGrid.class.getResource("images\\player2HeadDown.png"));
+						imageForHead = ImageIO.read(SnakeGrid.class.getResource("images/player2HeadDown.png"));
 						break;
 					case 0:
 					default:
-						imageForHead = ImageIO.read(SnakeGrid.class.getResource("images\\player1HeadDown.png"));
+						imageForHead = ImageIO.read(SnakeGrid.class.getResource("images/player1HeadDown.png"));
 						break;
 				}
 			} catch (IOException e) {
@@ -66,11 +66,11 @@ public class TextureShelf {
 			try {
 				switch (id) {
 					case 1:
-						imageForHead = ImageIO.read(SnakeGrid.class.getResource("images\\player2HeadLeft.png"));
+						imageForHead = ImageIO.read(SnakeGrid.class.getResource("images/player2HeadLeft.png"));
 						break;
 					case 0:
 					default:
-						imageForHead = ImageIO.read(SnakeGrid.class.getResource("images\\player1HeadLeft.png"));
+						imageForHead = ImageIO.read(SnakeGrid.class.getResource("images/player1HeadLeft.png"));
 						break;
 				}
 			} catch (IOException e) {
@@ -84,11 +84,11 @@ public class TextureShelf {
 			try {
 				switch (id) {
 					case 1:
-						imageForHead = ImageIO.read(SnakeGrid.class.getResource("images\\player2HeadRight.png"));
+						imageForHead = ImageIO.read(SnakeGrid.class.getResource("images/player2HeadRight.png"));
 						break;
 					case 0:
 					default:
-						imageForHead = ImageIO.read(SnakeGrid.class.getResource("images\\player1HeadRight.png"));
+						imageForHead = ImageIO.read(SnakeGrid.class.getResource("images/player1HeadRight.png"));
 						break;
 				}
 			} catch (IOException e) {
@@ -109,11 +109,11 @@ public class TextureShelf {
 			try {
 				switch (id) {
 					case 1:
-						imageForTail = ImageIO.read(SnakeGrid.class.getResource("images\\player2TailUp.png"));
+						imageForTail = ImageIO.read(SnakeGrid.class.getResource("images/player2TailUp.png"));
 						break;
 					case 0:
 					default:
-						imageForTail = ImageIO.read(SnakeGrid.class.getResource("images\\player1TailUp.png"));
+						imageForTail = ImageIO.read(SnakeGrid.class.getResource("images/player1TailUp.png"));
 						break;
 				
 				}
@@ -128,11 +128,11 @@ public class TextureShelf {
 			try {
 				switch (id) {
 					case 1:
-						imageForTail = ImageIO.read(SnakeGrid.class.getResource("images\\player2TailDown.png"));
+						imageForTail = ImageIO.read(SnakeGrid.class.getResource("images/player2TailDown.png"));
 						break;
 					case 0:
 					default:
-						imageForTail = ImageIO.read(SnakeGrid.class.getResource("images\\player1TailDown.png"));
+						imageForTail = ImageIO.read(SnakeGrid.class.getResource("images/player1TailDown.png"));
 						break;
 				}	
 			} catch (IOException e) {
@@ -146,11 +146,11 @@ public class TextureShelf {
 			try {
 				switch (id) {
 				case 1:
-					imageForTail = ImageIO.read(SnakeGrid.class.getResource("images\\player2TailLeft.png"));
+					imageForTail = ImageIO.read(SnakeGrid.class.getResource("images/player2TailLeft.png"));
 					break;
 				case 0:
 				default:
-					imageForTail = ImageIO.read(SnakeGrid.class.getResource("images\\player1TailLeft.png"));
+					imageForTail = ImageIO.read(SnakeGrid.class.getResource("images/player1TailLeft.png"));
 					break;
 				}
 			} catch (IOException e) {
@@ -164,11 +164,11 @@ public class TextureShelf {
 			try {
 				switch (id) {
 				case 1:
-					imageForTail = ImageIO.read(SnakeGrid.class.getResource("images\\player2TailRight.png"));
+					imageForTail = ImageIO.read(SnakeGrid.class.getResource("images/player2TailRight.png"));
 					break;				
 				case 0:
 				default:
-					imageForTail = ImageIO.read(SnakeGrid.class.getResource("images\\player1TailRight.png"));
+					imageForTail = ImageIO.read(SnakeGrid.class.getResource("images/player1TailRight.png"));
 					break;
 				}
 			} catch (IOException e) {
@@ -190,11 +190,11 @@ public class TextureShelf {
 			try {
 				switch (id) {
 				case 1: 
-					imageForBody = ImageIO.read(SnakeGrid.class.getResource("images\\player2BodyVertical.png"));
+					imageForBody = ImageIO.read(SnakeGrid.class.getResource("images/player2BodyVertical.png"));
 					break;
 				case 0:
 				default:
-					imageForBody = ImageIO.read(SnakeGrid.class.getResource("images\\player1BodyVertical.png"));
+					imageForBody = ImageIO.read(SnakeGrid.class.getResource("images/player1BodyVertical.png"));
 					break;
 				}
 			} catch (IOException e) {
@@ -208,11 +208,11 @@ public class TextureShelf {
 			try {
 				switch (id) {
 				case 1: 
-					imageForBody = ImageIO.read(SnakeGrid.class.getResource("images\\player2BodyHorizontal.png"));
+					imageForBody = ImageIO.read(SnakeGrid.class.getResource("images/player2BodyHorizontal.png"));
 					break;
 				case 0:
 				default:				
-					imageForBody = ImageIO.read(SnakeGrid.class.getResource("images\\player1BodyHorizontal.png"));
+					imageForBody = ImageIO.read(SnakeGrid.class.getResource("images/player1BodyHorizontal.png"));
 					break;
 				}
 			} catch (IOException e) {
@@ -228,11 +228,11 @@ public class TextureShelf {
 			try {
 				switch (id) {
 					case 1:
-						imageForBody = ImageIO.read(SnakeGrid.class.getResource("images\\player2BodyBendLeft.png"));
+						imageForBody = ImageIO.read(SnakeGrid.class.getResource("images/player2BodyBendLeft.png"));
 						break;
 					case 0:
 					default:
-						imageForBody = ImageIO.read(SnakeGrid.class.getResource("images\\player1BodyBendLeft.png"));
+						imageForBody = ImageIO.read(SnakeGrid.class.getResource("images/player1BodyBendLeft.png"));
 						break;
 				}
 			} catch (IOException e) {
@@ -247,11 +247,11 @@ public class TextureShelf {
 			try {
 				switch (id) {
 					case 1:
-						imageForBody = ImageIO.read(SnakeGrid.class.getResource("images\\player2BodyBendUp.png"));
+						imageForBody = ImageIO.read(SnakeGrid.class.getResource("images/player2BodyBendUp.png"));
 						break;
 					case 0:
 					default:
-						imageForBody = ImageIO.read(SnakeGrid.class.getResource("images\\player1BodyBendUp.png"));
+						imageForBody = ImageIO.read(SnakeGrid.class.getResource("images/player1BodyBendUp.png"));
 						break;
 				}
 			} catch (IOException e) {
@@ -266,11 +266,11 @@ public class TextureShelf {
 			try {
 				switch (id) {
 					case 1:
-						imageForBody = ImageIO.read(SnakeGrid.class.getResource("images\\player2BodyBendRight.png"));
+						imageForBody = ImageIO.read(SnakeGrid.class.getResource("images/player2BodyBendRight.png"));
 						break;
 					case 0:
 					default:
-						imageForBody = ImageIO.read(SnakeGrid.class.getResource("images\\player1BodyBendRight.png"));
+						imageForBody = ImageIO.read(SnakeGrid.class.getResource("images/player1BodyBendRight.png"));
 						break;
 				}
 			} catch (IOException e) {
@@ -283,11 +283,11 @@ public class TextureShelf {
 			try {
 				switch (id) {
 					case 1:
-						imageForBody = ImageIO.read(SnakeGrid.class.getResource("images\\player2BodyBendDown.png"));
+						imageForBody = ImageIO.read(SnakeGrid.class.getResource("images/player2BodyBendDown.png"));
 						break;
 					case 0:
 					default:
-						imageForBody = ImageIO.read(SnakeGrid.class.getResource("images\\player1BodyBendDown.png"));
+						imageForBody = ImageIO.read(SnakeGrid.class.getResource("images/player1BodyBendDown.png"));
 						break;
 				}
 			} catch (IOException e) {

@@ -14,7 +14,9 @@ import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.SwingConstants;
 
-
+/**
+ * Startup for the snake game, which includes settings for the game
+ */
 public class RunSnake extends GenericDialog{
 	
 	public static void main(String[] args) {
@@ -39,8 +41,6 @@ public class RunSnake extends GenericDialog{
 	JButton controlsBtn = new BigButton("Controls");
 	JButton highScoreBtn = new BigButton("HighScore");
 	
-
-	
 	//creating a combobox
 	String[] numbOfPlayers = {"1","2","3","4"};
 	JComboBox<String> comboPlayers = new JComboBox<String>(numbOfPlayers);
@@ -48,7 +48,6 @@ public class RunSnake extends GenericDialog{
 	//Make JLabel
 	JLabel snake = new JLabel("", SwingConstants.CENTER);
 
-	
 	//Make a JPanel to hold the btns and the labels
 	JPanel btnShelf = new JPanel();
 	JPanel dimensionsShelf = new JPanel();
@@ -66,7 +65,6 @@ public class RunSnake extends GenericDialog{
 		widthPanel.setTxt(Integer.toString(30));
 		heightPanel.setTxt(Integer.toString(30));
 
-		
 		//Set size
 		startGameBtn.setPreferredSize(new Dimension(100,30));
 		controlsBtn.setPreferredSize(new Dimension(100,30));
@@ -87,7 +85,6 @@ public class RunSnake extends GenericDialog{
 		snake.setPreferredSize(new Dimension(300,40));
 		dimensionsShelf.setPreferredSize(new Dimension(300,40));
 		
-		
 		//Set up enterkey to trigger Jbutton
 		startGameBtn.setMnemonic(KeyEvent.VK_ENTER);
 		
@@ -103,16 +100,32 @@ public class RunSnake extends GenericDialog{
 		background.add(dimensionsShelf);
 		background.add(btnShelf);
 
-
 		this.pack();
-		
 		
 		startGameBtn.addActionListener(new ActionListener() {
 
 			public void actionPerformed(ActionEvent e) {
+				// Makes the width and height between 5 and 100
+				int width = Integer.parseInt(widthPanel.getTxt());
+				if (width > 100) 
+					width = 100;
+				else if (width < 5) 
+					width = 5;
 				
-				new View(Integer.parseInt(widthPanel.getTxt()), Integer.parseInt(heightPanel.getTxt()), playerPanel.names());
+				int height = Integer.parseInt(heightPanel.getTxt());
+				if (height > 100)
+					height = 100;
+				else if (height < 5) 
+					height = 5;
 				
+				// Insures the names don't have whitespace
+				ArrayList<String> playerNames = new ArrayList<String>();
+				for (String name : playerPanel.names()) {
+					playerNames.add(name.replaceAll("\\s+", ""));
+				}
+				
+				// Create the view with the game
+				new View(width, height,	playerNames);
 				closeFrame();
 			}
 		});
@@ -132,8 +145,6 @@ public class RunSnake extends GenericDialog{
 				
 				new ControlsDialog();
 			}
-		});
-				
-	}
-		
+		});		
+	}		
 }

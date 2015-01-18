@@ -7,8 +7,8 @@ import javax.swing.BorderFactory;
 import javax.swing.JPanel;
 import javax.swing.JTable;
 
-import snakegame.models.Player;
 import snakegame.models.HighScore;
+import snakegame.models.Player;
 
 public class HighScoreTable extends JPanel{
 	/**
@@ -27,13 +27,11 @@ public class HighScoreTable extends JPanel{
 		
 		
 		Object[][] data = new Object[10][4]; 
-		int j = 1;
-		for(int i=0; i<10; i++){
-			data[i][0]=j;
-			data[i][1]=highScorePlayers.get(i).getName();
-			data[i][2]=highScorePlayers.get(i).getScore();
-			data[i][3]=highScorePlayers.get(i).getTime();
-			j++;
+		for(int i = 0; i < highScorePlayers.size(); i++){
+			data[i][0] = i + 1;
+			data[i][1] = highScorePlayers.get(i).getName();
+			data[i][2] = highScorePlayers.get(i).getScore();
+			data[i][3] = highScorePlayers.get(i).getTime();
 		}
 		
 		JTable table = new JTable(data, columnNames);

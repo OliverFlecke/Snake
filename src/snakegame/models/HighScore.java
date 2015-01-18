@@ -1,7 +1,6 @@
 package snakegame.models;
 
 import java.io.File;
-import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Collections;
@@ -10,7 +9,7 @@ import java.util.Scanner;
 
 public final class HighScore {
 
-	private static File file = new File ("highscore.txt");
+	private static File file = new File("highscore.txt");
 	private static ArrayList<Player> highScorePlayers = readHighScoreFromFile();
 	private static ArrayList<Player> newHighScorePlayers = new ArrayList<Player>();
 
@@ -27,7 +26,11 @@ public final class HighScore {
 	public static void submitScore(ArrayList<Player> players){
 		highScorePlayers.addAll(players);
 		Collections.sort(highScorePlayers);
-		highScorePlayers.subList(10,highScorePlayers.size()).clear();
+		try {
+			highScorePlayers.subList(10,highScorePlayers.size()).clear();
+		} catch (Exception e) { 
+			//System.out.println(e.getMessage()); 
+		}
 		writeHighScoreToFile(highScorePlayers);
 		refreshNewHighScorePlayers(players);
 	}
@@ -55,15 +58,15 @@ public final class HighScore {
 	private static void writeHighScoreToFile(ArrayList<Player> highScoreToWrite) {
 		try {
 			Formatter fm = new Formatter(file);
-			for(int i=0; i<10; i++){
+			for(int i = 0; i < highScoreToWrite.size(); i++){
 				fm.format(highScoreToWrite.get(i).getName() + " ");
 				fm.format(highScoreToWrite.get(i).getScore() + " ");
-				fm.format(Integer.toString(highScoreToWrite.get(i).getScore()));
+				fm.format(Integer.toString(highScoreToWrite.get(i).getTime()));
 				fm.format("%n");
 			}
 			fm.close();	
 		} catch (IOException e) {
-			e.printStackTrace();
+			//e.printStackTrace();
 		}
 	}
 
@@ -72,24 +75,23 @@ public final class HighScore {
 	 * players using these parameters
 	 * @return ArrayList of high score players
 	 */
-	private static ArrayList<Player> readHighScoreFromFile(){
-
+	private static ArrayList<Player> readHighScoreFromFile(){		
 		ArrayList<Player> readResult = new ArrayList<Player>();
-
 		try {  
 			Scanner s = new Scanner(file);
-			for(int i=0; i<10; i++){
+			int i = 0; 
+			while (s.hasNext() && i++ < 10) {
 				String name = s.next();
 				int score = s.nextInt();
 				int time = s.nextInt();
-				if(s.hasNextLine()){
-					s.nextLine();}
-				readResult.add(new Player(name,score,time));
+				if(s.hasNextLine())
+					s.nextLine();
+				readResult.add(new Player(name, score, time));
 			}
 			s.close();
 		} 
-		catch(FileNotFoundException e) {
-			e.printStackTrace();   
+		catch(Exception e) {
+			//e.printStackTrace();   
 		}
 		return readResult;
 	}

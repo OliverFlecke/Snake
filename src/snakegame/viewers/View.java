@@ -35,7 +35,9 @@ public class View extends JFrame implements GameListener {
 		this.scorePanelHolder = new JPanel();	
 		
 		this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		this.setIconImage(new ImageIcon("icon.png").getImage());
+		try {
+			this.setIconImage(new ImageIcon(getClass().getResource("images/icon.png")).getImage());
+		} catch (Exception e) {	}
 		this.getContentPane().add(snakeGrid, BorderLayout.CENTER);
 		
 		scorePanelHolder.setLayout(new GridLayout(0,1));

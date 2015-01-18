@@ -5,6 +5,9 @@ import java.awt.event.KeyListener;
 
 import snakegame.models.Game;
 
+/**
+ * Controller for the game class.
+ */
 public class GameKeyboardController implements KeyListener {
 	// Field for the game
 	private Game game;
@@ -26,14 +29,9 @@ public class GameKeyboardController implements KeyListener {
 
 	@Override
 	public void keyReleased(KeyEvent e) {
-		// TODO Auto-generated method stub
-		
 	}
 
 	@Override
-	public void keyTyped(KeyEvent e) {
-		// TODO Auto-generated method stub
-		
+	public void keyTyped(KeyEvent e) {		
 	}
-
 }

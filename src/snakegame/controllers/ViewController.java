@@ -3,6 +3,9 @@ package snakegame.controllers;
 import java.awt.event.ComponentEvent;
 import java.awt.event.ComponentListener;
 
+/**
+ * ViewController. Makes overall responses to view events. 
+ */
 public class ViewController implements ComponentListener {
 	
 	/**

@@ -5,6 +5,9 @@ import java.awt.GridLayout;
 import javax.swing.BorderFactory;
 import javax.swing.JFrame;
 
+/**
+ * Dialog to show the highscore 
+ */
 public class StandAloneHighScore extends GenericDialog{
 
 	/**
@@ -21,17 +24,8 @@ public class StandAloneHighScore extends GenericDialog{
 		this.pack();
 	}
 	
-	
-	
 	@Override
 	public Dimension getPreferredSize(){
-		return new Dimension(350, 239);
-
-		
+		return new Dimension(350, 239);		
 	}
-	
-
-		
-	
-
 }
