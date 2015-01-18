@@ -120,6 +120,14 @@ public class RunSnake extends GenericDialog{
 			}
 		});
 
+		
+		controlsBtn.addActionListener(new ActionListener() {
+
+			public void actionPerformed(ActionEvent e) {
+				
+				new ControlsDialog();
+			}
+		});
 				
 	}
 		

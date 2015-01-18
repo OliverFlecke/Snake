@@ -16,6 +16,7 @@ public class GenericDialog extends JFrame{
 	 * 
 	 */
 	private static final long serialVersionUID = 7708768979344316720L;
+	
 	protected JLabel background;
 	
 
@@ -51,7 +52,7 @@ public class GenericDialog extends JFrame{
 	
 	@Override
 	public Dimension getPreferredSize(){
-		return new Dimension(450, 435);
+		return new Dimension(450, 429);
 
 		
 	}
