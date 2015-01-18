@@ -2,12 +2,13 @@ package snakegame.viewers;
 
 import java.awt.Font;
 import java.awt.GridLayout;
-
 import javax.swing.*;
-
 import snakegame.models.Game;
 import snakegame.models.Snake;
 
+/**
+ * Class to display the score text
+ */
 public class ScoreText extends JPanel{
 	
 	/**
@@ -15,6 +16,10 @@ public class ScoreText extends JPanel{
 	 */
 	private static final long serialVersionUID = 926545560343290713L;
 	
+	/**
+	 * Constructor to create the score text panel
+	 * @param game
+	 */
 	public ScoreText(Game game){
 		this.setOpaque(false);
 		if(game.getSnakes().size()<=2){
