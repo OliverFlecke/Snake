@@ -32,7 +32,9 @@ public final class HighScore {
 	public static void submitScore(ArrayList<Player> players){
 		highScorePlayers.addAll(players);
 		Collections.sort(highScorePlayers);
-		highScorePlayers.subList(highScorePlayers.size(), highScorePlayers.size()).clear();
+		int size = (highScorePlayers.size() < 10) ? highScorePlayers.size() : 10;
+		highScorePlayers.subList(size, highScorePlayers.size()).clear();
+		
 		writeHighScoreToFile(highScorePlayers);
 		refreshNewHighScorePlayers(players);
 	}
