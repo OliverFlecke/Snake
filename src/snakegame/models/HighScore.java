@@ -7,30 +7,32 @@ import java.util.Collections;
 import java.util.Formatter;
 import java.util.Scanner;
 
+/**
+ * Class for storing scores and data in a high score text file
+ */
 public final class HighScore {
 
+	// File to store the data in
 	private static File file = new File("highscore.txt");
 	private static ArrayList<Player> highScorePlayers = readHighScoreFromFile();
 	private static ArrayList<Player> newHighScorePlayers = new ArrayList<Player>();
 
-
+	/**
+	 * Private constructor, so no object can be created. 
+	 * Call methods need is static. Insures only one item is writing to the file at one time
+	 */
 	private HighScore() {
 	}
 
 	/**
 	 * Accepts ArrayList of players, and writes new top ten to high score
-	 * @param players
-	 * @return 
+	 * @param players to be saved if has highest score
 	 * @return ArrayList of Players who have set new high score
 	 */
 	public static void submitScore(ArrayList<Player> players){
 		highScorePlayers.addAll(players);
 		Collections.sort(highScorePlayers);
-		try {
-			highScorePlayers.subList(10,highScorePlayers.size()).clear();
-		} catch (Exception e) { 
-			//System.out.println(e.getMessage()); 
-		}
+		highScorePlayers.subList(players.size(),highScorePlayers.size()).clear();
 		writeHighScoreToFile(highScorePlayers);
 		refreshNewHighScorePlayers(players);
 	}
@@ -38,9 +40,7 @@ public final class HighScore {
 	/**
 	 * Accepts ArrayList of Players objects and returns an ArrayList 
 	 * of the Player objects that are on the current high score
-	 * @param players
-	 * @return 
-	 * @return players
+	 * @param players new players to be saved
 	 */
 	private static void refreshNewHighScorePlayers(ArrayList<Player> players) {
 		newHighScorePlayers.clear();		
@@ -53,7 +53,7 @@ public final class HighScore {
 
 	/**
 	 * writes name, score and time to file from an 
-	 * ArrayList of 10 players
+	 * ArrayList of up to 10 players
 	 */
 	private static void writeHighScoreToFile(ArrayList<Player> highScoreToWrite) {
 		try {
@@ -66,7 +66,7 @@ public final class HighScore {
 			}
 			fm.close();	
 		} catch (IOException e) {
-			//e.printStackTrace();
+			//e.printStackTrace();		// DEBUG
 		}
 	}
 
@@ -76,7 +76,7 @@ public final class HighScore {
 	 * @return ArrayList of high score players
 	 */
 	private static ArrayList<Player> readHighScoreFromFile(){		
-		ArrayList<Player> readResult = new ArrayList<Player>();
+		ArrayList<Player> readResult = new ArrayList<Player>(); 	// Array of players to read data into
 		try {  
 			Scanner s = new Scanner(file);
 			int i = 0; 
@@ -96,11 +96,19 @@ public final class HighScore {
 		return readResult;
 	}
 
+	/**
+	 * Getter for the list of players in the highscore array
+	 * @return The highest scoring players from the file
+	 */
 	public static ArrayList<Player> getHighScore(){
 		return highScorePlayers;		
 	}
 	
-	public static ArrayList<Player>getNewHighScorePlayers(){
+	/**
+	 * Get the newest highscore array
+	 * @return Array of new highscore players
+	 */
+	public static ArrayList<Player> getNewHighScorePlayers(){
 		return newHighScorePlayers;
 	}
 }

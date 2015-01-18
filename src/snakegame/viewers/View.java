@@ -13,22 +13,28 @@ import java.awt.Component;
 import java.awt.GridLayout;
 import java.util.ArrayList;
 
+/**
+ * The view holds the game, and is the master of all the GUI elements. 
+ */
 public class View extends JFrame implements GameListener {
 
 	private static final long serialVersionUID = -4697208908255317826L;
 
-	private SnakeGrid snakeGrid;
+	private SnakeGrid snakeGrid;					
 	private Game game;
 	private JPanel scorePanelHolder;
-	private ArrayList<DirectionController> directionController = new ArrayList<DirectionController>();
-
-	//private ScorePanel score;
+	private ArrayList<DirectionController> directionController;
 	
-
-
+	/**
+	 * Constructor for the view.
+	 * @param width of the game grid
+	 * @param height of the game grid
+	 * @param playerNames Names of the players in the game
+	 */
 	public View(int width, int height, ArrayList<String> playerNames) {
 		super();
 		this.game = new Game(width, height, playerNames);
+		
 		// Create the controllers to control players and game with keyboard event and other
 		this.createControllers(playerNames.size());
 		this.snakeGrid = new SnakeGrid(game);
@@ -69,10 +75,12 @@ public class View extends JFrame implements GameListener {
 	 * @param numOfPlayers Number of players to create controls for
 	 */
 	public void createControllers(int numOfPlayers) {
+		this.directionController = new ArrayList<DirectionController>();
 		this.addComponentListener(new ViewController());
 		this.addKeyListener(new GameKeyboardController(this.game));
 		this.game.addListener(this);
 		
+		// Create controllers for all players. Falls though each case
 		switch (numOfPlayers) {
 			case 4:
 				directionController.add(new DirectionController(game, game.getSnakes().get(3), 3));
@@ -85,6 +93,7 @@ public class View extends JFrame implements GameListener {
 			default:
 				break;
 		}
+		
 		for (DirectionController controller :  this.directionController) {
 			this.addKeyListener(controller);
 		}

@@ -6,7 +6,7 @@ import javax.swing.ImageIcon;
 import javax.swing.JFrame;
 
 /**
- * Dialog for displaying controls for the four players
+ * Dialog for displaying keyboard controls for the four players
  */
 public class ControlsDialog extends GenericDialog{
 	
@@ -15,12 +15,15 @@ public class ControlsDialog extends GenericDialog{
 	 */
 	private static final long serialVersionUID = 7084455701007894071L;
 
+	/**
+	 * Constructor for the controls dialog
+	 */
 	public ControlsDialog(){
 		//Change background
 		try {
 			background.setIcon(new ImageIcon(GenericDialog.class.getResource("images/snakeControlsBG.jpg")));
-		} catch (Exception e) {
-			
+		} catch (Exception e) { 
+			//e.printStackTrace();
 		}
         
         //Set close operation to only dispose of the current window
@@ -33,6 +36,6 @@ public class ControlsDialog extends GenericDialog{
 	
 	@Override
 	public Dimension getPreferredSize(){
-		return new Dimension(435, 409);
+		return new Dimension(435, 425);
 	}
 }
