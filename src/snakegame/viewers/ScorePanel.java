@@ -3,7 +3,6 @@ package snakegame.viewers;
 import java.awt.*;
 
 import javax.swing.*;
-import javax.swing.border.LineBorder;
 
 import snakegame.models.Player;
 

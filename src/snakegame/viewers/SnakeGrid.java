@@ -92,7 +92,8 @@ public class SnakeGrid extends JPanel {
     }
     
 	public void drawSnake(Graphics2D g2){
-		for (Snake snake : game.getSnakes()){
+		int id = 0;
+		for (Snake snake : game.getSnakes()) {
 			g2.setColor(Color.BLACK);
 		    for (Point currentPos : snake.getPosition()) {
 		    	if (!(currentPos.equals(snake.getHead())) && !(currentPos.equals(snake.getTail()))) {
@@ -100,13 +101,12 @@ public class SnakeGrid extends JPanel {
 		    		Point pointAfterCurrent;
 		    		pointBeforeCurrent = new Point(snake.getPosition().get(snake.getPosition().indexOf(currentPos)+1));
 		    		pointAfterCurrent = new Point(snake.getPosition().get(snake.getPosition().indexOf(currentPos)-1));
-		    		g2.drawImage(TextureShelf.snakeBody(pointBeforeCurrent, currentPos, pointAfterCurrent), (int) (currentPos.x * gameWidthScale) + 1, 
+		    		g2.drawImage(TextureShelf.snakeBody(pointBeforeCurrent, currentPos, pointAfterCurrent, id), (int) (currentPos.x * gameWidthScale) + 1, 
 			    			(int) ((this.game.getDimension().height - currentPos.y)*gameHeightScale) + 1, 
 			    			(int) (gameWidthScale) + 1, (int) (gameHeightScale) + 1, this);
 	        
 		    	}
 		    }
-		    
 		    
 	    	Point tail = snake.getTail();
 	    	Point head = snake.getHead();
@@ -118,23 +118,22 @@ public class SnakeGrid extends JPanel {
 	    		secondLastPoint = head;
 	    	}
 	    	
-	    	g2.drawImage(TextureShelf.snakeTail(tail, secondLastPoint),(int) (tail.x * gameWidthScale) + 1, 
+	    	g2.drawImage(TextureShelf.snakeTail(tail, secondLastPoint, id), (int) (tail.x * gameWidthScale) + 1, 
 	    			(int) ((this.game.getDimension().height - tail.y) * gameHeightScale) + 1, 
 	    			(int) (gameWidthScale + 1), (int) (gameHeightScale + 1), this);
 		    
 	    	g2.setColor(Color.green);
 	    	
-	    	g2.drawImage(TextureShelf.snakeHead(snake.getCurrentDirection()),(int) (head.x * gameWidthScale) + 1, 
+	    	g2.drawImage(TextureShelf.snakeHead(snake.getCurrentDirection(), id), (int) (head.x * gameWidthScale) + 1, 
 	    			(int) ((this.game.getDimension().height - head.y) * gameHeightScale) + 1, 
 	    			(int) (gameWidthScale + 1), (int) (gameHeightScale + 1), this);
 
-	    	
-
-	    	
 			// If the snake is eating, play a sound
 			if (snake.isEating()) {
 				Sound.EAT.play();
 			}
+			
+			id++;
 		}
 	}
 	

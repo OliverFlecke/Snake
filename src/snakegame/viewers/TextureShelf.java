@@ -24,7 +24,7 @@ public class TextureShelf {
 
 	
 	
-	public static BufferedImage snakeHead(DIRECTION direction){
+	public static BufferedImage snakeHead(DIRECTION direction, int id){
 		
 		
 		//Direction check
@@ -33,19 +33,34 @@ public class TextureShelf {
 		}
 		
 		//Load in the image for the head.
-		try {
-			 imageForHead = ImageIO.read(SnakeGrid.class.getResource("images\\shenronHeadUp.png"));
-		} catch (IOException e) {
-			 imageForHead = null;
-		}
-		
+//		try {
+//			switch (id) {
+//				case 1:
+//					imageForHead = ImageIO.read(SnakeGrid.class.getResource("images\\player2HeadUp.png"));
+//				case 0:
+//				default:
+//					imageForHead = ImageIO.read(SnakeGrid.class.getResource("images\\player1HeadUp.png"));
+//					break;
+//			}
+//		} catch (IOException e) {
+//			 imageForHead = null;
+//		}
+//		
 		switch(direction) {
 		
 		case UP:
 			
 			//Load in the image for the head.
 			try {
-				 imageForHead = ImageIO.read(SnakeGrid.class.getResource("images\\shenronHeadUp.png"));
+				switch (id) {
+					case 1:
+						imageForHead = ImageIO.read(SnakeGrid.class.getResource("images\\player2HeadUp.png"));
+						break;
+					case 0:
+					default:
+						imageForHead = ImageIO.read(SnakeGrid.class.getResource("images\\player1HeadUp.png"));
+						break;
+				}
 			} catch (IOException e) {
 				 imageForHead = null;
 			}
@@ -55,7 +70,15 @@ public class TextureShelf {
 			
 			//Load in the image for the head.
 			try {
-				 imageForHead = ImageIO.read(SnakeGrid.class.getResource("images\\shenronHeadDown.png"));
+				switch (id) {
+					case 1:
+						imageForHead = ImageIO.read(SnakeGrid.class.getResource("images\\player2HeadDown.png"));
+						break;
+					case 0:
+					default:
+						imageForHead = ImageIO.read(SnakeGrid.class.getResource("images\\player1HeadDown.png"));
+						break;
+				}
 			} catch (IOException e) {
 				 imageForHead = null;
 			}
@@ -65,7 +88,15 @@ public class TextureShelf {
 			
 			//Load in the image for the head.
 			try {
-				 imageForHead = ImageIO.read(SnakeGrid.class.getResource("images\\shenronHeadLeft.png"));
+				switch (id) {
+					case 1:
+						imageForHead = ImageIO.read(SnakeGrid.class.getResource("images\\player2HeadLeft.png"));
+						break;
+					case 0:
+					default:
+						imageForHead = ImageIO.read(SnakeGrid.class.getResource("images\\player1HeadLeft.png"));
+						break;
+				}
 			} catch (IOException e) {
 				 imageForHead = null;
 			}
@@ -75,7 +106,15 @@ public class TextureShelf {
 			
 			//Load in the image for the head.
 			try {
-				 imageForHead = ImageIO.read(SnakeGrid.class.getResource("images\\shenronHeadRight.png"));
+				switch (id) {
+					case 1:
+						imageForHead = ImageIO.read(SnakeGrid.class.getResource("images\\player2HeadRight.png"));
+						break;
+					case 0:
+					default:
+						imageForHead = ImageIO.read(SnakeGrid.class.getResource("images\\player1HeadRight.png"));
+						break;
+				}
 			} catch (IOException e) {
 				 imageForHead = null;
 			}
@@ -85,14 +124,23 @@ public class TextureShelf {
 		return imageForHead;
 	}
 
-	public static BufferedImage snakeTail(Point snakeTail, Point secondLastPoint){
+	public static BufferedImage snakeTail(Point snakeTail, Point secondLastPoint, int id){
 		checkPoint(snakeTail, secondLastPoint);
 		
 		if (snakeTail.y < secondLastPoint.y){
 			
 			//Load in the image for the head.
 			try {
-				imageForTail = ImageIO.read(SnakeGrid.class.getResource("images\\shenronTailUp.png"));
+				switch (id) {
+					case 1:
+						imageForTail = ImageIO.read(SnakeGrid.class.getResource("images\\player2TailUp.png"));
+						break;
+					case 0:
+					default:
+						imageForTail = ImageIO.read(SnakeGrid.class.getResource("images\\player1TailUp.png"));
+						break;
+				
+				}
 			} catch (IOException e) {
 				imageForTail = null;
 			}
@@ -102,7 +150,15 @@ public class TextureShelf {
 			
 			//Load in the image for the head.
 			try {
-				imageForTail = ImageIO.read(SnakeGrid.class.getResource("images\\shenronTailDown.png"));
+				switch (id) {
+					case 1:
+						imageForTail = ImageIO.read(SnakeGrid.class.getResource("images\\player2TailDown.png"));
+						break;
+					case 0:
+					default:
+						imageForTail = ImageIO.read(SnakeGrid.class.getResource("images\\player1TailDown.png"));
+						break;
+				}	
 			} catch (IOException e) {
 				imageForTail = null;
 			}
@@ -112,7 +168,15 @@ public class TextureShelf {
 			
 			//Load in the image for the head.
 			try {
-				imageForTail = ImageIO.read(SnakeGrid.class.getResource("images\\shenronTailLeft.png"));
+				switch (id) {
+				case 1:
+					imageForTail = ImageIO.read(SnakeGrid.class.getResource("images\\player2TailLeft.png"));
+					break;
+				case 0:
+				default:
+					imageForTail = ImageIO.read(SnakeGrid.class.getResource("images\\player1TailLeft.png"));
+					break;
+				}
 			} catch (IOException e) {
 				imageForTail = null;
 			}
@@ -122,7 +186,15 @@ public class TextureShelf {
 			
 			//Load in the image for the head.
 			try {
-				imageForTail = ImageIO.read(SnakeGrid.class.getResource("images\\shenronTailRight.png"));
+				switch (id) {
+				case 1:
+					imageForTail = ImageIO.read(SnakeGrid.class.getResource("images\\player2TailRight.png"));
+					break;				
+				case 0:
+				default:
+					imageForTail = ImageIO.read(SnakeGrid.class.getResource("images\\player1TailRight.png"));
+					break;
+				}
 			} catch (IOException e) {
 				imageForTail = null;
 			}
@@ -131,7 +203,7 @@ public class TextureShelf {
 		return imageForTail;
 	}
 	
-	public static BufferedImage snakeBody(Point beforeCurPos, Point curPos, Point afterCurPos){
+	public static BufferedImage snakeBody(Point beforeCurPos, Point curPos, Point afterCurPos, int id){
 		checkPoint(curPos, beforeCurPos);
 		checkPoint(curPos, afterCurPos);
 		
@@ -140,7 +212,15 @@ public class TextureShelf {
 			
 			//Load in the image for the head.
 			try {
-				imageForBody = ImageIO.read(SnakeGrid.class.getResource("images\\shenronBodyVertical.png"));
+				switch (id) {
+				case 1: 
+					imageForBody = ImageIO.read(SnakeGrid.class.getResource("images\\player2BodyVertical.png"));
+					break;
+				case 0:
+				default:
+					imageForBody = ImageIO.read(SnakeGrid.class.getResource("images\\player1BodyVertical.png"));
+					break;
+				}
 			} catch (IOException e) {
 				imageForBody = null;
 			}
@@ -150,7 +230,15 @@ public class TextureShelf {
 			
 			//Load in the image for the head.
 			try {
-				imageForBody = ImageIO.read(SnakeGrid.class.getResource("images\\shenronBodyHorizontal.png"));
+				switch (id) {
+				case 1: 
+					imageForBody = ImageIO.read(SnakeGrid.class.getResource("images\\player2BodyHorizontal.png"));
+					break;
+				case 0:
+				default:				
+					imageForBody = ImageIO.read(SnakeGrid.class.getResource("images\\player1BodyHorizontal.png"));
+					break;
+				}
 			} catch (IOException e) {
 				imageForBody = null;
 			}
@@ -162,7 +250,15 @@ public class TextureShelf {
 			
 			//Load in the image for the head.
 			try {
-				imageForBody = ImageIO.read(SnakeGrid.class.getResource("images\\shenronBodyBendLeft.png"));
+				switch (id) {
+					case 1:
+						imageForBody = ImageIO.read(SnakeGrid.class.getResource("images\\player2BodyBendLeft.png"));
+						break;
+					case 0:
+					default:
+						imageForBody = ImageIO.read(SnakeGrid.class.getResource("images\\player1BodyBendLeft.png"));
+						break;
+				}
 			} catch (IOException e) {
 				imageForBody = null;
 			}
@@ -173,7 +269,15 @@ public class TextureShelf {
 			
 			//Load in the image for the head.
 			try {
-				imageForBody = ImageIO.read(SnakeGrid.class.getResource("images\\shenronBodyBendUp.png"));
+				switch (id) {
+					case 1:
+						imageForBody = ImageIO.read(SnakeGrid.class.getResource("images\\player2BodyBendUp.png"));
+						break;
+					case 0:
+					default:
+						imageForBody = ImageIO.read(SnakeGrid.class.getResource("images\\player1BodyBendUp.png"));
+						break;
+				}
 			} catch (IOException e) {
 				imageForBody = null;
 			}
@@ -184,7 +288,15 @@ public class TextureShelf {
 			
 			//Load in the image for the head.
 			try {
-				imageForBody = ImageIO.read(SnakeGrid.class.getResource("images\\shenronBodyBendRight.png"));
+				switch (id) {
+					case 1:
+						imageForBody = ImageIO.read(SnakeGrid.class.getResource("images\\player2BodyBendRight.png"));
+						break;
+					case 0:
+					default:
+						imageForBody = ImageIO.read(SnakeGrid.class.getResource("images\\player1BodyBendRight.png"));
+						break;
+				}
 			} catch (IOException e) {
 				imageForBody = null;
 			}
@@ -193,7 +305,15 @@ public class TextureShelf {
 		if ((pointLeftOfCurrent(curPos, beforeCurPos) && pointUnderCurrent(curPos, afterCurPos))
 				|| (pointLeftOfCurrent(curPos, afterCurPos) && pointUnderCurrent(curPos, beforeCurPos))) {
 			try {
-				imageForBody = ImageIO.read(SnakeGrid.class.getResource("images\\shenronBodyBendDown.png"));
+				switch (id) {
+					case 1:
+						imageForBody = ImageIO.read(SnakeGrid.class.getResource("images\\player2BodyBendDown.png"));
+						break;
+					case 0:
+					default:
+						imageForBody = ImageIO.read(SnakeGrid.class.getResource("images\\player1BodyBendDown.png"));
+						break;
+				}
 			} catch (IOException e) {
 				imageForBody = null;
 			}

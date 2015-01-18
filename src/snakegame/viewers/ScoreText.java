@@ -1,17 +1,19 @@
 package snakegame.viewers;
 
-import java.awt.FlowLayout;
 import java.awt.Font;
 import java.awt.GridLayout;
 
 import javax.swing.*;
-import javax.swing.border.EmptyBorder;
 
 import snakegame.models.Game;
 import snakegame.models.Snake;
 
 public class ScoreText extends JPanel{
 	
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 926545560343290713L;
 	private Game game;
 	
 	public ScoreText(Game game){
@@ -24,7 +26,6 @@ public class ScoreText extends JPanel{
 			this.setLayout(new GridLayout(2,2));
 		}
 		
-		
 		for(Snake current : game.getSnakes()) {
 			JLabel label = new JLabel(current.getName() + " | " + "Score:" + current.getScore(), SwingConstants.CENTER);
 			label.setFont(new Font(label.getFont().getFontName(), Font.BOLD, 13));
@@ -32,5 +33,4 @@ public class ScoreText extends JPanel{
 			//label.setBorder(new EmptyBorder(10, 20, 10, 20) );
 		}
 	}
-
 }

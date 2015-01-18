@@ -1,8 +1,6 @@
 package snakegame.models;
 
-import java.net.URISyntaxException;
 import java.util.ArrayList;
-import java.util.Collections;
 
 public class TestHighScore {
 	public static void main(String[] args){

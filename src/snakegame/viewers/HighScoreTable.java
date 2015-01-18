@@ -11,6 +11,10 @@ import snakegame.models.Player;
 import snakegame.models.HighScore;
 
 public class HighScoreTable extends JPanel{
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 4126008237857482618L;
 	private String[] columnNames = {"#", 
 			"Name",
 			"Score",

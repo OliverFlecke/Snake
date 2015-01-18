@@ -7,13 +7,9 @@ import java.awt.event.ActionListener;
 import javax.swing.ImageIcon;
 import javax.swing.JFrame;
 import javax.swing.JButton;
-import javax.swing.JLabel;
 import javax.swing.JPanel;
-import javax.swing.SwingConstants;
 
 import snakegame.models.Game;
-import snakegame.models.HighScore;
-import snakegame.viewers.sound.Sound;
 
 
 public class GameDialog extends GenericDialog{
@@ -64,8 +60,6 @@ public class GameDialog extends GenericDialog{
 			}
 		});	
 		
-		
-		
 		restartBtn.addActionListener(new ActionListener() {
 
 			public void actionPerformed(ActionEvent e) {
@@ -82,11 +76,6 @@ public class GameDialog extends GenericDialog{
 		this.setPreferredSize(getPreferredSize());
 		this.pack();
 		this.setLocationRelativeTo(null);
-		this.setVisible(true);
-		
+		this.setVisible(true);		
 	}
-	
-
-	}
-
-
+}
