@@ -5,6 +5,9 @@ import java.util.ArrayList;
 
 import javax.swing.JPanel;
 
+/**
+ * Panel to display 
+ */
 public class PlayerPanel extends JPanel {
 
 	/**

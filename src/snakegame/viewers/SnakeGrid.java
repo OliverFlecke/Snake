@@ -19,9 +19,10 @@ import java.awt.Graphics;
 import java.awt.Graphics2D;
 import java.awt.image.BufferedImage;
 import java.io.IOException;
+import java.util.ArrayList;
 
 /**
- * 
+ * The grid where the game is displayed
  */
 public class SnakeGrid extends JPanel {	
 	/**
@@ -29,16 +30,21 @@ public class SnakeGrid extends JPanel {
 	 */
 	private static final long serialVersionUID = -1801348824563036162L;
 	
+	// Scale for the game width and height
 	private double gameWidthScale;
 	private double gameHeightScale;
 	
+	// Image for the background and food
 	private BufferedImage background;
-	private BufferedImage food;
-	
+	//private BufferedImage food;
 	
 	// The game object
 	private Game game;
 
+	/**
+	 * Constructor for the snakegrid
+	 * @param game to dislpay in the grid
+	 */
 	public SnakeGrid(Game game) {
 		super();
 		
@@ -49,12 +55,11 @@ public class SnakeGrid extends JPanel {
     		this.setBackground(Color.GRAY);
 		}
 		
-		//Load in the background image.
-		try {
-			food = ImageIO.read(SnakeGrid.class.getResource("images/foodText.png"));
-		} catch (IOException e) {
-    		this.setBackground(Color.GRAY);
-		}
+//		try {
+//			food = ImageIO.read(SnakeGrid.class.getResource("images/foodText.png"));
+//		} catch (IOException e) {
+//    		this.setBackground(Color.GRAY);
+//		}
 		
 		this.setLayout(new GridLayout(getPreferredSize().height, getPreferredSize().width));
 		this.setBorder(new LineBorder(new Color(167,160,108), 5));
@@ -75,22 +80,27 @@ public class SnakeGrid extends JPanel {
         drawBackground(g2);
         drawSnake(g2);
         placeFood(g2);
-        
-
     }
     
+	/**
+	 * Draw the background of the grid
+	 * @param g2
+	 */
     public void drawBackground(Graphics2D g2){
     	int width = this.getWidth();
     	int height = this.getHeight();
-    	
 
-    	for (int i=0; i < width; i +=background.getWidth()){
-    		for (int j=0; j < height; j +=background.getHeight()){
+    	for (int i=0; i < width; i +=background.getWidth()) {
+    		for (int j=0; j < height; j +=background.getHeight()) {
     			g2.drawImage(background, i, j, this);
-	    		}
-	    	}
+    		}
+    	}
     }
     
+    /**
+     * Draw the snakes in the game
+     * @param g2
+     */
 	public void drawSnake(Graphics2D g2){
 		int id = 0;
 		for (Snake snake : game.getSnakes()) {
@@ -104,7 +114,6 @@ public class SnakeGrid extends JPanel {
 		    		g2.drawImage(TextureShelf.snakeBody(pointBeforeCurrent, currentPos, pointAfterCurrent, id), (int) (currentPos.x * gameWidthScale) + 1, 
 			    			(int) ((this.game.getDimension().height - currentPos.y)*gameHeightScale) + 1, 
 			    			(int) (gameWidthScale) + 1, (int) (gameHeightScale) + 1, this);
-	        
 		    	}
 		    }
 		    
@@ -139,11 +148,13 @@ public class SnakeGrid extends JPanel {
 	
 	public void placeFood(Graphics2D g2) {
 		g2.setColor(Color.cyan);
+		int index = 0;
 	    for (Food currentFood : game.getFood()) {
 	    	Point currentPos = currentFood.getPosition();
-	    	g2.drawImage(food, (int) (currentPos.x * gameWidthScale), 
+	    	g2.drawImage(TextureShelf.getFoodImage(index), (int) (currentPos.x * gameWidthScale), 
 	    			(int) ((this.game.getDimension().height - currentPos.y) * gameHeightScale), 
 	    			(int) (gameWidthScale)+10, (int) (gameHeightScale)+10, this);
+	    	index++;
         }		
 	}
 
