@@ -146,7 +146,7 @@ public class RunSnake extends GenericDialog{
 		 */
 		highScoreBtn.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				if (controlsDialog == null) {
+				if (standAloneHighScore == null) {
 					standAloneHighScore = new StandAloneHighScore();
 
 				}
